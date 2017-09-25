@@ -21,8 +21,10 @@ In the [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandlin
 
 ```bash
 pico .profile
-source .profile
+source ~/.profile
 ```
+
+You may have to run source `~/.profile` with every new terminal session until you log out and log back in.
 
 ## related resources
 
