@@ -36,7 +36,7 @@ You may have to run source `~/.profile` with every new terminal session until yo
 
 The dotnet script README file gives us this single [Chocolatey](https://chocolatey.org/) setup command:
 
-```PowerShell
+```ps1
 choco install dotnet.script
 ```
 

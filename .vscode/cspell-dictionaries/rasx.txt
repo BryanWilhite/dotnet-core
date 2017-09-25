@@ -5,6 +5,7 @@ chocolatey
 cors
 eisenberg
 eperm
+filip
 gitignore
 hejlsberg
 netcoreapp
@@ -13,7 +14,9 @@ nuget
 pico
 preprocessors
 rasx
+scriptcs
 songhay
 wilhite
+xbuild
 xhtml
 zaefferer
