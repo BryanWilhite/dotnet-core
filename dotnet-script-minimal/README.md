@@ -1,6 +1,12 @@
 # dotnet script minimal
 
-This is the minimal required to get dotnet script ([GitHub](https://github.com/filipw/dotnet-script)) working, following the repository documentation. My only twist on this is my preference to standardize on Ubuntu bash, across platforms.
+This is the minimal required to get dotnet script ([GitHub](https://github.com/filipw/dotnet-script)) working, following the repository documentation. My only twist on this is my preference to standardize on Ubuntu bash, across platforms. However, Powershell setup notes are below…
+
+From the root folder of this sample this command should run without errors:
+
+```bash
+dotnet script hello-world.csx
+```
 
 ## setup on Ubuntu bash
 
@@ -17,7 +23,7 @@ DOTNET_SCRIPT=/your/path/to/dotnet-script.0.13.0/dotnet-script
 export PATH=$PATH:$DOTNET_SCRIPT/
 ```
 
-In the [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/about), edit with, say, pico by opening `.profile` a new terminal session. By default, your present working directory should be your `/home/*/` folder and this command should work:
+In the [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/about), edit with, say, [pico](https://en.wikipedia.org/wiki/Pico_(text_editor)) by opening `.profile` a new terminal session. By default, your present working directory should be your `/home/*/` folder and this command should work:
 
 ```bash
 pico .profile
@@ -25,6 +31,18 @@ source ~/.profile
 ```
 
 You may have to run source `~/.profile` with every new terminal session until you log out and log back in.
+
+## setup on PowerShell
+
+The dotnet script README file gives us this single [Chocolatey](https://chocolatey.org/) setup command:
+
+```PowerShell
+choco install dotnet.script
+```
+
+I recommend using Chocolatey GUI to  install the [dotnet.script Chocolatey package](https://chocolatey.org/packages/dotnet.script).
+
+_Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
 
 ## related resources
 

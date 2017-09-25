@@ -1,5 +1,6 @@
 anders
 bootstrapper
+choco
 chocolatey
 cors
 eisenberg
@@ -9,6 +10,7 @@ hejlsberg
 netcoreapp
 nocache
 nuget
+pico
 preprocessors
 rasx
 songhay
