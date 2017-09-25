@@ -8,8 +8,20 @@ The plan is to use NuGet directly and write a `*.csx` script that generates anot
 
 Simultaneously, [Filip W. is working](https://www.strathweb.com/2016/10/introducing-c-script-runner-for-net-core-and-net-cli/) on a cross-platform `*.csx` scripting solution on .NET core around a `dotnet script` command. I think this is the future of `*.csx` scripting (see on [GitHub](https://github.com/filipw/dotnet-script)) but for Windows-only alternatives to PowerShell CSI.EXE will remain the conservative fallback.
 
-## Environment
+## Environment (without Visual Studio 2017)
 
-This exploration will take place in [Visual Studio Code](https://code.visualstudio.com/) with no directly-relating extensions installed (apart from [ms-vscode.csharp](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)). In addition to installing [Build Tools for Visual Studio 2017](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017)), `NuGet.exe` is installed with [Download-NuGet.ps1](./ps1/Download-NuGet.ps1).
+This exploration will take place in [Visual Studio Code](https://code.visualstudio.com/) with no directly-relating extensions installed (apart from [ms-vscode.csharp](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)). In addition to installing [Build Tools for Visual Studio 2017](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017)), `NuGet.exe` is installed with [Download-NuGet.ps1](./ps1/Download-NuGet.ps1). Of course `"${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\Roslyn"` is added to `$env:Path`. These commands (from [this folder](../csi-exe-minimal)) set up the environment:
 
-Of course `"${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\Roslyn"` is added to `$env:Path`.
+```ps1
+.\ps1\Download-NuGet.ps1
+.\ps1\AddToEnvironmentVariable-Path.ps1
+```
+
+## Environment (with Visual Studio 2017)
+
+`NuGet.exe` is installed with [Download-NuGet.ps1](./ps1/Download-NuGet.ps1). Of course `"${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\Roslyn"` is added to `$env:Path`. These commands (from [this folder](../csi-exe-minimal)) set up the environment:
+
+```ps1
+.\ps1\Download-NuGetForVS.ps1
+.\ps1\AddToEnvironmentVariable-PathForVS.ps1
+```
