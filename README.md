@@ -24,8 +24,11 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsof
 sudo apt-get update
 
 sudo apt-get install dotnet-sdk-2.0.0
-
 ```
+
+## searching for `dotnet new` templates
+
+The [dotnet templates site](http://dotnetnew.azurewebsites.net/) allows us to search for templates.
 
 ## what does Node.js have to do with .NET Core?
 
