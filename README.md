@@ -1,6 +1,15 @@
 # dotnet-core
 
-my collection of self-educational samples on .NET Core
+Here’s my collection of self-educational samples on .NET Core. The intention here is to address these concerns:
+
+* .NET scripting in C# and F#.
+* Using F# as alternative to TypeScript.
+* Migrating to Entity Framework Core.
+* Migrating ASP.NET Web API to ASP.NET Core.
+
+The bias here is to run everything in bash without regard to platform. “[Running .NET Core Apps under Windows Subsystem for Linux (Bash for Windows)](https://weblog.west-wind.com/posts/2017/Apr/13/Running-NET-Core-Apps-under-Windows-Subsystem-for-Linux-Bash-for-Windows)” by Rick Strahl is a great introduction to this possibility.
+
+When bash fails then the alternative will be PowerShell. _Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
 
 ## setup on Ubuntu bash
 
