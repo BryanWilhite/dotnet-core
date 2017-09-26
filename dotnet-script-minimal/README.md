@@ -40,7 +40,7 @@ The dotnet script README file gives us this single [Chocolatey](https://chocolat
 choco install dotnet.script
 ```
 
-I recommend using Chocolatey GUI to  install the [dotnet.script Chocolatey package](https://chocolatey.org/packages/dotnet.script). As of this writing, [.NET Core SDK 1.0.4](https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.1.2-download.md) is required to run dotnet script.
+I recommend using [Chocolatey GUI](https://chocolatey.org/packages/ChocolateyGUI) to  install the [dotnet.script Chocolatey package](https://chocolatey.org/packages/dotnet.script). As of this writing, [.NET Core SDK 1.0.4](https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.1.2-download.md) is required to run dotnet script.
 
 _Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
 
