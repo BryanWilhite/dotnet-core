@@ -3,7 +3,7 @@
 Here’s my collection of self-educational samples on .NET Core. The intention here is to address these concerns:
 
 * .NET scripting in C# and F#.
-* Using F# as alternative to TypeScript.
+* Using F# as alternative to TypeScript with [Fable](http://fable.io/).
 * Migrating to Entity Framework Core.
 * Migrating ASP.NET Web API to ASP.NET Core.
 
@@ -26,3 +26,7 @@ sudo apt-get update
 sudo apt-get install dotnet-sdk-2.0.0
 
 ```
+
+## what does Node.js have to do with .NET Core?
+
+There _is_ a relationship between Node.js and .NET Core. The work on [Fable](http://fable.io/) that will done here will demonstrate this. It follows that [my study of Node.js](https://github.com/BryanWilhite/nodejs) is recommended reading to background the word here.
