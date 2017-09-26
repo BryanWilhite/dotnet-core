@@ -12,7 +12,7 @@ This exploration will take place in [Visual Studio Code](https://code.visualstud
 
 ## Environment (without Visual Studio 2017)
 
-An environment without Visual Studio 2017 (like a build server) requires installing [Build Tools for Visual Studio 2017](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017)) and `Nuget.exe`.
+An environment without Visual Studio 2017 (like a build server) requires installing [Build Tools for Visual Studio 2017](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) and `Nuget.exe`.
 
 `NuGet.exe` is installed with [Download-NuGet.ps1](./ps1/Download-NuGet.ps1). These commands (from [this folder](../csi-exe-minimal)) set up the environment:
 
