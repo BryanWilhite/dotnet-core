@@ -30,3 +30,5 @@ sudo apt-get install dotnet-sdk-2.0.0
 ## what does Node.js have to do with .NET Core?
 
 There _is_ a relationship between Node.js and .NET Core. The work on [Fable](http://fable.io/) that will done here will demonstrate this. It follows that [my study of Node.js](https://github.com/BryanWilhite/nodejs) is recommended reading to background the word here.
+
+@[BryanWilhite](https://twitter.com/bryanwilhite)
