@@ -44,38 +44,7 @@ I recommend using Chocolatey GUI to  install the [dotnet.script Chocolatey packa
 
 _Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
 
-This is one way to add the dotnet script path to Windows (in Powershell):
-
-```ps1
-$envVar = "Path"
-Write-Output "Getting $envVar from the specified Environment target..."
-
-$target = [System.EnvironmentVariableTarget]::Machine
-$envPath = [System.Environment]::GetEnvironmentVariable($envVar, $target)
-$hasEnvPath = ($envPath -ne $null)
-if ($hasEnvPath) {
-    $paths = {$envPath.Split(';')}.Invoke()
-}
-else {
-    $paths = {, ""}.Invoke()
-}
-Write-Output "$($envVar):"
-$paths
-
-$newPath = "$env:ProgramData\chocolatey\lib\dotnet.script\Dotnet.Script"
-if(-Not $paths.Contains($newPath))
-{
-    Write-Output "Adding new path to $envVar..."
-    $paths.Add($newPath)
-    $s = [System.String]::Join(";", $paths)
-    [System.Environment]::SetEnvironmentVariable($envVar, $s, $target)
-}
-
-$paths = {[System.Environment]::GetEnvironmentVariable($envVar, $target).Split(';')}.Invoke()
-
-Write-Output "$($envVar):"
-$paths
-```
+Add the dotnet script path to Windows (in Powershell) with [AddToEnvironmentVariable-Path.ps1](./ps1/AddToEnvironmentVariable-Path.ps1).
 
 ## related resources
 
