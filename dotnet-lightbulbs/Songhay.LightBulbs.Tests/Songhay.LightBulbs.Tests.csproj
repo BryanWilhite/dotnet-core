@@ -12,4 +12,9 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Songhay.LightBulbs\Songhay.LightBulbs.csproj" />
+    <ProjectReference Include="..\Songhay.LightBulbs.Models\Songhay.LightBulbs.Models.csproj" />
+  </ItemGroup>
+
 </Project>
