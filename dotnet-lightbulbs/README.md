@@ -17,4 +17,10 @@ dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference So
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
 ```
 
+## related links
+
+* `dotnet new` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x)]
+* `dotnet sln` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-sln)]
+* `dotnet-add reference` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference)]
+
 @[BryanWilhite](https://twitter.com/bryanwilhite)
