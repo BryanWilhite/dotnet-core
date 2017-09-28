@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Songhay.LightBulbs.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ModelsExtensionsTest
     {
         [TestMethod]
         public void TestMethod1()
