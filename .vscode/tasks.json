@@ -9,7 +9,12 @@
             "args": [
                 "${workspaceRoot}/dotnet-console-minimal/hwapp/hwapp.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\sysnative\\bash.exe"
+                }
+            }
         },
         {
             "identifier": "build-dotnet-lightbulbs",
@@ -19,7 +24,12 @@
             "args": [
                 "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs.sln"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "shell": {
+                    "executable": "C:\\Windows\\sysnative\\bash.exe"
+                }
+            }
         }
     ]
 }
