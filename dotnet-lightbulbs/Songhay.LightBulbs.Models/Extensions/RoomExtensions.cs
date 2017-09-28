@@ -17,7 +17,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// This strategy returns an array in order to track changes
         /// by reference to <see cref="LightBulb" />.
         /// </remarks>
-        public static Room WithLightBulbs(this Room room, int numberOfLightBulbs = 90, bool bulbsOnByDefault = true)
+        public static Room WithLightBulbs(this Room room, int numberOfLightBulbs = 100, bool bulbsOnByDefault = true)
         {
             if(room == null) return null;
 
@@ -34,7 +34,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// <param name="room">the Room</param>
         /// <param name="numberOfPersons">the number of persons</param>
         /// <returns></returns>
-        public static Room WithPersons(this Room room, int numberOfPersons = 9)
+        public static Room WithPersons(this Room room, int numberOfPersons = 100)
         {
             if(room == null) return null;
 
