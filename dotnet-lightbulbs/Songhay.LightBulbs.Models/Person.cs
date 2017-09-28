@@ -1,6 +1,6 @@
 namespace Songhay.LightBulbs.Models
 {
-    struct Person
+    public struct Person
     {
         public Person(int ordinal, int moduloDivisor)
         {
