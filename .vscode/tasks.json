@@ -1,15 +1,24 @@
 {
-    "version": "0.1.0",
-    "command": "dotnet",
-    "isShellCommand": true,
-    "args": [],
+    "version": "2.0.0",
     "tasks": [
         {
+            "identifier": "build-dotnet-console-minimal",
+            "type": "shell",
+            "command": "dotnet",
             "taskName": "build",
             "args": [
                 "${workspaceRoot}/dotnet-console-minimal/hwapp/hwapp.csproj"
             ],
-            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "identifier": "build-dotnet-lightbulbs",
+            "type": "shell",
+            "command": "dotnet",
+            "taskName": "build",
+            "args": [
+                "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs.sln"
+            ],
             "problemMatcher": "$msCompile"
         }
     ]

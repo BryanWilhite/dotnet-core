@@ -16,7 +16,7 @@ namespace Songhay.LightBulbs.Tests
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        [TestProperty("numberOfLightBulbs","12")]
+        [TestProperty("numberOfLightBulbs", "12")]
         [TestProperty("bulbsOnByDefault", "true")]
         public void ShouldGetRoomWithLightBulbs()
         {
@@ -32,7 +32,24 @@ namespace Songhay.LightBulbs.Tests
             Assert.IsNotNull(room, "The expected room is not here.");
             Assert.IsTrue(room.LightBulbs.Any(), "The expected light bulbs are not here.");
             Assert.IsTrue(room.LightBulbs.Count() == numberOfLightBulbs, "The expected number of light bulbs is not here.");
-            Assert.IsTrue(room.LightBulbs.All(i=>i.IsOn), "The expected on/off state of light bulbs is not here.");
+            Assert.IsTrue(room.LightBulbs.All(i => i.IsOn), "The expected on/off state of light bulbs is not here.");
+        }
+
+        [TestMethod]
+        [TestProperty("numberOfPersons", "8")]
+        public void ShouldGetRoomWithPersons()
+        {
+            #region test properties:
+
+            var numberOfPersons = Convert.ToInt32(this.TestContext.Properties["numberOfPersons"]);
+
+            #endregion
+
+            var room = (new Room()).WithPersons(numberOfPersons);
+
+            Assert.IsNotNull(room, "The expected room is not here.");
+            Assert.IsTrue(room.Persons.Any(), "The expected persons are not here.");
+            Assert.IsTrue(room.Persons.Count() == numberOfPersons, "The expected number of persons is not here.");
         }
     }
 }
