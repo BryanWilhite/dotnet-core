@@ -2,7 +2,6 @@
 
 This sample is meant illustrate my development skills to a hiring third party.
 
-
 ## setup with the dotnet CLI
 
 After manually generating the folders in [the sample folder](../dotnet-lightbulbs), these commands were run in that context to define the Solution:
