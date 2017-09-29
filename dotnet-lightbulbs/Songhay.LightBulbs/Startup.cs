@@ -37,8 +37,7 @@ namespace Songhay.LightBulbs
             }
 
             app
-                .UseMvc()
-                .UseStaticFiles();
+                .UseMvc();
         }
     }
 }
