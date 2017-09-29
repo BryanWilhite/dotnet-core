@@ -2,34 +2,34 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "identifier": "build-dotnet-console-minimal",
+            "command": "sudo",
+            "taskName": "build-dotnet-console-minimal",
+            "isBackground": false,
             "type": "shell",
-            "command": "dotnet",
-            "taskName": "build",
             "args": [
-                "${workspaceRoot}/dotnet-console-minimal/hwapp/hwapp.csproj"
+                "dotnet",
+                "build",
+                "hwapp.csproj"
             ],
-            "problemMatcher": "$msCompile",
             "options": {
-                "shell": {
-                    "executable": "C:\\Windows\\sysnative\\bash.exe"
-                }
-            }
+                "cwd": "${workspaceRoot}/dotnet-console-minimal/hwapp"
+            },
+            "problemMatcher": "$msCompile"
         },
         {
-            "identifier": "build-dotnet-lightbulbs",
+            "command": "sudo",
+            "taskName": "build-dotnet-lightbulbs",
+            "isBackground": true,
             "type": "shell",
-            "command": "dotnet",
-            "taskName": "build",
             "args": [
-                "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs.sln"
+                "dotnet",
+                "build",
+                "Songhay.LightBulbs.sln"
             ],
-            "problemMatcher": "$msCompile",
             "options": {
-                "shell": {
-                    "executable": "C:\\Windows\\sysnative\\bash.exe"
-                }
-            }
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }
