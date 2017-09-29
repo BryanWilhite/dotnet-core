@@ -24,7 +24,6 @@ namespace Songhay.LightBulbs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDirectoryBrowser();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,12 +31,14 @@ namespace Songhay.LightBulbs
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app
+                    .UseDeveloperExceptionPage()
+                    .UseStatusCodePages();
             }
 
             app
                 .UseMvc()
-                .UseFileServer(enableDirectoryBrowsing: true);
+                .UseStaticFiles();
         }
     }
 }
