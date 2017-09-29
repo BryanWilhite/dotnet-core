@@ -28,6 +28,12 @@ To run the tests:
 dotnet test Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj
 ```
 
+Run the Web API server with:
+
+```bash
+sudo dotnet run --project Songhay.LightBulbs/Songhay.LightBulbs.csproj
+```
+
 ## related links
 
 * `dotnet new` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x)]
