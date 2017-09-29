@@ -6,7 +6,7 @@ This sample is meant illustrate my development skills to a hiring third party.
 
 After manually generating the folders in [the sample folder](../dotnet-lightbulbs), these commands were run in that context to define the Solution:
 
-```bash
+```ps1
 dotnet new sln -o Songhay.LightBulbs.sln
 dotnet new csproj -o Songhay.LightBulbs/Songhay.LightBulbs.csproj
 dotnet new csproj -o Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
@@ -17,21 +17,21 @@ dotnet add Songhay.LightBulbs/Songhay.LightBulbs.csproj reference Songhay.LightB
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs/Songhay.LightBulbs.csproj
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
 
-sudo dotnet add Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj package MoreLinq
-sudo dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package MoreLinq
-sudo dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package Newtonsoft.Json
+dotnet add Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj package MoreLinq
+dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package MoreLinq
+dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package Newtonsoft.Json
 ```
 
 To run the tests:
 
-```bash
+```ps1
 dotnet test Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj
 ```
 
 Run the Web API server with:
 
 ```bash
-sudo dotnet run --project Songhay.LightBulbs/Songhay.LightBulbs.csproj
+dotnet run --project Songhay.LightBulbs/Songhay.LightBulbs.csproj
 ```
 
 ## related links
