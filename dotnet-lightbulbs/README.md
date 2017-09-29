@@ -12,9 +12,12 @@ dotnet new csproj -o Songhay.LightBulbs/Songhay.LightBulbs.csproj
 dotnet new csproj -o Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
 dotnet new csproj -o Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj
 dotnet sln Songhay.LightBulbs.sln add **/*.csproj
+
 dotnet add Songhay.LightBulbs/Songhay.LightBulbs.csproj reference Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs/Songhay.LightBulbs.csproj
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
+
+sudo dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package Newtonsoft.Json
 ```
 
 To run the tests:

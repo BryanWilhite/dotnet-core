@@ -16,14 +16,14 @@ namespace Songhay.LightBulbs.Tests
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        [TestProperty("numberOfLightBulbs", "12")]
         [TestProperty("bulbsOnByDefault", "true")]
+        [TestProperty("numberOfLightBulbs", "12")]
         public void ShouldGetRoomWithLightBulbs()
         {
             #region test properties:
 
-            var numberOfLightBulbs = Convert.ToInt32(this.TestContext.Properties["numberOfLightBulbs"]);
             var bulbsOnByDefault = Convert.ToBoolean(this.TestContext.Properties["bulbsOnByDefault"]);
+            var numberOfLightBulbs = Convert.ToInt32(this.TestContext.Properties["numberOfLightBulbs"]);
 
             #endregion
 
@@ -50,6 +50,31 @@ namespace Songhay.LightBulbs.Tests
             Assert.IsNotNull(room, "The expected room is not here.");
             Assert.IsTrue(room.Persons.Any(), "The expected persons are not here.");
             Assert.IsTrue(room.Persons.Count() == numberOfPersons, "The expected number of persons is not here.");
+        }
+
+        [TestMethod]
+        [TestProperty("bulbsOnByDefault", "true")]
+        [TestProperty("numberOfLightBulbs", "12")]
+        [TestProperty("numberOfPersons", "8")]
+        [TestProperty("expectedState", @"{ ""lightsOn"": [4,9] }")]
+        public void ShouldSwitchWithAllPersons()
+        {
+            #region test properties:
+
+            var bulbsOnByDefault = Convert.ToBoolean(this.TestContext.Properties["bulbsOnByDefault"]);
+            var expectedState = JObject.Parse(this.TestContext.Properties["expectedState"].ToString());
+            var numberOfLightBulbs = Convert.ToInt32(this.TestContext.Properties["numberOfLightBulbs"]);
+            var numberOfPersons = Convert.ToInt32(this.TestContext.Properties["numberOfPersons"]);
+
+            #endregion
+
+            var room = (new Room())
+                .WithLightBulbs(numberOfLightBulbs, bulbsOnByDefault)
+                .WithPersons(numberOfPersons);
+
+            Assert.IsNotNull(room, "The expected room is not here.");
+
+            room.SwitchWithAllPersons();
         }
     }
 }
