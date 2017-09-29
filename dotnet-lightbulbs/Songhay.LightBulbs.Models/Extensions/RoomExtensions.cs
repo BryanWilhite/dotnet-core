@@ -1,4 +1,5 @@
 using System.Linq;
+using MoreLinq;
 
 namespace Songhay.LightBulbs.Models.Extensions
 {
@@ -52,12 +53,12 @@ namespace Songhay.LightBulbs.Models.Extensions
         {
             if (room == null) return;
 
-            foreach (var person in room.Persons.Skip(1))
+            room.Persons.Skip(1).ForEach(person =>
             {
-                var bulbs = room.LightBulbs
-                    .Where(i =>((i.Ordinal % person.Ordinal) == 0));
-                foreach (var bulb in bulbs) bulb.IsOn = !bulb.IsOn;
-            }
+                room.LightBulbs
+                    .Where(i =>((i.Ordinal % person.Ordinal) == 0))
+                    .ForEach(i => i.IsOn = !i.IsOn);
+            });
         }
     }
 }

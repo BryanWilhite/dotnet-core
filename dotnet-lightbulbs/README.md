@@ -17,6 +17,8 @@ dotnet add Songhay.LightBulbs/Songhay.LightBulbs.csproj reference Songhay.LightB
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs/Songhay.LightBulbs.csproj
 dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj reference Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj
 
+sudo dotnet add Songhay.LightBulbs.Models/Songhay.LightBulbs.Models.csproj package MoreLinq
+sudo dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package MoreLinq
 sudo dotnet add Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj package Newtonsoft.Json
 ```
 

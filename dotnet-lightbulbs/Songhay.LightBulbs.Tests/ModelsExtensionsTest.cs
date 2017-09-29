@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoreLinq;
 using Newtonsoft.Json.Linq;
 using Songhay.LightBulbs.Models;
 using Songhay.LightBulbs.Models.Extensions;
@@ -37,7 +38,7 @@ namespace Songhay.LightBulbs.Tests
         }
 
         [TestMethod]
-        [TestProperty("numberOfPersons", "8")]
+        [TestProperty("numberOfPersons", "9")]
         public void ShouldGetRoomWithPersons()
         {
             #region test properties:
@@ -56,7 +57,7 @@ namespace Songhay.LightBulbs.Tests
         [TestMethod]
         [TestProperty("bulbsOnByDefault", "true")]
         [TestProperty("numberOfLightBulbs", "12")]
-        [TestProperty("numberOfPersons", "8")]
+        [TestProperty("numberOfPersons", "9")]
         [TestProperty("expectedState", @"{ ""lightsOn"": [4,9] }")]
         public void ShouldSwitchWithAllPersons()
         {
@@ -76,6 +77,14 @@ namespace Songhay.LightBulbs.Tests
             Assert.IsNotNull(room, "The expected room is not here.");
 
             room.SwitchWithAllPersons();
+
+            ((JArray) expectedState["lightsOn"]).ForEach(i =>
+            {
+                var ordinal = i.Value<int>();
+                var bulb = room.LightBulbs.SingleOrDefault(j => j.Ordinal == ordinal);
+                Assert.IsNotNull(bulb, $"The expected light bulb {ordinal} is not here.");
+                Assert.IsTrue(bulb.IsOn, $"The expected state of light bulb {ordinal} is not here.");
+            });
         }
     }
 }

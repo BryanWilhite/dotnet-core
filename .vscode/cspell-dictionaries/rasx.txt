@@ -9,6 +9,7 @@ filip
 gitignore
 hejlsberg
 hwapp
+linq
 netcoreapp
 newtonsoft
 nocache
