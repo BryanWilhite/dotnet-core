@@ -15,7 +15,7 @@ namespace Songhay.LightBulbs.Controllers
             this._roomService = roomService;
         }
 
-        [HttpGet("bulbs/{numberOfLightBulbs}/persons/{numberOfPersons}")]
+        [HttpGet("{numberOfLightBulbs}/persons/{numberOfPersons}")]
         public IEnumerable<LightBulb> Get(int numberOfLightBulbs, int numberOfPersons)
         {
             var bulbsOnByDefault = true;
