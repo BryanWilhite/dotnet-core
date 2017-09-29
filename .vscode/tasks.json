@@ -31,6 +31,20 @@
         },
         {
             "command": "dotnet",
+            "taskName": "dotnet test lightbulbs",
+            "isBackground": true,
+            "type": "shell",
+            "args": [
+                "test",
+                "Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "taskName": "dotnet run lightbulbs",
             "isBackground": true,
             "type": "shell",

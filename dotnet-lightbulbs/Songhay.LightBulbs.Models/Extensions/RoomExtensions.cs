@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using MoreLinq;
 
@@ -18,9 +19,10 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// This strategy returns an array in order to track changes
         /// by reference to <see cref="LightBulb" />.
         /// </remarks>
-        public static Room WithLightBulbs(this Room room, int numberOfLightBulbs = 100, bool bulbsOnByDefault = true)
+        public static Room WithLightBulbs(this Room room, int numberOfLightBulbs, bool bulbsOnByDefault)
         {
             if (room == null) return null;
+            if(numberOfLightBulbs < 1) throw new Exception("The expected number of light bulbs is not here.");
 
             room.LightBulbs = Enumerable.Range(1, numberOfLightBulbs)
                 .Select(i => new LightBulb(i, bulbsOnByDefault))
@@ -35,9 +37,10 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// <param name="room">the Room</param>
         /// <param name="numberOfPersons">the number of persons</param>
         /// <returns></returns>
-        public static Room WithPersons(this Room room, int numberOfPersons = 100)
+        public static Room WithPersons(this Room room, int numberOfPersons)
         {
             if (room == null) return null;
+            if(numberOfPersons < 1) throw new Exception("The expected number of persons is not here.");
 
             room.Persons = Enumerable.Range(1, numberOfPersons)
                 .Select(i => new Person(i, i));
