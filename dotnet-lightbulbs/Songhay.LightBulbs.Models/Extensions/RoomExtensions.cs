@@ -19,7 +19,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// </remarks>
         public static Room WithLightBulbs(this Room room, int numberOfLightBulbs = 100, bool bulbsOnByDefault = true)
         {
-            if(room == null) return null;
+            if (room == null) return null;
 
             room.LightBulbs = Enumerable.Range(1, numberOfLightBulbs)
                 .Select(i => new LightBulb(i, bulbsOnByDefault))
@@ -36,7 +36,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// <returns></returns>
         public static Room WithPersons(this Room room, int numberOfPersons = 100)
         {
-            if(room == null) return null;
+            if (room == null) return null;
 
             room.Persons = Enumerable.Range(1, numberOfPersons)
                 .Select(i => new Person(i, i));
@@ -50,12 +50,12 @@ namespace Songhay.LightBulbs.Models.Extensions
         /// <param name="room"></param>
         public static void SwitchWithAllPersons(this Room room)
         {
-            if(room == null) return;
+            if (room == null) return;
 
             foreach (var person in room.Persons.Skip(1))
             {
                 var bulbs = room.LightBulbs
-                    .Where(i => ((i.Ordinal % person.Ordinal) == 0));
+                    .Where(i =>((i.Ordinal % person.Ordinal) == 0));
                 foreach (var bulb in bulbs) bulb.IsOn = !bulb.IsOn;
             }
         }
