@@ -21,20 +21,31 @@
             },
             highlight: function(element, errorClass, validClass) {
                 $(element).parentsUntil(".form-group").addClass(errorClass).removeClass(validClass);
-                $("#runRoom").addClass("disabled");
+                $("#RunRoom").addClass("disabled");
             },
             unhighlight: function(element, errorClass, validClass) {
                 $(element).parentsUntil(".form-group").removeClass(errorClass).addClass(validClass);
             },
             success: function() {
-                $("#runRoom").removeClass("disabled");
+                $("#RunRoom").removeClass("disabled");
             },
             submitHandler: function(form) {
                 let numberOfLightBulbs = $("#numberOfLightBulbs").val();
                 let numberOfPersons = $("#numberOfPersons").val();
                 let uri = "http://localhost:5000/api/lightbulbs/" + numberOfLightBulbs + "/persons/" + numberOfPersons;
                 $.getJSON(uri, function(data) {
-                    console.log(data);
+                    const container = $("#BulbContainer");
+                    const fadeTime = 400;
+                    container.fadeIn(fadeTime);
+                    for (const i of data) {
+                        setTimeout(function() {
+                            let src = i.isOn ? "./bulb-on.svg" : "./bulb-off.svg";
+                            let html = '<img alt="' + i.ordinal +
+                                ' (' + (i.isOn ? "on" : "off") + ')"' +
+                                ' width="64" src="' + src + '" />';
+                            container.append(html).hide().fadeIn(fadeTime);
+                        }, 500);
+                    }
                 });
             }
         });

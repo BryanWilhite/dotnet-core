@@ -1,3 +1,13 @@
-#runRoom {
+#RunRoom {
     margin-top: 1em;
+}
+
+#BulbContainer {
+    display: none;
+    margin: 1em;
+    padding: 1em;
+}
+
+#BulbContainer>img {
+    margin: 0.25em;
 }
