@@ -36,16 +36,27 @@
                 $.getJSON(uri, function(data) {
                     const container = $("#BulbContainer");
                     const fadeTime = 400;
-                    container.fadeIn(fadeTime);
-                    for (const i of data) {
+                    const count = data.length;
+                    container.empty().fadeIn(fadeTime);
+
+                    (function loop(i) {
                         setTimeout(function() {
-                            let src = i.isOn ? "./bulb-on.svg" : "./bulb-off.svg";
-                            let html = '<img alt="' + i.ordinal +
-                                ' (' + (i.isOn ? "on" : "off") + ')"' +
+
+                            let d = data[i];
+                            let src = d.isOn ? "./bulb-on.svg" : "./bulb-off.svg";
+                            let html = '<img alt="' + d.ordinal +
+                                ' (' + (d.isOn ? "on" : "off") + ')"' +
                                 ' width="64" src="' + src + '" />';
-                            container.append(html).hide().fadeIn(fadeTime);
-                        }, 500);
-                    }
+                            let img = $(html);
+                            container.append(img);
+                            img.hide().fadeIn(fadeTime);
+
+                            if (++i < count) {
+                                loop(i);
+                            }
+                        }, fadeTime)
+                    })(0);
+
                 });
             }
         });
