@@ -39,5 +39,6 @@ dotnet run --project Songhay.LightBulbs/Songhay.LightBulbs.csproj
 * `dotnet new` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x)]
 * `dotnet sln` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-sln)]
 * `dotnet-add reference` [[docs](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference)]
+* “[ASP.NET Core and CORS Gotchas](https://weblog.west-wind.com/posts/2016/Sep/26/ASPNET-Core-and-CORS-Gotchas)”
 
 @[BryanWilhite](https://twitter.com/bryanwilhite)
