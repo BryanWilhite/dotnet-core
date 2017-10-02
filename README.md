@@ -3,13 +3,17 @@
 Here’s my collection of self-educational samples on .NET Core. The intention here is to address these concerns:
 
 * .NET scripting in C# and F#.
-* Using F# as alternative to TypeScript with [Fable](http://fable.io/).
+* Using F# as alternative to TypeScript perhaps with [Fable](http://fable.io/).
 * Migrating to Entity Framework Core.
 * Migrating ASP.NET Web API to ASP.NET Core.
 
-The bias here is to run everything in bash without regard to platform. “[Running .NET Core Apps under Windows Subsystem for Linux (Bash for Windows)](https://weblog.west-wind.com/posts/2017/Apr/13/Running-NET-Core-Apps-under-Windows-Subsystem-for-Linux-Bash-for-Windows)” by Rick Strahl is a great introduction to this possibility.
+## setup on Windows (for Visual Studio Code)
 
-When bash fails then the alternative will be PowerShell. _Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
+To install .NET Core on Windows [download an installer from Microsoft](https://www.microsoft.com/net/download/core). I did try to [handle this from Chocolatey](https://chocolatey.org/packages/dotnetcore-sdk) but found that it could not keep up with current pace.
+
+The bias here is to run everything in bash without regard to platform. “[Running .NET Core Apps under Windows Subsystem for Linux (Bash for Windows)](https://weblog.west-wind.com/posts/2017/Apr/13/Running-NET-Core-Apps-under-Windows-Subsystem-for-Linux-Bash-for-Windows)” by Rick Strahl is a great introduction to this possibility. However, as of 10/2017, Visual Studio Code does not integrate with the Windows Subsystem for Linux. I am seeing that every time I compile from bash on Windows, Visual Studio Code needs to restore and reference errors to external libraries pile up.
+
+The alternative therefore will be PowerShell. _Visual Studio Code users_: install the [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell) extension to get the **PowerShell: Show Integrated Console** command to run PowerShell and bash sessions on top of each other in Visual Studio Code.
 
 ## setup on Ubuntu bash
 
