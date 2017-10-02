@@ -2,9 +2,6 @@
     "name": "dotnet-lightbulbs-app",
     "version": "1.0.0",
     "description": "see README.md",
-    "scripts": {
-        "start": "http-server . -o -c-1"
-    },
     "author": "Bryan D. Wilhite",
     "license": "ISC",
     "repository": {
@@ -12,14 +9,9 @@
         "url": "https://github.com/BryanWilhite/dotnet-core.git"
     },
     "dependencies": {
-        "bootstrap": "^3.3.7",
-        "jquery": "^2.2.4",
-        "jquery-validation": "^1.17.0",
-        "mustache": "^2.3.0",
-        "normalize.css": "^7.0.0"
+        "aspnet-prerendering": "^3.0.1"
     },
     "devDependencies": {
-        "@types/jquery": "^3.2.12",
-        "@types/mustache": "^0.8.30"
+        "@types/node": "^8.0.31"
     }
 }
