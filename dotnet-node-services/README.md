@@ -5,3 +5,8 @@ This sample highlights the pre-rendering capabilities of ASP.NET core with `Micr
 ## serving static pages from ASP.NET Core
 
 This sample runs because ASP.NET was configured to serve static pages.
+
+## related links
+
+* “[Using JavaScriptServices for Creating Single Page Applications with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/client-side/spa-services)”
+* “[Building Single Page Applications on ASP.NET Core with JavaScriptServices](https://blogs.msdn.microsoft.com/webdev/2017/02/14/building-single-page-applications-on-asp-net-core-with-javascriptservices/)”
