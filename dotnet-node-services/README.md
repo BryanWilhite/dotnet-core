@@ -9,8 +9,6 @@ npm i -S aspnet-prerendering
 npm install --save-dev @types/node
 ```
 
-To see Node Services exposed to the MVC Tag Helper components, go to the `dotnet-spa-services` [sample](../dotnet-spa-services).
-
 ## related links
 
 * [Visual Studio Toolbox: “Angular and .NET Core”](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Angular-and-NET-Core#time=13m45s)
