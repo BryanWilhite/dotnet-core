@@ -4,10 +4,11 @@ This sample highlights the pre-rendering capabilities of ASP.NET core with `Micr
 
 ```ps1
 dotnet new web
-dotnet add package Microsoft.AspNetCore.NodeServices --version 2.0.0
 npm i -S aspnet-prerendering
 npm install --save-dev @types/node
 ```
+
+The `dotnet new web` will generate a project file that will reference `Microsoft.AspNetCore.All` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.all)] which includes `Microsoft.AspNetCore.NodeServices`.
 
 ## related links
 
