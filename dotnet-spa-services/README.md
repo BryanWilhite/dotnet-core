@@ -1,11 +1,9 @@
 # ASP.NET Core and Node Services
 
-This sample highlights the pre-rendering capabilities of ASP.NET core with `Microsoft.AspNetCore.NodeServices` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/)] and `aspnet-prerendering` [[npm](https://www.npmjs.com/package/aspnet-prerendering)].
-
-The `Microsoft.AspNetCore.SpaServices` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)] depends on `Microsoft.AspNetCore.NodeServices`. Choosing the `SpaServices` package allows us to use `asp-prerender-module` Tag Helper in an MVC project with a `_ViewImports.cshtml` file.
+This sample build upon the work in the `dotnet-node-services` [folder](../dotnet-node-services). The `Microsoft.AspNetCore.SpaServices` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)] depends on `Microsoft.AspNetCore.NodeServices`. Choosing the `SpaServices` package allows us to use `asp-prerender-module` Tag Helper in an MVC project with a `_ViewImports.cshtml` file.
 
 ```ps1
-dotnet new web
+dotnet new mvc
 dotnet add package Microsoft.AspNetCore.SpaServices --version 2.0.0
 npm i -S aspnet-prerendering
 ```
