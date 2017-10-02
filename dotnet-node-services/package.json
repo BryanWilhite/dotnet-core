@@ -1,0 +1,14 @@
+{
+    "name": "dotnet-node-services",
+    "version": "1.0.0",
+    "description": "see README.md",
+    "author": "Bryan D. Wilhite",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BryanWilhite/nodejs.git"
+    },
+    "dependencies": {
+        "aspnet-prerendering": "^3.0.1"
+    }
+}
