@@ -1,5 +1,5 @@
 {
-    "name": "dotnet-node-services",
+    "name": "dotnet-spa-services",
     "version": "1.0.0",
     "description": "see README.md",
     "author": "Bryan D. Wilhite",
@@ -10,8 +10,5 @@
     },
     "dependencies": {
         "aspnet-prerendering": "^3.0.1"
-    },
-    "devDependencies": {
-        "@types/node": "^8.0.31"
     }
 }
