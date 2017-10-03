@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
+using Tavis.UriTemplates;
 
 namespace Songhay.WebApiProject.Tests
 {
@@ -23,6 +25,38 @@ namespace Songhay.WebApiProject.Tests
         public void ShouldGenerateClient()
         {
             var client = this._server.CreateClient();
+        }
+
+        [TestMethod]
+        [TestProperty("expectedJsonProperty", "value")]
+        [TestProperty("expectedValue", "5")]
+        [TestProperty("pathTemplate", "api/values/{expectedValue}")]
+        public async Task ShouldGetValueAsync()
+        {
+            #region test properties:
+
+            var expectedJsonProperty = this.TestContext.Properties["expectedJsonProperty"].ToString();
+            var expectedValue = Convert.ToInt32(this.TestContext.Properties["expectedValue"]);
+            var path = new UriTemplate(this.TestContext.Properties["pathTemplate"].ToString())
+                .AddParameter(nameof(expectedValue), expectedValue)
+                .Resolve();
+
+            #endregion
+
+            var client = this._server.CreateClient();
+
+            var response = await client.GetAsync(path);
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            Assert.IsFalse(string.IsNullOrEmpty(responseString), "The expected response string is not here.");
+
+            this.TestContext.WriteLine($"response: {responseString}");
+
+            var jO = JObject.Parse(responseString);
+            Assert.IsNotNull(jO, "The expected data is not here.");
+            Assert.AreEqual(jO[expectedJsonProperty].Value<int>(), expectedValue, "The expected value is not here.");
         }
 
         [TestMethod]

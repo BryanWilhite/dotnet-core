@@ -8,6 +8,8 @@ dotnet new mstest -o Songhay.WebApiProject.Tests
 dotnet add Songhay.WebApiProject.Tests/Songhay.WebApiProject.Tests.csproj reference Songhay.WebApiProject/Songhay.WebApiProject.csproj
 dotnet add Songhay.WebApiProject.Tests/Songhay.WebApiProject.Tests.csproj package Microsoft.AspNetCore.TestHost
 dotnet add Songhay.WebApiProject.Tests/Songhay.WebApiProject.Tests.csproj package Newtonsoft.Json
+dotnet add Songhay.WebApiProject.Tests/Songhay.WebApiProject.Tests.csproj pack
+age System.ServiceModel.Primitives
 dotnet build Songhay.WebApiProject.Tests/Songhay.WebApiProject.Tests.csproj
 ```
 
