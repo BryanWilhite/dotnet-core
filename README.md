@@ -3,7 +3,7 @@
 Here’s my collection of self-educational samples on .NET Core. The intention here is to address these concerns:
 
 * .NET scripting in C# and F#.
-* Using F# as alternative to TypeScript perhaps with [Fable](http://fable.io/).
+* Using F# as alternative to TypeScript perhaps with [Fable](http://fable.io/) or [WebSharper](https://developers.websharper.com/docs).
 * Migrating to Entity Framework Core.
 * Migrating ASP.NET Web API to ASP.NET Core.
 
