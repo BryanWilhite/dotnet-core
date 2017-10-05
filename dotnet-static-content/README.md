@@ -1,6 +1,6 @@
 # ASP.NET Core Static Files
 
-This sample isolates and demonstrates _exactly_ what is needed to get static files working in ASP.NET Core. This sample is completely ignorant of these advanced static-file topics:
+This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[GitHub](https://github.com/aspnet/StaticFiles)] working in ASP.NET Core. This sample is completely ignorant of these advanced static-file topics:
 
 * setting MIME types with `FileExtensionContentTypeProvider`<sup>*</sup> [[docs](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider?view=aspnetcore-2.0)]
 * setting a default document
