@@ -23,7 +23,7 @@ $env:ASPNETCORE_ENVIRONMENT = "Development"
 dotnet run
 ```
 
-The `appsettings.Development` [file](./Songhay.WebApiOne/appsettings.Development.json) has been changed from the default to write to the console in the `Development` Environment.
+The `appsettings.Development.json` [file](./Songhay.WebApiOne/appsettings.Development.json) has been changed from the default to write to the console in the `Development` Environment.
 
 Hitting the conventional `http://localhost:5000` should produce a session like this:
 
