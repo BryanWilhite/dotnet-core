@@ -48,8 +48,8 @@ namespace Songhay.LightBulbs
                     .UseStatusCodePages();
             }
 
-            app
-                .UseMvc();
+            app.UseStaticFiles();
+            app.UseMvc();
         }
     }
 }
