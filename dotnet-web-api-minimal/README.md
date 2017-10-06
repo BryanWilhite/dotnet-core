@@ -53,6 +53,7 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
 
 ## related links
 
+* [ASP.NET Core Static Files](../dotnet-static-content)
 * “[Setting the environment](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments#setting-the-environment)”
 * “[Ordering importance](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/hosting?tabs=aspnetcore2x#ordering-importance)”
 * “[Serving a default document](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files#serving-a-default-document)”
