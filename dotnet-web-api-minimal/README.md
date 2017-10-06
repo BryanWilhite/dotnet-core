@@ -20,6 +20,7 @@ Now it is very important to run this from folder of the Web API. So we build/run
 
 ```ps1
 $env:ASPNETCORE_ENVIRONMENT = "Development"
+dotnet build
 dotnet run
 ```
 

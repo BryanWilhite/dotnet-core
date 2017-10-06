@@ -14,15 +14,47 @@ These topics (and more) are introduced in “[Working with static files in ASP.N
 To get this minimal sample to work we first run this:
 
 ```ps1
-dotnet new web
+dotnet new web -o Songhay.StaticOne
 ```
 
 <sup>*</sup> note that, “the ASP.NET static file middleware understands almost 400 known file content types.”
 
-Then add something like `static_file.html` [[view](./wwwroot/static_file.html)] and add this line to `Startup.cs` [[view](./Startup.cs)]:
+Then add something like `static_file.html` [[view](./Songhay.StaticOne/wwwroot/static_file.html)] and add these lines to `Startup.Configure()` [[view](./Songhay.StaticOne/Startup.cs)]:
 
 ```c#
-app.UseStaticFiles();
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
+    app.UseStaticFiles();
+
+    app.Run(async (context) =>
+    {
+        await context.Response.WriteAsync(@"<a href=""./static_file.html"">Hello World!</a>");
+    });
+}
+```
+
+The most important statement above is `app.UseStaticFiles()`.
+
+Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.StaticOne` [folder](./Songhay.StaticOne):
+
+```ps1
+$env:ASPNETCORE_ENVIRONMENT = "Development"
+dotnet build
+dotnet run
+```
+
+The `appsettings.Development.json` [file](./Songhay.StaticOne/appsettings.Development.json) has been changed from the default to write to the console in the `Development` Environment.
+
+
+Hitting the conventional `http://localhost:5000` should produce a session like this:
+
+```ps1
+
 ```
 
 ## `AspNetCore.StaticSiteHelper`
