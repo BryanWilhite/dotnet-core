@@ -16,7 +16,6 @@ Now it is very important to run this from folder of the Web API. So we build/run
 npm i -S aspnet-prerendering
 npm install --save-dev @types/node
 
-$env:ASPNETCORE_ENVIRONMENT = "Development"
 dotnet build
 dotnet run
 ```
@@ -24,7 +23,14 @@ dotnet run
 Hitting the conventional `http://localhost:5000` should produce a session like this:
 
 ```ps1
-
+Hosting environment: Development
+Content root path: .\dotnet-node-services\Songhay.NodeOne
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 1877.1451ms 200
 ```
 
 ## related links

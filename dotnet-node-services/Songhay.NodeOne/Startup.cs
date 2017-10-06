@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace dotnet_node_services
+namespace Songhay.NodeOne
 {
     public class Startup
     {

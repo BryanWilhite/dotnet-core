@@ -43,7 +43,6 @@ The most important statement above is `app.UseStaticFiles()`.
 Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.StaticOne` [folder](./Songhay.StaticOne):
 
 ```ps1
-$env:ASPNETCORE_ENVIRONMENT = "Development"
 dotnet build
 dotnet run
 ```
