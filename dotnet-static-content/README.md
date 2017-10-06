@@ -11,7 +11,7 @@ This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET St
 
 These topics (and more) are introduced in “[Working with static files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files).”
 
-<sup>*</sup><small>note that, “the ASP.NET static file middleware understands almost 400 known file content types.”</small>
+<sup>*</sup> note that, “the ASP.NET static file middleware understands almost 400 known file content types.”
 
 To get this minimal sample to work we first run this:
 
