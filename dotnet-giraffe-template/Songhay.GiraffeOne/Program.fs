@@ -1,4 +1,4 @@
-module dotnet_giraffe_template.App
+module Songhay_GiraffeOne.App
 
 open System
 open System.IO
@@ -12,7 +12,7 @@ open Giraffe.HttpHandlers
 open Giraffe.Middleware
 open Giraffe.Razor.HttpHandlers
 open Giraffe.Razor.Middleware
-open dotnet_giraffe_template.Models
+open Songhay_GiraffeOne.Models
 
 // ---------------------------------
 // Web app

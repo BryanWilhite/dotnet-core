@@ -1,4 +1,4 @@
-namespace dotnet_giraffe_template.Models
+namespace Songhay_GiraffeOne.Models
 
 [<CLIMutable>]
 type Message =

@@ -1,15 +1,23 @@
 # .NET Core Giraffe Template
 
-This sample shows the current [Giraffe](https://github.com/dustinmoris/Giraffe) template, installed and run like this:
+This sample shows the current [Giraffe](https://github.com/dustinmoris/Giraffe) template, installed from an elevated prompt:
 
-```bash
-sudo dotnet new --install "giraffe-template"
-dotnet new giraffe
-sudo dotnet restore
-sudo dotnet run
+```ps1
+dotnet new --install "giraffe-template"
 ```
 
-The last two sudo commands were needed in bash on Windows.
+Then we generate the project:
+
+```bash
+dotnet new giraffe -o Songhay.GiraffeOne
+```
+
+Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.GiraffeOne` [folder](./Songhay.GiraffeOne):
+
+```ps1
+dotnet build
+dotnet run
+```
 
 ## related links
 

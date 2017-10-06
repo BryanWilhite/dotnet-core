@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <DebugType>portable</DebugType>
-    <AssemblyName>dotnet_giraffe_template</AssemblyName>
+    <AssemblyName>Songhay_GiraffeOne</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>dotnet_giraffe_template</PackageId>
+    <PackageId>Songhay_GiraffeOne</PackageId>
     <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
