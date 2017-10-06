@@ -14,7 +14,7 @@ Then we generate the project:
 dotnet new fable -o FableOne
 ```
 
->Warning: using a period for the `-o` option may produce unexpected results.
+>Warning: using a period in the `-o` option may produce unexpected results.
 
 This command will generate a [README file](./FableOne/README.md) that supplements this one.
 
