@@ -11,13 +11,13 @@ This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET St
 
 These topics (and more) are introduced in “[Working with static files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files).”
 
+<sup>*</sup><small>note that, “the ASP.NET static file middleware understands almost 400 known file content types.”</small>
+
 To get this minimal sample to work we first run this:
 
 ```ps1
 dotnet new web -o Songhay.StaticOne
 ```
-
-<sup>*</sup> note that, “the ASP.NET static file middleware understands almost 400 known file content types.”
 
 Then add something like `static_file.html` [[view](./Songhay.StaticOne/wwwroot/static_file.html)] and add these lines to `Startup.Configure()` [[view](./Songhay.StaticOne/Startup.cs)]:
 
