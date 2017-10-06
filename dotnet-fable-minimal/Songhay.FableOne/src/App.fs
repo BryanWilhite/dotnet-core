@@ -1,4 +1,4 @@
-module _
+module Songhay_FableOne
 
 open Fable.Core
 open Fable.Core.JsInterop
