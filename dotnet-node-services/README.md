@@ -2,13 +2,30 @@
 
 This sample highlights the pre-rendering capabilities of ASP.NET core with `Microsoft.AspNetCore.NodeServices` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/)] and `aspnet-prerendering` [[npm](https://www.npmjs.com/package/aspnet-prerendering)]. This comes from [the presentation](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Angular-and-NET-Core#time=13m45s) by [Ed Charbeneau](https://twitter.com/EdCharbeneau), a guest of Microsoft.
 
+To get this sample working, we first run this:
+
 ```ps1
-dotnet new web
-npm i -S aspnet-prerendering
-npm install --save-dev @types/node
+dotnet new web -o Songhay.NodeOne
 ```
 
 The `dotnet new web` will generate a project file that will reference `Microsoft.AspNetCore.All` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.all)] which includes `Microsoft.AspNetCore.NodeServices`.
+
+Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.NodeOne` [folder](./Songhay.NodeOne):
+
+```ps1
+npm i -S aspnet-prerendering
+npm install --save-dev @types/node
+
+$env:ASPNETCORE_ENVIRONMENT = "Development"
+dotnet build
+dotnet run
+```
+
+Hitting the conventional `http://localhost:5000` should produce a session like this:
+
+```ps1
+
+```
 
 ## related links
 
