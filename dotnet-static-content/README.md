@@ -48,13 +48,24 @@ dotnet build
 dotnet run
 ```
 
-The `appsettings.Development.json` [file](./Songhay.StaticOne/appsettings.Development.json) has been changed from the default to write to the console in the `Development` Environment.
-
-
 Hitting the conventional `http://localhost:5000` should produce a session like this:
 
 ```ps1
-
+Hosting environment: Development
+Content root path: .\dotnet-static-content\Songhay.StaticOne
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 15.204ms 200
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/static_file.html
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
+      Sending file. Request path: '/static_file.html'. Physical path: '.\dotnet-static-content\Songhay.StaticOne\ww
+wroot\static_file.html'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 27.3668ms 200 text/html
 ```
 
 ## `AspNetCore.StaticSiteHelper`
