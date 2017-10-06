@@ -49,12 +49,10 @@
             "isBackground": true,
             "type": "shell",
             "args": [
-                "run",
-                "--project",
-                "Songhay.LightBulbs/Songhay.LightBulbs.csproj"
+                "run"
             ],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs"
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs"
             },
             "problemMatcher": "$msCompile"
         }
