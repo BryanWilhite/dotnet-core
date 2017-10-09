@@ -1,5 +1,20 @@
 # Entity Framework Core with In-Memory Provider
 
+```ps1
+dotnet new classlib -o InMemoryOne.Models
+dotnet new classlib -o InMemoryOne.Repository
+dotnet new mstest -o InMemoryOne.Tests
+
+dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
+
+dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore
+dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
+```
+
 ## related links
 
 * “[Entity Framework Core Quick Overview](https://docs.microsoft.com/en-us/ef/core/)”
