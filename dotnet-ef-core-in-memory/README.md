@@ -23,6 +23,7 @@ dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFr
 * “[Tutorial: Using Entity Framework Core as an In-Memory Database for ASP.NET Core](https://stormpath.com/blog/tutorial-entity-framework-core-in-memory-database-asp-net-core)”
 * [EF Core Testing Docs](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/)
 * [GitHub Sample for EF Core Testing Docs](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing)
+* [Answer: “Entity Framework Core: How to get the Connection from the DbContext?”](https://stackoverflow.com/a/41936855/22944)
 * “[Add code to initialize the database with test data](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro#add-code-to-initialize-the-database-with-test-data)”
 * “[Microsoft.Data.Sqlite Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.data.sqlite?view=msdata-sqlite-1.1.0)”
 * “[SqliteConnection Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.data.sqlite.sqliteconnection?view=msdata-sqlite-1.1.0)”
