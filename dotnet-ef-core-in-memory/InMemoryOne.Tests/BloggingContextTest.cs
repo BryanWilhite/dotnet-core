@@ -1,8 +1,10 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using InMemoryOne.Models;
 using InMemoryOne.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 
 namespace InMemoryOne.Tests
 {
@@ -22,14 +24,20 @@ namespace InMemoryOne.Tests
             var blogLocation = this.TestContext.Properties["blogLocation"].ToString();
 
             var options = new DbContextOptionsBuilder<BloggingContext>()
-                .UseInMemoryDatabase(databaseName: databaseName)
+                .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
-            
+
             using(var context = new BloggingContext(connectionString, options))
             {
                 var blog = new Blog { Url = blogLocation };
                 context.Blogs.Add(blog);
                 context.SaveChanges();
+            }
+
+            using(var context = new BloggingContext(connectionString, options))
+            {
+                var blog = context.Blogs.SingleOrDefault(i => i.Url == blogLocation);
+                Assert.IsNotNull(blog);
             }
         }
 
@@ -44,9 +52,9 @@ namespace InMemoryOne.Tests
             var expectedMessage = this.TestContext.Properties["expectedMessage"].ToString();
 
             var options = new DbContextOptionsBuilder<BloggingContext>()
-                .UseInMemoryDatabase(databaseName: databaseName)
+                .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
-            
+
             using(var context = new BloggingContext(connectionString, options))
             {
                 var test = false;
