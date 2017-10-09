@@ -10,9 +10,11 @@ dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Mode
 dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
 
 dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore
+dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
 dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
 dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ## related links
