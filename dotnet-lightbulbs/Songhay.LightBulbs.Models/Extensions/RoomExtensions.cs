@@ -22,7 +22,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         public static Room WithLightBulbs(this Room room, int numberOfLightBulbs, bool bulbsOnByDefault)
         {
             if (room == null) return null;
-            if(numberOfLightBulbs < 1) throw new Exception("The expected number of light bulbs is not here.");
+            if (numberOfLightBulbs < 1) throw new Exception("The expected number of light bulbs is not here.");
 
             room.LightBulbs = Enumerable.Range(1, numberOfLightBulbs)
                 .Select(i => new LightBulb(i, bulbsOnByDefault))
@@ -40,7 +40,7 @@ namespace Songhay.LightBulbs.Models.Extensions
         public static Room WithPersons(this Room room, int numberOfPersons)
         {
             if (room == null) return null;
-            if(numberOfPersons < 1) throw new Exception("The expected number of persons is not here.");
+            if (numberOfPersons < 1) throw new Exception("The expected number of persons is not here.");
 
             room.Persons = Enumerable.Range(1, numberOfPersons)
                 .Select(i => new Person(i, i));
@@ -56,12 +56,28 @@ namespace Songhay.LightBulbs.Models.Extensions
         {
             if (room == null) return;
 
-            room.Persons.Skip(1).ForEach(person =>
-            {
-                room.LightBulbs
-                    .Where(i =>((i.Ordinal % person.Ordinal) == 0))
-                    .ForEach(i => i.IsOn = !i.IsOn);
-            });
+            var bulbCount = room.LightBulbs.Count();
+            Func<int, bool> ordinalIsLessThanBulbCount = i => (i <= bulbCount);
+
+            //TODO: change to extension method of Person
+            Func<Person, int, bool> personCanToggleBulb = (person, i) => (i % person.Ordinal) == 0;
+
+            room.Persons
+                .Skip(1)
+                .Where(i => i.Ordinal <= bulbCount)
+                .ForEach(person =>
+                {
+                    var bulbOrdinals = Enumerable
+                        .Range(person.Ordinal, bulbCount)
+                        .Where(i => personCanToggleBulb(person, i) && ordinalIsLessThanBulbCount(i));
+
+                    bulbOrdinals.ForEach(bulbOrdinal =>
+                    {
+                        var index = bulbOrdinal - 1;
+                        var bulb = room.LightBulbs[index];
+                        bulb.IsOn = !bulb.IsOn;
+                    });
+                });
         }
     }
 }
