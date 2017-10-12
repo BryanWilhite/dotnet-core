@@ -44,13 +44,11 @@ module.exports = prerendering.createServerRenderer(function(params) {
 
 From the `Songhay.SpaServicesOne` [folder](./Songhay.SpaServicesOne), run:
 
-```ps1 
+```ps1
 dotnet build
 $env:ASPNETCORE_ENVIRONMENT = "Development"
 dotnet run
 ```
-
-
 
 ## related links
 
