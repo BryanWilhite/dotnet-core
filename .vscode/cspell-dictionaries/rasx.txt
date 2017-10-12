@@ -1,4 +1,6 @@
 anders
+aspnet
+aspnetcore
 bootstrapper
 choco
 chocolatey
@@ -16,6 +18,7 @@ nocache
 nuget
 pico
 preprocessors
+prerendering
 rasx
 scriptcs
 songhay

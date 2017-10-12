@@ -1,0 +1,17 @@
+{
+    "name": "dotnet-spa-services",
+    "version": "1.0.0",
+    "description": "see README.md",
+    "author": "Bryan D. Wilhite",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BryanWilhite/dotnet-core.git"
+    },
+    "dependencies": {
+        "aspnet-prerendering": "^3.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.31"
+    }
+}
