@@ -1,6 +1,24 @@
 # .NET Core `TextWriterTraceListener`
 
-This sample demonstrates how to use a `TraceSource` logging pattern as a slightly verbose alternative to the `ILogger`/`ServiceCollection` logging pattern. The main reason why I would use a `TraceSource` logging pattern is because `TraceSource` is the most flexible of logging alternatives. It is completely decoupled from everything except the .NET Framework itself—and, in .NET Core, Microsoft provides us with `Microsoft.Extensions.Logging.TraceSource` [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource)]. Using `TraceSource` allows me to pass around code in a large enterprise without demanding that the recipient should use a particular logging framework. For this reason alone it _should_ be supported in .NET Core.
+This sample demonstrates the only way (as of this writing) to use `TraceSource` with Console output in .NET Core:
+
+```c#
+using(var listener = new TextWriterTraceListener(Console.Out))
+{
+    traceSource.Listeners.Add(listener);
+
+    var biz = new BusinessOne();
+    biz.DoBusiness();
+
+    listener.Flush();
+}
+```
+
+This current limitation places `TextWriterTraceListener` front and center for any `TraceSource` related diagnostics on .NET Core.
+
+## Why a `TraceSource` logging pattern?
+
+The `TraceSource` logging pattern is a slightly verbose alternative to the `ILogger`/`ServiceCollection` logging pattern. The main reason why I would use a `TraceSource` logging pattern is because `TraceSource` is the most flexible of logging alternatives. It is completely decoupled from everything except the .NET Framework itself—and, in .NET Core, Microsoft provides us with `Microsoft.Extensions.Logging.TraceSource` [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource)]. Using `TraceSource` allows me to pass around code in a large enterprise without demanding that the recipient should use a particular logging framework. For this reason alone it _should_ be supported in .NET Core.
 
 The one issue one might have with `TraceSource` is the fact that the `Trace` [class](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.trace?view=netstandard-2.0) keeps track of listeners but not trace sources. Because of this, I had to introduce a dependency from my `SonghayCore` project, the `TraceSources` [class](https://github.com/BryanWilhite/SonghayCore/blob/master/SonghayCore/Diagnostics/TraceSources.cs). I would prefer that the functionality in `TraceSources` be in Microsoft’s `Trace` class.
 
