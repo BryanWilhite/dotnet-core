@@ -14,3 +14,5 @@ Finally, we must point out that `TraceSourceName` can be loaded from [configurat
 * [TextWriterTraceListener Class](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.textwritertracelistener?view=netframework-4.7.1)
 * [A Tracing Primer – Part I [Mike Rousos]](https://blogs.msdn.microsoft.com/bclteam/2005/03/15/a-tracing-primer-part-i-mike-rousos/)
 * [Using strongly typed configuration in .NET Core console app](https://blogs.msdn.microsoft.com/fkaduk/2017/02/22/using-strongly-typed-configuration-in-net-core-console-app/)
+
+@[BryanWilhite](https://twitter.com/bryanwilhite)
