@@ -1,15 +1,26 @@
+using Songhay.Diagnostics;
+using Songhay.Extensions;
 using System.Diagnostics;
 
 namespace Songhay.ListenerOne.Shell
 {
     public class BusinessOne
     {
-        public void DoBusiness(TraceListener listener)
+        static BusinessOne()
         {
-            //var listener = Trace.Listeners[0];
-            var traceSource = new TraceSource("rx", SourceLevels.All);
-            traceSource.Listeners.Add(listener);
+            TraceSourceName = "rx-trace";
+            traceSource = TraceSources
+                .Instance[BusinessOne.TraceSourceName]
+                .WithAllSourceLevels();
+        }
+
+        public void DoBusiness()
+        {
             traceSource.TraceInformation("Hello business!");
         }
+
+        internal static string TraceSourceName { get; private set; }
+
+        static readonly TraceSource traceSource;
     }
 }
