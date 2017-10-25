@@ -17,6 +17,76 @@
         },
         {
             "command": "dotnet",
+            "taskName": "dotnet build console-textwritertracelistener",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.ListenerOne.Shell.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "taskName": "dotnet build ef-core-in-memory",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "InMemoryOne.Tests.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-ef-core-in-memory/InMemoryOne.Tests"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "taskName": "dotnet build node-services",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.NodeOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-node-services/Songhay.NodeOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "taskName": "dotnet build static-content",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.StaticOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-static-content/Songhay.StaticOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "taskName": "dotnet build web-api-minimal",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.WebApiOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "taskName": "dotnet build lightbulbs",
             "isBackground": true,
             "type": "shell",
