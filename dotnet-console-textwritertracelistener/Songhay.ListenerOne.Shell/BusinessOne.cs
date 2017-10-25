@@ -13,6 +13,7 @@ namespace Songhay.ListenerOne.Shell
                 .Instance[BusinessOne.TraceSourceName]
                 .WithAllSourceLevels();
         }
+        static readonly TraceSource traceSource;
 
         public void DoBusiness()
         {
@@ -20,7 +21,5 @@ namespace Songhay.ListenerOne.Shell
         }
 
         internal static string TraceSourceName { get; private set; }
-
-        static readonly TraceSource traceSource;
     }
 }
