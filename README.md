@@ -1,6 +1,6 @@
 # dotnet-core
 
-Here’s my collection of self-educational samples on .NET Core. The intention here is to address these concerns:
+Here’s my collection of self-educational samples on [.NET Core](https://github.com/dotnet/corefx). The intention here is to address these concerns:
 
 * .NET scripting in C# and F#.
 * Using F# as alternative to TypeScript perhaps with [Fable](http://fable.io/) or [WebSharper](https://developers.websharper.com/docs).
@@ -37,5 +37,9 @@ The [dotnet templates site](http://dotnetnew.azurewebsites.net/) allows us to se
 ## what does Node.js have to do with .NET Core?
 
 There _is_ a relationship between Node.js and .NET Core. The work on [Fable](http://fable.io/) that will done here will demonstrate this. It follows that [my study of Node.js](https://github.com/BryanWilhite/nodejs) is recommended reading to background the word here.
+
+## starring too many .NET Core repositories on GitHub?
+
+I recommend starring “[.NET Home](https://github.com/dotnet/corefx)” (The .NET Foundation page on GitHub) as this page has links to many of the projects one would star.
 
 @[BryanWilhite](https://twitter.com/bryanwilhite)
