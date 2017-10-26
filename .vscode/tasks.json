@@ -73,6 +73,20 @@
         },
         {
             "command": "dotnet",
+            "taskName": "dotnet build spa-services",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.SpaServicesOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-spa-services/Songhay.SpaServicesOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "taskName": "dotnet build static-content",
             "isBackground": false,
             "type": "shell",
@@ -82,6 +96,20 @@
             ],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-static-content/Songhay.StaticOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "taskName": "dotnet build test-host",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.WebApiProject.Tests.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-test-host/Songhay.WebApiProject.Tests"
             },
             "problemMatcher": "$msCompile"
         },
