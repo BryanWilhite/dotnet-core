@@ -1,6 +1,6 @@
 # .NET Core Configuration
 
-This sample serves as my introduction to configuration files on .NET Core. Configuration files are in the XML [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Xml/)] _or_ JSON [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/)] format. The preference here is for JSON.
+This sample serves as my introduction to configuration files on .NET Core. Configuration files are in XML [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Xml/)], JSON [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/)] _or_ any other format with a valid provider. The preference here is for JSON.
 
 This sample was built from the sample [folder](../dotnet-console-configuration):
 
@@ -34,7 +34,9 @@ We can see all of this unfold in the `Program.cs` [file](./Songhay.Configuration
 
 ## related links
 
+* “[Configuration with .NET Core](https://csharp.christiannagel.com/2016/08/02/netcoreconfiguration/)”
 * “[Configuration in .Net Core 1.1 console project](http://buildsolution.net/configuration-in-net-core-1-1-console-project/)”
 * “[Using strongly typed configuration in .NET Core console app](https://blogs.msdn.microsoft.com/fkaduk/2017/02/22/using-strongly-typed-configuration-in-net-core-console-app/)”
+* [ConfigurationBuilder Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationbuilder?view=aspnetcore-2.0)
 * `IConfigurationRoot` Interface [[docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfigurationroot?view=aspnetcore-2.0)]
 * `IConfiguration` Interface [[docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfiguration?view=aspnetcore-2.0)]
