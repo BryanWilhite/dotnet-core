@@ -1,5 +1,9 @@
 {
     "defaultTraceSourceName": "songhay-log",
+    "connectionStrings": {
+        "contosoOne":
+            "Persist Security Info=False;Integrated Security=SSPI; database=AdventureWorks;server=(local)"
+    },
     "myDictionary": {
         "one": "uno",
         "two": "dos",
