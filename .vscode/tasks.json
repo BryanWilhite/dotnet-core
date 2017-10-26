@@ -3,6 +3,20 @@
     "tasks": [
         {
             "command": "dotnet",
+            "taskName": "dotnet build console-configuration",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.ConfigurationOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "taskName": "dotnet build console-minimal",
             "isBackground": false,
             "type": "shell",
