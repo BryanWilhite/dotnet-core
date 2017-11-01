@@ -32,10 +32,10 @@ We would need `Microsoft.Extensions.Configuration.Binder` to instantiate .NET cl
 IConfigurationRoot configuration = builder.Build();
 ```
 
-In the Visual Studio Code `tasks.json` [file](../.vscode/tasks.json), we see command line arguments being passed as:
+To see command line arguments being passed in configuration, from the `Songhay.ConfigurationOne` [folder](./Songhay.ConfigurationOne) run:
 
-```plaintext
-key1="one" key2="two" /key3 "value of three" --key-four "value of four"
+```ps1
+dotnet run -- key1="one" key2="two" /key3 "value of three" --key-four "value of four"
 ```
 
 These arguments show that .NET Core supports different formats that can be parsed simultaneously.

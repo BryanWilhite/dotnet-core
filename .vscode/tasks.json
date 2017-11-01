@@ -17,26 +17,6 @@
         },
         {
             "command": "dotnet",
-            "taskName": "dotnet run console-configuration",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "run",
-                "--",
-                "key1=\"one\"",
-                "key2=\"two\"",
-                "/key3",
-                "\"value-of-three\"",
-                "--key-four",
-                "\"value-of-four\""
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
             "taskName": "dotnet build console-minimal",
             "isBackground": false,
             "type": "shell",
