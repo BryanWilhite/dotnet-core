@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Songhay.ConfigurationOne": {
+      "commandName": "Project",
+      "commandLineArgs": "key1=\"one\" key2=\"two\" /key3 \"value of three\" --key-four \"value of four\""
+    }
+  }
+}

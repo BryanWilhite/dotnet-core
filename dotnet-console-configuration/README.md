@@ -11,6 +11,7 @@ dotnet add Songhay.ConfigurationOne\Songhay.ConfigurationOne.csproj package Micr
 dotnet add Songhay.ConfigurationOne\Songhay.ConfigurationOne.csproj package Microsoft.Extensions.Configuration.EnvironmentVariables
 dotnet add Songhay.ConfigurationOne\Songhay.ConfigurationOne.csproj package Microsoft.Extensions.Configuration.FileExtensions
 dotnet add Songhay.ConfigurationOne\Songhay.ConfigurationOne.csproj package Microsoft.Extensions.Configuration.Json
+dotnet add Songhay.ConfigurationOne\Songhay.ConfigurationOne.csproj package Microsoft.Extensions.Configuration.CommandLine
 ```
 
 Configuration starts with `Microsoft.Extensions.Configuration` [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/)], its `ConfigurationBuilder` class. By calling `SetBasePath()` and `AddJsonFile()` at the start of our application, we are using `Microsoft.Extensions.Configuration.FileExtensions` and `Microsoft.Extensions.Configuration.Json`, respectively:
@@ -19,7 +20,8 @@ Configuration starts with `Microsoft.Extensions.Configuration` [[NuGet](https://
 var builder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("app-settings.json", optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables();
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
 ```
 
 Notice that the call to `AddEnvironmentVariables()` makes use of `Microsoft.Extensions.Configuration.EnvironmentVariables`.
@@ -29,6 +31,14 @@ We would need `Microsoft.Extensions.Configuration.Binder` to instantiate .NET cl
 ```c#
 IConfigurationRoot configuration = builder.Build();
 ```
+
+In the Visual Studio Code `tasks.json` [file](../.vscode/tasks.json), we see command line arguments being passed as:
+
+```plaintext
+key1="one" key2="two" /key3 "value of three" --key-four "value of four"
+```
+
+These arguments show that .NET Core supports different formats that can be parsed simultaneously.
 
 We can see all of this unfold in the `Program.cs` [file](./Songhay.ConfigurationOne/Program.cs).
 
@@ -40,3 +50,4 @@ We can see all of this unfold in the `Program.cs` [file](./Songhay.Configuration
 * [ConfigurationBuilder Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationbuilder?view=aspnetcore-2.0)
 * `IConfigurationRoot` Interface [[docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfigurationroot?view=aspnetcore-2.0)]
 * `IConfiguration` Interface [[docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfiguration?view=aspnetcore-2.0)]
+* `CommandLine` configuration provider [[docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration?tabs=basicconfiguration#commandline-configuration-provider)]

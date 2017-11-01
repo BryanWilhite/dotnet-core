@@ -11,8 +11,9 @@ namespace Songhay.ConfigurationOne
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("app-settings.json", optional : false, reloadOnChange : true)
-                .AddEnvironmentVariables();
+                .AddJsonFile("app-settings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args);
 
             IConfigurationRoot configuration = builder.Build();
 
@@ -43,6 +44,19 @@ namespace Songhay.ConfigurationOne
             {
                 Console.WriteLine($"{envKey}: {path}");
             }
+
+            //command-line args:
+            var key1 = configuration["key1"];
+            Console.WriteLine($"{nameof(key1)}: {key1}");
+
+            var key2 = configuration["key2"];
+            Console.WriteLine($"{nameof(key2)}: {key2}");
+
+            var key3 = configuration["key3"];
+            Console.WriteLine($"{nameof(key3)}: {key3}");
+
+            var key4 = configuration["key-four"];
+            Console.WriteLine($"{nameof(key4)}: {key4}");
         }
     }
 }
