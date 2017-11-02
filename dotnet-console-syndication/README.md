@@ -7,6 +7,8 @@ dotnet new console -o Songhay.SyndicationOne
 dotnet add Songhay.SyndicationOne/Songhay.SyndicationOne.csproj package Microsoft.SyndicationFeed.ReaderWriter
 ```
 
+Running `dotnet run` from the project folder should generate [an HTML representation](./Songhay.SyndicationOne/rss.html) of the RSS feed in the selfsame folder.
+
 ## related links
 
 * “[Roadmap of SyndicationFeed #2098](https://github.com/dotnet/wcf/issues/2098)”

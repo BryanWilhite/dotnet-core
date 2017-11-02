@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace Songhay.SyndicationOne
 {
     class Program
     {
-        static async void Main(string[] args)
+        static void Main(string[] args) => MainAsync(args).GetAwaiter().GetResult();
+
+        static async Task MainAsync(string[] args)
         {
             var items = new List<SyndicationItem>();
 
@@ -57,7 +60,7 @@ namespace Songhay.SyndicationOne
 </html>
 ";
             var path = Path.Combine(Directory.GetCurrentDirectory(), "rss.html");
-            Process.Start(path);
+            File.WriteAllText(path, html);
         }
     }
 }
