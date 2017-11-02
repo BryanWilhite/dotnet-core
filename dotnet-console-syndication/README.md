@@ -6,4 +6,3 @@ The `SyndicationFeedReaderWriter` [[GitHub](https://github.com/dotnet/Syndicatio
 
 * “[Roadmap of SyndicationFeed #2098](https://github.com/dotnet/wcf/issues/2098)”
 * “[Please add support for System.ServiceModel.Syndication #76](https://github.com/dotnet/wcf/issues/76)”
-* `Windows.Web.Syndication` Namespace [[docs](https://docs.microsoft.com/en-us/uwp/api/windows.web.syndication)]
