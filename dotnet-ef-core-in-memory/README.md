@@ -1,5 +1,7 @@
 # Entity Framework Core with In-Memory Provider
 
+## setup
+
 ```ps1
 dotnet new classlib -o InMemoryOne.Models
 dotnet new classlib -o InMemoryOne.Repository
@@ -13,7 +15,10 @@ dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsof
 dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
 dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
 dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
+dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.SqlServer
 ```
+
+We have added `Microsoft.EntityFrameworkCore.SqlServer` [[NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)] to [the test project](./InMemoryOne.Tests/BloggingContextTest.cs) in order to show the `DatabaseFacade.GetDbConnection()` [extension method](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions) in action.
 
 ## related links
 
