@@ -14,12 +14,10 @@ namespace InMemoryOne.Tests
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        [TestProperty("connectionString", @"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;")]
         [TestProperty("databaseName", "blogDatabase")]
         [TestProperty("blogLocation", "http://sample.com")]
         public void ShouldAddBlog()
         {
-            var connectionString = this.TestContext.Properties["connectionString"].ToString();
             var databaseName = this.TestContext.Properties["databaseName"].ToString();
             var blogLocation = this.TestContext.Properties["blogLocation"].ToString();
 
@@ -27,14 +25,14 @@ namespace InMemoryOne.Tests
                 .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
 
-            using(var context = new BloggingContext(connectionString, options))
+            using(var context = new BloggingContext(options))
             {
                 var blog = new Blog { Url = blogLocation };
                 context.Blogs.Add(blog);
                 context.SaveChanges();
             }
 
-            using(var context = new BloggingContext(connectionString, options))
+            using(var context = new BloggingContext(options))
             {
                 var blog = context.Blogs.SingleOrDefault(i => i.Url == blogLocation);
                 Assert.IsNotNull(blog);
@@ -42,12 +40,10 @@ namespace InMemoryOne.Tests
         }
 
         [TestMethod]
-        [TestProperty("connectionString", @"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;")]
         [TestProperty("databaseName", "blogDatabase")]
         [TestProperty("expectedMessage", "Relational-specific methods can only be used when the context is using a relational database provider.")]
         public void ShouldNotGetDatabaseConnection()
         {
-            var connectionString = this.TestContext.Properties["connectionString"].ToString();
             var databaseName = this.TestContext.Properties["databaseName"].ToString();
             var expectedMessage = this.TestContext.Properties["expectedMessage"].ToString();
 
@@ -55,7 +51,7 @@ namespace InMemoryOne.Tests
                 .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
 
-            using(var context = new BloggingContext(connectionString, options))
+            using(var context = new BloggingContext(options))
             {
                 var test = false;
                 try
