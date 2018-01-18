@@ -14,4 +14,8 @@
     <PackageReference Include="Tavis.UriTemplates" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Songhay.ContentNegotiation\Songhay.ContentNegotiation.csproj" />
+  </ItemGroup>
+
 </Project>
