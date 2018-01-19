@@ -12,6 +12,8 @@ namespace Songhay.ContentNegotiation.OutputFormatters
 {
     public class VcardOutputFormatter : TextOutputFormatter
     {
+        public const string MimeType = "text/vcard";
+
         public VcardOutputFormatter()
         {
             /*
@@ -22,20 +24,10 @@ namespace Songhay.ContentNegotiation.OutputFormatters
                 [https://docs.microsoft.com/en-us/aspnet/core/mvc/advanced/custom-formatters]
             */
 
-            SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/vcard"));
+            SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse(MimeType));
 
             SupportedEncodings.Add(Encoding.UTF8);
             SupportedEncodings.Add(Encoding.Unicode);
-        }
-
-        protected override bool CanWriteType(Type type)
-        {
-            if (typeof(Contact).IsAssignableFrom(type)
-                || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
-            {
-                return base.CanWriteType(type);
-            }
-            return false;
         }
 
         public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
@@ -59,6 +51,16 @@ namespace Songhay.ContentNegotiation.OutputFormatters
                 FormatVcard(buffer, contact, logger);
             }
             return response.WriteAsync(buffer.ToString());
+        }
+
+        protected override bool CanWriteType(Type type)
+        {
+            if (typeof(Contact).IsAssignableFrom(type)
+                || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
+            {
+                return base.CanWriteType(type);
+            }
+            return false;
         }
 
         static void FormatVcard(StringBuilder buffer, Contact contact, ILogger logger)
