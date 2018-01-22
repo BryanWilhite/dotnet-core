@@ -14,7 +14,7 @@ using(var listener = new TextWriterTraceListener(Console.Out))
 }
 ```
 
-This current limitation places `TextWriterTraceListener` front and center for any `TraceSource` related diagnostics on .NET Core.
+This current default behavior in .NET Core places `TextWriterTraceListener` front and center for any `TraceSource` related diagnostics on .NET Core.
 
 ## Why a `TraceSource` logging pattern?
 
@@ -22,7 +22,7 @@ The `TraceSource` logging pattern is a slightly verbose alternative to the `ILog
 
 The one issue one might have with `TraceSource` is the fact that the `Trace` [class](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.trace?view=netstandard-2.0) keeps track of listeners but not trace sources. Because of this, I had to introduce a dependency from my `SonghayCore` project, the `TraceSources` [class](https://github.com/BryanWilhite/SonghayCore/blob/master/SonghayCore/Diagnostics/TraceSources.cs). I would prefer that the functionality in `TraceSources` be in Microsoft’s `Trace` class.
 
-Another issue one might have with this approach is the need to declare a static `TraceSource` in every single class concerned with tracing. In this code sample, we see the use of these static members in the static constructors of the `Program` [class](./Songhay.ListenerOne.Shell/Program.cs) and the `BusinessOne` [class](./Songhay.ListenerOne.Shell/BusinessOne.cs). One might call this the “`TraceSource` tax” (which is similar to throwing `ILogger` statements throughout our code).
+Another issue one might have with this approach is the need to declare a static `TraceSource` in every single class concerned with tracing. In this code sample, we see the use of these static members in the static constructors of the `Program` [class](./Songhay.ListenerOne.Shell/Songhay.ListenerOne.Shell/Program.cs) and the `BusinessOne` [class](./Songhay.ListenerOne.Shell/Songhay.ListenerOne.Shell/BusinessOne.cs). One might call this the “`TraceSource` tax” (which is similar to throwing `ILogger` statements throughout our code).
 
 We also should see that `WithAllSourceLevels()` is an Extension Method from my `SonghayCore` project, in the `TraceSourceExtensions` [class](https://github.com/BryanWilhite/SonghayCore/blob/master/SonghayCore/Extensions/TraceSourceExtensions.cs). This implies yet more dependency but also shows us that we have the ability to instantiate and filter `TraceSource` per class. However, by default, we see that `TraceSourceName` in the `BusinessOne` [class](./Songhay.ListenerOne.Shell/BusinessOne.cs) of this sample sets one `TraceSource` name which reveals the intent to share _one_ instance of `TraceSource` for the whole application. Again, we have the freedom to change this per class—one of the benefits of paying the `TraceSource` tax.
 
