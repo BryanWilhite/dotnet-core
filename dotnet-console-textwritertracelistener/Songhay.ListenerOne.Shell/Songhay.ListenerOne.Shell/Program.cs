@@ -7,7 +7,12 @@ namespace Songhay.ListenerOne.Shell
 {
     class Program
     {
-        static Program() => traceSource = TraceSources.Instance[BusinessOne.TraceSourceName].WithAllSourceLevels();
+        static Program() => traceSource = TraceSources
+            .Instance
+            .GetTraceSourceFromConfiguredName()
+            .WithAllSourceLevels()
+            .EnsureTraceSource();
+
         static readonly TraceSource traceSource;
 
         static void Main(string[] args)

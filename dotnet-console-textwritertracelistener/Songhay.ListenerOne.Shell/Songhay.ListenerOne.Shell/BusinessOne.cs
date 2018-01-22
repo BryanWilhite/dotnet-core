@@ -6,20 +6,17 @@ namespace Songhay.ListenerOne.Shell
 {
     public class BusinessOne
     {
-        static BusinessOne()
-        {
-            TraceSourceName = "rx-trace";
-            traceSource = TraceSources
-                .Instance[BusinessOne.TraceSourceName]
-                .WithAllSourceLevels();
-        }
+        static BusinessOne() => traceSource = TraceSources
+            .Instance
+            .GetTraceSourceFromConfiguredName()
+            .WithAllSourceLevels()
+            .EnsureTraceSource();
+
         static readonly TraceSource traceSource;
 
         public void DoBusiness()
         {
             traceSource.TraceInformation("Hello business!");
         }
-
-        internal static string TraceSourceName { get; private set; }
     }
 }
