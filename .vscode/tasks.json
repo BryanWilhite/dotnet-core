@@ -3,7 +3,7 @@
     "tasks": [
         {
             "command": "dotnet",
-            "label": "dotnet build console-configuration",
+            "label": "dotnet build: console-configuration",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -17,7 +17,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build console-minimal",
+            "label": "dotnet build: console-minimal",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -31,12 +31,26 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build console-textwritertracelistener",
+            "label": "dotnet build: console-syndication",
             "isBackground": false,
             "type": "shell",
             "args": [
                 "build",
-                "Songhay.ListenerOne.Shell.csproj"
+                "Songhay.SyndicationOne.csproj"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-console-syndication/Songhay.SyndicationOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet build: console-textwritertracelistener",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.ListenerOne.Shell.sln"
             ],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
@@ -45,7 +59,21 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build ef-core-in-memory",
+            "label": "dotnet build: content-negotiation",
+            "isBackground": false,
+            "type": "shell",
+            "args": [
+                "build",
+                "Songhay.ContentNegotiation.sln"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-content-negotiation/Songhay.ContentNegotiation"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet build: ef-core-in-memory",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -59,7 +87,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build node-services",
+            "label": "dotnet build: node-services",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -73,7 +101,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build spa-services",
+            "label": "dotnet build: spa-services",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -87,7 +115,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build static-content",
+            "label": "dotnet build: static-content",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -101,7 +129,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build test-host",
+            "label": "dotnet build: test-host",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -115,7 +143,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build web-api-minimal",
+            "label": "dotnet build: web-api-minimal",
             "isBackground": false,
             "type": "shell",
             "args": [
@@ -129,7 +157,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build lightbulbs",
+            "label": "dotnet build: lightbulbs",
             "isBackground": true,
             "type": "shell",
             "args": [
@@ -143,7 +171,20 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet test lightbulbs",
+            "label": "dotnet run: lightbulbs",
+            "isBackground": true,
+            "type": "shell",
+            "args": [
+                "run"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet test: lightbulbs",
             "isBackground": true,
             "type": "shell",
             "args": [
@@ -152,19 +193,6 @@
             ],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-lightbulbs"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet run lightbulbs",
-            "isBackground": true,
-            "type": "shell",
-            "args": [
-                "run"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs"
             },
             "problemMatcher": "$msCompile"
         }
