@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Songhay_VueOne
+namespace Songhay.VueOne
 {
     public class Program
     {
