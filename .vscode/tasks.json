@@ -184,6 +184,19 @@
         },
         {
             "command": "dotnet",
+            "label": "dotnet run: vue",
+            "isBackground": true,
+            "type": "shell",
+            "args": [
+                "run"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "label": "dotnet test: lightbulbs",
             "isBackground": true,
             "type": "shell",
