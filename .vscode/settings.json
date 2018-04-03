@@ -20,6 +20,7 @@
         "nocache",
         "nuget",
         "pico",
+        "polyfill",
         "preprocessors",
         "prerendering",
         "rasx",

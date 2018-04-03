@@ -1,7 +1,10 @@
 {
-  "name": "Songhay_VueOne",
+  "name": "songhay-vue-one",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "start": "dotnet run"
+  },
   "devDependencies": {
     "@types/webpack-env": "^1.13.0",
     "aspnet-webpack": "^2.0.1",
