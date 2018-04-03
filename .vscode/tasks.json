@@ -73,6 +73,39 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm install",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["install"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm start",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["start"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm update",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["update"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "command": "dotnet",
             "label": "dotnet lightbulbs: build",
             "isBackground": true,
