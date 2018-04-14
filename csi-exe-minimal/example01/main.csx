@@ -1,4 +1,4 @@
-#r ".\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll"
+#r ".\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll"
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
