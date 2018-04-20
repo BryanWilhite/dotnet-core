@@ -3,27 +3,22 @@
     "tasks": [
         {
             "command": "dotnet",
-            "label": "dotnet build: console-configuration",
+            "label": "dotnet console-configuration: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "Songhay.ConfigurationOne.csproj"
-            ],
+            "args": ["build", "Songhay.ConfigurationOne.csproj"],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
+                "cwd":
+                    "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
             },
             "problemMatcher": "$msCompile"
         },
         {
             "command": "dotnet",
-            "label": "dotnet build: console-minimal",
+            "label": "dotnet console-minimal: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "hwapp.csproj"
-            ],
+            "args": ["build", "hwapp.csproj"],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-console-minimal/hwapp"
             },
@@ -31,139 +26,91 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet build: console-syndication",
+            "label": "dotnet console-syndication: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "Songhay.SyndicationOne.csproj"
-            ],
+            "args": ["build", "Songhay.SyndicationOne.csproj"],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-console-syndication/Songhay.SyndicationOne"
+                "cwd":
+                    "${workspaceRoot}/dotnet-console-syndication/Songhay.SyndicationOne"
             },
             "problemMatcher": "$msCompile"
         },
         {
             "command": "dotnet",
-            "label": "dotnet build: console-textwritertracelistener",
+            "label": "dotnet console-textwritertracelistener: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "Songhay.ListenerOne.Shell.sln"
-            ],
+            "args": ["build", "Songhay.ListenerOne.Shell.sln"],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
+                "cwd":
+                    "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
             },
             "problemMatcher": "$msCompile"
         },
         {
             "command": "dotnet",
-            "label": "dotnet build: content-negotiation",
+            "label": "dotnet content-negotiation: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "Songhay.ContentNegotiation.sln"
-            ],
+            "args": ["build", "Songhay.ContentNegotiation.sln"],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-content-negotiation/Songhay.ContentNegotiation"
+                "cwd":
+                    "${workspaceRoot}/dotnet-content-negotiation/Songhay.ContentNegotiation"
             },
             "problemMatcher": "$msCompile"
         },
         {
             "command": "dotnet",
-            "label": "dotnet build: ef-core-in-memory",
+            "label": "dotnet ef-core-in-memory: build",
             "isBackground": false,
             "type": "shell",
-            "args": [
-                "build",
-                "InMemoryOne.Tests.csproj"
-            ],
+            "args": ["build", "InMemoryOne.Tests.csproj"],
             "options": {
-                "cwd": "${workspaceRoot}/dotnet-ef-core-in-memory/InMemoryOne.Tests"
+                "cwd":
+                    "${workspaceRoot}/dotnet-ef-core-in-memory/InMemoryOne.Tests"
             },
             "problemMatcher": "$msCompile"
         },
         {
-            "command": "dotnet",
-            "label": "dotnet build: node-services",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "build",
-                "Songhay.NodeOne.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-node-services/Songhay.NodeOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet build: spa-services",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "build",
-                "Songhay.SpaServicesOne.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-spa-services/Songhay.SpaServicesOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet build: static-content",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "build",
-                "Songhay.StaticOne.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-static-content/Songhay.StaticOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet build: test-host",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "build",
-                "Songhay.WebApiProject.Tests.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-test-host/Songhay.WebApiProject.Tests"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet build: web-api-minimal",
-            "isBackground": false,
-            "type": "shell",
-            "args": [
-                "build",
-                "Songhay.WebApiOne.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet build: lightbulbs",
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm install",
             "isBackground": true,
             "type": "shell",
-            "args": [
-                "build",
-                "Songhay.LightBulbs.sln"
-            ],
+            "args": ["install"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm start",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["start"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet lightbulbs client app: npm update",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["update"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet lightbulbs: build",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["build", "Songhay.LightBulbs.sln"],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-lightbulbs"
             },
@@ -171,12 +118,10 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet run: lightbulbs",
+            "label": "dotnet lightbulbs: run",
             "isBackground": true,
             "type": "shell",
-            "args": [
-                "run"
-            ],
+            "args": ["run"],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs"
             },
@@ -184,20 +129,7 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet run: vue",
-            "isBackground": true,
-            "type": "shell",
-            "args": [
-                "run"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet test: lightbulbs",
+            "label": "dotnet lightbulbs: test",
             "isBackground": true,
             "type": "shell",
             "args": [
@@ -206,6 +138,109 @@
             ],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-lightbulbs"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet node-services: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.NodeOne.csproj"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-node-services/Songhay.NodeOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet spa-services: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.SpaServicesOne.csproj"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-spa-services/Songhay.SpaServicesOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet static-content: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.StaticOne.csproj"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-static-content/Songhay.StaticOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet test-host: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.WebApiProject.Tests.csproj"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-test-host/Songhay.WebApiProject.Tests"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet vue: npm install",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["install"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet vue: npm start",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["start"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "npm",
+            "label": "dotnet vue: npm update",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["update"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet vue: run",
+            "isBackground": true,
+            "type": "shell",
+            "args": ["run"],
+            "options": {
+                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet web-api-minimal: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.WebApiOne.csproj"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
             },
             "problemMatcher": "$msCompile"
         }
