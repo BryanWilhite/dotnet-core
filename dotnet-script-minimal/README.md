@@ -10,27 +10,19 @@ dotnet script hello-world.csx
 
 ## setup on Ubuntu bash
 
-dotnet script currently requires .NET Core 1.1.2 which is in SDK version 1.0.4:
+See “[Install .NET Core SDK on Linux Ubuntu 16.04](https://www.microsoft.com/net/download/linux-package-manager/ubuntu16-04/sdk-current)” and instead of installing `dotnet-sdk-2.1.200` install `dotnet-sdk-2.1.300-preview2-008533`:
 
 ```bash
-sudo apt-get install dotnet-dev-1.0.4
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.1.300-preview2-008533
 ```
 
-A path must set to the dotnet script folder (in `~/.profile`):
+Then, install it as a _global tool_ (introduced with .NET Core 2.1):
 
 ```bash
-DOTNET_SCRIPT=/your/path/to/dotnet-script.0.13.0/dotnet-script
-export PATH=$PATH:$DOTNET_SCRIPT/
+dotnet tool install -g dotnet-script
 ```
-
-In the [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/about), edit with, say, [pico](https://en.wikipedia.org/wiki/Pico_(text_editor)) by opening `.profile` a new terminal session. By default, your present working directory should be your `/home/*/` folder and this command should work:
-
-```bash
-pico .profile
-source ~/.profile
-```
-
-You may have to run source `~/.profile` with every new terminal session until you log out and log back in.
 
 ## setup on PowerShell
 

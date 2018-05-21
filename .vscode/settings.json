@@ -15,6 +15,7 @@
         "netcoreapp",
         "newtonsoft",
         "nocache",
+        "pico",
         "preprocessors",
         "prerendering",
         "scriptcs",
