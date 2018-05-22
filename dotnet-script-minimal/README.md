@@ -1,21 +1,21 @@
 # dotnet script minimal
 
-This is the minimal required to get dotnet script ([GitHub](https://github.com/filipw/dotnet-script)) working, following the repository documentation. My only twist on this is my preference to standardize on Ubuntu bash, across platforms. However, Powershell setup notes are below…
+This is the minimal required to get `dotnet-script` [[GitHub](https://github.com/filipw/dotnet-script)] working, following the repository documentation. My only twist on this is my preference to standardize on Ubuntu bash, across platforms. However, Powershell setup notes are below…
 
 From the root folder of this sample this command should run without errors:
 
 ```bash
-dotnet script hello-world.csx
+sdotnet script hello-world.csx
 ```
 
 ## setup on Ubuntu bash
 
-See “[Install .NET Core SDK on Linux Ubuntu 16.04](https://www.microsoft.com/net/download/linux-package-manager/ubuntu16-04/sdk-current)” and instead of installing `dotnet-sdk-2.1.200` install `dotnet-sdk-2.1.300-preview2-008533`:
+See “[Install .NET Core SDK on Linux Ubuntu 16.04](https://www.microsoft.com/net/download/linux-package-manager/ubuntu16-04/sdk-current)” and instead of installing `dotnet-sdk-2.1.200` install `dotnet-sdk-2.1.300-rc1-008673`:
 
 ```bash
 sudo apt-get install apt-transport-https
 sudo apt-get update
-sudo apt-get install dotnet-sdk-2.1.300-preview2-008533
+sudo apt-get install dotnet-sdk-2.1.300-rc1-008673
 ```
 
 Then, install it as a _global tool_ (introduced with .NET Core 2.1):
