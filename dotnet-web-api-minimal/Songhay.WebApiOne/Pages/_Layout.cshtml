@@ -6,12 +6,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Static File</title>
+        @RenderSection("Styles", required: false)
+
+        <title>Layout File</title>
     </head>
     <body>
-        <h1>Static File</h1>
-        <p>Hello world!</p>
-        <p>make API call: <a href="./api/values">values</a></p>
-        <p>view Razor page: <a href="./view/one">view</a></p>
+        @RenderBody()
+
+        @RenderSection("Scripts", required: false)
     </body>
 </html>
