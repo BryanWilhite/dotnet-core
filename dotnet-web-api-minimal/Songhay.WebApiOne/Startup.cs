@@ -37,7 +37,7 @@ namespace Songhay.WebApiOne
             app
                 .UseDefaultFiles()
                 .UseStaticFiles()
-                .UseMvc()
+                .UseMvcWithDefaultRoute()
                 ;
         }
     }
