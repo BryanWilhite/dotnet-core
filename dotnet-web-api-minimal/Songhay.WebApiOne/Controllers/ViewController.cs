@@ -10,9 +10,9 @@ namespace Songhay.WebApiOne.Controllers
     public class ViewController : Controller
     {
         [Route("one")]
-        IActionResult GetOne()
+        IActionResult GetViewOne()
         {
-            return this.View();
+            return this.View("ViewOne");
         }
     }
 }

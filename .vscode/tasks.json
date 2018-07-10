@@ -243,6 +243,18 @@
                     "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
+            "label": "dotnet web-api-minimal: run",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["run"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }
