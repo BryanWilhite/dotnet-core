@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Songhay.WebApiOne.Controllers
 {
     [Route("[controller]")]
-    public class ViewController : Controller
+    public class MyViewController : Controller
     {
         [Route("one")]
-        IActionResult GetViewOne()
+        public IActionResult GetViewOne()
         {
             return this.View("ViewOne");
         }
