@@ -189,6 +189,18 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "command": "dotnet",
+            "label": "dotnet vue: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.VueOne.csproj"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "command": "npm",
             "label": "dotnet vue: npm install",
             "isBackground": true,
