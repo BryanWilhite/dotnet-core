@@ -16,7 +16,8 @@
         "jquery": "^2.2.4",
         "jquery-validation": "^1.17.0",
         "mustache": "^2.3.0",
-        "normalize.css": "^7.0.0"
+        "normalize.css": "^7.0.0",
+        "npm": "^6.2.0"
     },
     "devDependencies": {
         "@types/jquery": "^3.3.1",
