@@ -73,75 +73,6 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "command": "npm",
-            "label": "dotnet lightbulbs client app: npm install",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["install"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "npm",
-            "label": "dotnet lightbulbs client app: npm start",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["start"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "npm",
-            "label": "dotnet lightbulbs client app: npm update",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["update"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs/app"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet lightbulbs: build",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["build", "Songhay.LightBulbs.sln"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet lightbulbs: run",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["run"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs/Songhay.LightBulbs"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet lightbulbs: test",
-            "isBackground": true,
-            "type": "shell",
-            "args": [
-                "test",
-                "Songhay.LightBulbs.Tests/Songhay.LightBulbs.Tests.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-lightbulbs"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
             "command": "dotnet",
             "label": "dotnet node-services: build",
             "isBackground": false,
@@ -185,62 +116,6 @@
             "options": {
                 "cwd":
                     "${workspaceRoot}/dotnet-test-host/Songhay.WebApiProject.Tests"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet vue: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.VueOne.csproj"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "npm",
-            "label": "dotnet vue: npm install",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["install"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "npm",
-            "label": "dotnet vue: npm start",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["start"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "npm",
-            "label": "dotnet vue: npm update",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["update"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet vue: run",
-            "isBackground": true,
-            "type": "shell",
-            "args": ["run"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-vuejs/Songhay.VueOne"
             },
             "problemMatcher": "$msCompile"
         },
