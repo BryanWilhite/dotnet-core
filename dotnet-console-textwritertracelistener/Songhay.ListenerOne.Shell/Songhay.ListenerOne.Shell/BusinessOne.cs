@@ -9,14 +9,13 @@ namespace Songhay.ListenerOne.Shell
         static BusinessOne() => traceSource = TraceSources
             .Instance
             .GetTraceSourceFromConfiguredName()
-            .WithAllSourceLevels()
-            .EnsureTraceSource();
+            .WithSourceLevels();
 
         static readonly TraceSource traceSource;
 
         public void DoBusiness()
         {
-            traceSource.TraceInformation("Hello business!");
+            traceSource?.TraceInformation("Hello business!");
         }
     }
 }

@@ -10,8 +10,7 @@ namespace Songhay.ListenerOne.Shell
         static Program() => traceSource = TraceSources
             .Instance
             .GetTraceSourceFromConfiguredName()
-            .WithAllSourceLevels()
-            .EnsureTraceSource();
+            .WithSourceLevels();
 
         static readonly TraceSource traceSource;
 
@@ -19,7 +18,7 @@ namespace Songhay.ListenerOne.Shell
         {
             using(var listener = new TextWriterTraceListener(Console.Out))
             {
-                traceSource.Listeners.Add(listener);
+                traceSource?.Listeners.Add(listener);
 
                 var biz = new BusinessOne();
                 biz.DoBusiness();
