@@ -4,7 +4,7 @@ This sample highlights the pre-rendering capabilities of ASP.NET core with `Micr
 
 To get this sample working, we first run this:
 
-```ps1
+```bash
 dotnet new web -o Songhay.NodeOne
 ```
 
@@ -12,9 +12,9 @@ The `dotnet new web` will generate a project file that will reference `Microsoft
 
 Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.NodeOne` [folder](./Songhay.NodeOne):
 
-```ps1
-npm i -S aspnet-prerendering
-npm install --save-dev @types/node
+```bash
+npm i --save-dev aspnet-prerendering
+npm i --save-dev @types/node
 
 dotnet build
 dotnet run
@@ -22,7 +22,7 @@ dotnet run
 
 Hitting the conventional `http://localhost:5000` should produce a session like this:
 
-```ps1
+```bash
 Hosting environment: Development
 Content root path: .\dotnet-node-services\Songhay.NodeOne
 Now listening on: http://localhost:5000
@@ -37,3 +37,5 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
 
 * [Visual Studio Toolbox: “Angular and .NET Core”](https://channel9.msdn.com/Shows/Visual-Studio-Toolbox/Angular-and-NET-Core#time=13m45s)
 * “[Using JavaScriptServices for Creating Single Page Applications with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/client-side/spa-services)”
+
+@[BryanWilhite](https://twitter.com/BryanWilhite)
