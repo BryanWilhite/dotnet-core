@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("Songhay.ContentNegotiation.Tests")]
+using Microsoft.Extensions.Hosting;
 
 namespace Songhay.ContentNegotiation
 {
@@ -10,11 +11,14 @@ namespace Songhay.ContentNegotiation
     {
         public static void Main(string[] args)
         {
-            var builder = GetWebHostBuilder(args);
-            builder.Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        internal static IWebHostBuilder GetWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

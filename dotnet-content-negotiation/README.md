@@ -19,3 +19,5 @@ services
 * “[Content negotiation in ASPNET Core](https://dotnetthoughts.net/content-negotiation-in-aspnet-core/)”
 * Historical, from 2014: “[Cutting Edge : Content Negotiation and Web API for the ASP.NET MVC Developer](https://msdn.microsoft.com/en-us/magazine/dn574797.aspx)”
 * “[Difference between the two Web API headers response.Content.Headers and response.Headers](https://stackoverflow.com/questions/23209038/difference-between-the-two-web-api-headers-response-content-headers-and-response)”
+
+@[BryanWilhite](https://twitter.com/BryanWilhite)
