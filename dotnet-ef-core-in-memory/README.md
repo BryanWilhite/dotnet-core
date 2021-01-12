@@ -2,20 +2,26 @@
 
 ## setup
 
-```ps1
-dotnet new classlib -o InMemoryOne.Models
-dotnet new classlib -o InMemoryOne.Repository
-dotnet new mstest -o InMemoryOne.Tests
+```bash
+dotnet new classlib -o InMemoryOne/InMemoryOne.Models
+dotnet new classlib -o InMemoryOne/InMemoryOne.Repository
+dotnet new mstest -o InMemoryOne/InMemoryOne.Tests
 
-dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
-dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
-dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
+dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
 
-dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore
-dotnet add InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
-dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
-dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
-dotnet add InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore
+dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
+dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
+dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
+dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.SqlServer
+
+dotnet new sln -n InMemoryOne -o InMemoryOne
+dotnet sln InMemoryOne/InMemoryOne.sln add \
+    InMemoryOne/InMemoryOne.Models/InMemoryOne.Models.csproj \
+    InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj
 ```
 
 We have added `Microsoft.EntityFrameworkCore.SqlServer` [[NuGet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)] to [the test project](./InMemoryOne.Tests/BloggingContextTest.cs) in order to show the `DatabaseFacade.GetDbConnection()` [extension method](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions) in action.
@@ -30,3 +36,5 @@ We have added `Microsoft.EntityFrameworkCore.SqlServer` [[NuGet](https://www.nug
 * “[Add code to initialize the database with test data](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro#add-code-to-initialize-the-database-with-test-data)”
 * “[Microsoft.Data.Sqlite Namespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.data.sqlite?view=msdata-sqlite-1.1.0)”
 * “[SqliteConnection Class](https://docs.microsoft.com/en-us/dotnet/api/microsoft.data.sqlite.sqliteconnection?view=msdata-sqlite-1.1.0)”
+
+@[BryanWilhite](https://twitter.com/BryanWilhite)

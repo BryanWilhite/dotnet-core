@@ -3,24 +3,16 @@ using System.Linq;
 using InMemoryOne.Models;
 using InMemoryOne.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Xunit;
 
 namespace InMemoryOne.Tests
 {
-    [TestClass]
     public class BloggingContextTest
     {
-        public TestContext TestContext { get; set; }
-
-        [TestMethod]
-        [TestProperty("databaseName", "blogDatabase")]
-        [TestProperty("blogLocation", "http://sample.com")]
-        public void ShouldAddBlog()
+        [Theory]
+        [InlineData("blogDatabase", "http://sample.com")]
+        public void ShouldAddBlog(string databaseName, string blogLocation)
         {
-            var databaseName = this.TestContext.Properties["databaseName"].ToString();
-            var blogLocation = this.TestContext.Properties["blogLocation"].ToString();
-
             var options = new DbContextOptionsBuilder<BloggingContext>()
                 .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
@@ -35,18 +27,14 @@ namespace InMemoryOne.Tests
             using(var context = new BloggingContext(options))
             {
                 var blog = context.Blogs.SingleOrDefault(i => i.Url == blogLocation);
-                Assert.IsNotNull(blog);
+                Assert.NotNull(blog);
             }
         }
 
-        [TestMethod]
-        [TestProperty("databaseName", "blogDatabase")]
-        [TestProperty("expectedMessage", "Relational-specific methods can only be used when the context is using a relational database provider.")]
-        public void ShouldNotGetDatabaseConnection()
+        [Theory]
+        [InlineData("blogDatabase", "Relational-specific methods can only be used when the context is using a relational database provider.")]
+        public void ShouldNotGetDatabaseConnection(string databaseName, string expectedMessage)
         {
-            var databaseName = this.TestContext.Properties["databaseName"].ToString();
-            var expectedMessage = this.TestContext.Properties["expectedMessage"].ToString();
-
             var options = new DbContextOptionsBuilder<BloggingContext>()
                 .UseInMemoryDatabase(databaseName : databaseName)
                 .Options;
@@ -61,9 +49,9 @@ namespace InMemoryOne.Tests
                 catch (InvalidOperationException ex)
                 {
                     test = true;
-                    Assert.IsTrue(ex.Message.Contains(expectedMessage));
+                    Assert.True(ex.Message.Contains(expectedMessage));
                 }
-                Assert.IsTrue(test, "The expected exception was not caught.");
+                Assert.True(test, "The expected exception was not caught.");
             }
         }
     }
