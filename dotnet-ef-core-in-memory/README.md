@@ -7,15 +7,31 @@ dotnet new classlib -o InMemoryOne/InMemoryOne.Models
 dotnet new classlib -o InMemoryOne/InMemoryOne.Repository
 dotnet new mstest -o InMemoryOne/InMemoryOne.Tests
 
-dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
-dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Models/InMemoryOne.Models.csproj
-dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
+dotnet add \
+    InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
+    reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
+    reference InMemoryOne.Models/InMemoryOne.Models.csproj
+dotnet add \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
+    reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
 
-dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore
-dotnet add InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj package Microsoft.EntityFrameworkCore.InMemory
-dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore
-dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.InMemory
-dotnet add InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add \
+    InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
+    package Microsoft.EntityFrameworkCore
+dotnet add \
+    InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
+    package Microsoft.EntityFrameworkCore.InMemory
+dotnet add \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
+    package Microsoft.EntityFrameworkCore
+dotnet add \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
+    package Microsoft.EntityFrameworkCore.InMemory
+dotnet add \
+    InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
+    package Microsoft.EntityFrameworkCore.SqlServer
 
 dotnet new sln -n InMemoryOne -o InMemoryOne
 dotnet sln InMemoryOne/InMemoryOne.sln add \
