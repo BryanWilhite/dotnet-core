@@ -5,7 +5,7 @@
 ```bash
 dotnet new classlib -o InMemoryOne/InMemoryOne.Models
 dotnet new classlib -o InMemoryOne/InMemoryOne.Repository
-dotnet new mstest -o InMemoryOne/InMemoryOne.Tests
+dotnet new xunit -o InMemoryOne/InMemoryOne.Tests
 
 dotnet add \
     InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \

@@ -1,72 +1,62 @@
 # ASP.NET Core Static Files
 
-This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[GitHub](https://github.com/aspnet/StaticFiles)] working in ASP.NET Core. This sample is completely ignorant of these advanced static-file topics:
+This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[📖 docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0)] working in ASP.NET Core.
 
-* setting MIME types with `FileExtensionContentTypeProvider`<sup>*</sup> [[docs](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider?view=aspnetcore-2.0)]
-* setting a default document
-* enabling directory browsing
-* enabling `Cache-Control`
-* enabling static file authorization via an MVC controller
-* using `IServiceCollection.AddDirectoryBrowser()`
+To get this minimal sample to work we first run this (from the `dotnet-static-content` [folder](../dotnet-static-content)):
 
-These topics (and more) are introduced in “[Working with static files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files).”
+```bash
+dotnet new web -o Songhay.StaticOne/Songhay.StaticOne
 
-<sup>*</sup> note that, “the ASP.NET static file middleware understands almost 400 known file content types.”
+dotnet new sln -n Songhay.StaticOne -o Songhay.StaticOne
 
-To get this minimal sample to work we first run this:
+dotnet sln Songhay.StaticOne/Songhay.StaticOne.sln \
+      add Songhay.StaticOne/Songhay.StaticOne/Songhay.StaticOne.csproj
 
-```ps1
-dotnet new web -o Songhay.StaticOne
+mkdir Songhay.StaticOne/Songhay.StaticOne/wwwroot
+touch Songhay.StaticOne/Songhay.StaticOne/wwwroot/static_file.html
 ```
 
-Then add something like `static_file.html` [[view](./Songhay.StaticOne/wwwroot/static_file.html)] and add these lines to `Startup.Configure()` [[view](./Songhay.StaticOne/Startup.cs)]:
+In `static_file.html` we have:
 
-```c#
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="description" content="This is a sample for my self-education." />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Static File</title>
+    </head>
+    <body>
+        <h1>Static File</h1>
+        <p>Hello world!</p>
+    </body>
+</html>
+```
+
+and add these lines to `Startup.Configure()` [[view](./Songhay.StaticOne/Songhay.StaticOne/Startup.cs)]:
+
+```csharp
+app.UseEndpoints(endpoints =>
 {
-    if (env.IsDevelopment())
+    endpoints.MapGet("/", async context =
     {
-        app.UseDeveloperExceptionPage();
-    }
-
-    app.UseStaticFiles();
-
-    app.Run(async (context) =>
-    {
-        await context.Response.WriteAsync(@"<a href=""./static_file.html"">Hello World!</a>");
+        await context.Response.WriteAsync
+(@"<a href=""./static_file.
+html"">Hello World!</a>");
     });
-}
+}).UseStaticFiles();
 ```
 
 The most important statement above is `app.UseStaticFiles()`.
 
-Now it is very important to run this from folder of the Web API. So we build/run from the `Songhay.StaticOne` [folder](./Songhay.StaticOne):
+Finally:
 
-```ps1
-dotnet build
-dotnet run
+```bash
+dotnet build Songhay.StaticOne/Songhay.StaticOne.sln
+dotnet run --project Songhay.StaticOne/Songhay.StaticOne/Songhay.StaticOne.csproj
 ```
 
-Hitting the conventional `http://localhost:5000` should produce a session like this:
-
-```ps1
-Hosting environment: Development
-Content root path: .\dotnet-static-content\Songhay.StaticOne
-Now listening on: http://localhost:5000
-Application started. Press Ctrl+C to shut down.
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
-      Request starting HTTP/1.1 GET http://localhost:5000/
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
-      Request finished in 15.204ms 200
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
-      Request starting HTTP/1.1 GET http://localhost:5000/static_file.html
-info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
-      Sending file. Request path: '/static_file.html'. Physical path: '.\dotnet-static-content\Songhay.StaticOne\ww
-wroot\static_file.html'
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
-      Request finished in 27.3668ms 200 text/html
-```
-
-## `AspNetCore.StaticSiteHelper`
-
-[Mads Kristensen](https://twitter.com/mkristensen) released `AspNetCore.StaticSiteHelper` for .NET Core 1.1. His [dotnet template](http://dotnetnew.azurewebsites.net/template/MadsKristensen.AspNetCore.Web.Templates/madsk.static.web) for this is awesome. However, we will need a .NET Core 2.0 version.
+@[BryanWilhite](https://twitter.com/BryanWilhite)
