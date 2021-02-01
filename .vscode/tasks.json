@@ -62,13 +62,13 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet web content-negotiation: build",
+            "label": "dotnet web MVC content-negotiation: build",
             "isBackground": false,
             "type": "shell",
             "args": ["build", "Songhay.ContentNegotiation.sln"],
             "options": {
                 "cwd":
-                    "${workspaceRoot}/dotnet-web-content-negotiation/Songhay.ContentNegotiation"
+                    "${workspaceRoot}/dotnet-web-mvc-content-negotiation/Songhay.ContentNegotiation"
             },
             "problemMatcher": "$msCompile"
         },
