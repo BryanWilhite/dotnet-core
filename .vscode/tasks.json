@@ -50,18 +50,6 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet web content-negotiation: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.ContentNegotiation.sln"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-web-content-negotiation/Songhay.ContentNegotiation"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
             "label": "dotnet ef-core-in-memory: build",
             "isBackground": false,
             "type": "shell",
@@ -74,6 +62,18 @@
         },
         {
             "command": "dotnet",
+            "label": "dotnet web content-negotiation: build",
+            "isBackground": false,
+            "type": "shell",
+            "args": ["build", "Songhay.ContentNegotiation.sln"],
+            "options": {
+                "cwd":
+                    "${workspaceRoot}/dotnet-web-content-negotiation/Songhay.ContentNegotiation"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "command": "dotnet",
             "label": "dotnet web static-content: build",
             "isBackground": false,
             "type": "shell",
@@ -81,42 +81,6 @@
             "options": {
                 "cwd":
                     "${workspaceRoot}/dotnet-web-static-content/Songhay.StaticOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet test-host: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.WebApiProject.Tests.csproj"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-test-host/Songhay.WebApiProject.Tests"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet web-api-minimal: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.WebApiOne.csproj"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet web-api-minimal: run",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["run"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-web-api-minimal/Songhay.WebApiOne"
             },
             "problemMatcher": "$msCompile"
         }
