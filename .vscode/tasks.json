@@ -74,36 +74,13 @@
         },
         {
             "command": "dotnet",
-            "label": "dotnet node-services: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.NodeOne.csproj"],
-            "options": {
-                "cwd": "${workspaceRoot}/dotnet-node-services/Songhay.NodeOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet spa-services: build",
-            "isBackground": false,
-            "type": "shell",
-            "args": ["build", "Songhay.SpaServicesOne.csproj"],
-            "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-spa-services/Songhay.SpaServicesOne"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "command": "dotnet",
-            "label": "dotnet static-content: build",
+            "label": "dotnet web static-content: build",
             "isBackground": false,
             "type": "shell",
             "args": ["build", "Songhay.StaticOne.csproj"],
             "options": {
                 "cwd":
-                    "${workspaceRoot}/dotnet-static-content/Songhay.StaticOne"
+                    "${workspaceRoot}/dotnet-web-static-content/Songhay.StaticOne"
             },
             "problemMatcher": "$msCompile"
         },
