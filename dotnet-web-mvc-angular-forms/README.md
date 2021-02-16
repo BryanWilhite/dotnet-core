@@ -40,8 +40,11 @@ According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https:
 
 ```bash
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
+npm i npm@6 --save-dev
 ng update @angular/core@8 @angular/cli@8
 ```
+
+Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for Google).
 
 To verify the freshness 📦✨ of these `npm` packages, I am currently fond of using `npm-check` [📦 [npm](https://www.npmjs.com/package/npm-check)]:
 
