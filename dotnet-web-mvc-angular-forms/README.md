@@ -98,13 +98,15 @@ npm i sass --save-dev
 
 This journey has been quite brutal.
 
-## updating packages not untouched by `ng update`
+## updating packages not touched by `ng update`
 
 To verify the freshness 📦✨ of these `npm` packages, I am currently fond of using `npm-check` [📦 [npm](https://www.npmjs.com/package/npm-check)]:
 
 ```bash
 npm-check -u
 ```
+
+Everything was updated except for that local `npm`.
 
 ## running the default project
 
