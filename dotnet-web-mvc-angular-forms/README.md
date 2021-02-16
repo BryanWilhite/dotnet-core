@@ -2,7 +2,7 @@
 
 The contents of [this folder](../dotnet-web-mvc-angular-forms) represents an approach to Angular over ASP.NET Core. The work here was tracked with [a single GitHub issue](https://github.com/BryanWilhite/dotnet-core/issues/20).
 
-## `dotnet new angular`
+## running `dotnet new angular`
 
 From the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms), we start with `dotnet new angular`:
 
@@ -106,15 +106,25 @@ To verify the freshness 📦✨ of these `npm` packages, I am currently fond of 
 npm-check -u
 ```
 
-Everything was updated except for that local `npm`.
+Everything was updated except for that local `npm` installed  earlier.
 
-## running the default project
+## running the `Songhay.AngularForms` project
 
-To run what Microsoft is giving us, we can call `dotnet build` and `dotnet run` from the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms):
+To run what Microsoft and Google are giving us, we can call `dotnet build` and `dotnet run` from the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms):
 
 ```bash
 dotnet build Songhay.AngularForms/Songhay.AngularForms.sln
 dotnet run --project Songhay.AngularForms/Songhay.AngularForms/Songhay.AngularForms.csproj
 ```
+
+## actually getting work done
+
+Everything that happened after running `dotnet new angular` was supposed to be spread out over years in a 20-minute session with months between. Doing that `ng update` crap _in one day_ is the reason why [Ryan Dahl regrets quite a bit](https://www.youtube.com/watch?v=M3BM9TB-8yA).
+
+### displaying the Angular version
+
+### use `json-server` to drive the form at design time
+
+`json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)]
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
