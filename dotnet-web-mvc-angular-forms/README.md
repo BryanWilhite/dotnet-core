@@ -57,15 +57,19 @@ According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https:
 ```bash
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
 npm i npm@6 --save-dev
-ng update @angular/core@9 @angular/cli@9
+npx ng update @angular/core@9 @angular/cli@9
+npm run build
 ```
 
 Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for Google).
 
-After each update I verify that the build is working by following “running the default project” (below). I notice that `ng update` complains when the repo is not “clean.” I make sure to commit before updating again:
+After each update I verify that the build is working by following “running the default project” (below). There should be a build error that is mentioned and addressed in [my GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779575700).
+
+I notice that `ng update` complains when the repo is not “clean.” I make sure to commit before updating again:
 
 ```bash
-ng update @angular/core@10 @angular/cli@10
+npx ng update @angular/core@10 @angular/cli@10
+npm run build
 ```
 
 ## updating packages not untouched by `ng update`
