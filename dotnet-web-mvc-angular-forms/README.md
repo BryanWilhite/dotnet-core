@@ -34,6 +34,22 @@ In addition to the typical Angular `npm` packages, Microsoft adds these:
 | `jquery` [📦 [npm](https://www.npmjs.com/package/jquery)] | `dependencies`
 | `popper.js` [📦 [npm](https://www.npmjs.com/package/@skyscanner/popper.js)] | `dependencies`
 
+## using `npx` in defiance of Google
+
+On my machines, I do not have the Angular CLI, `ng`, installed globally. I have installed `npx` [📦 [npm](https://www.npmjs.com/package/npx)] globally to reduce dragging around and maintaining tools above the repo level. This means the scripts in the `package.json` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/package.json) have been changed:
+
+```json
+"scripts": {
+  "ng": "npx ng",
+  "start": "npx ng serve",
+  "build": "npx ng build",
+  "build:ssr": "npx ng run Songhay.AngularForms:server:dev",
+  "test": "npx ng test",
+  "lint": "npx ng lint",
+  "e2e": "npx ng e2e"
+},
+```
+
 ## upgrading Angular (twice)
 
 According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https://jasontaylor.dev/asp-net-core-angular-9-upgrade/)” by Jason Taylor, we can upgrade the Angular 8 defaults from Microsoft to Angular 10 by executing `ng update` (for core and CLI) twice:
@@ -41,7 +57,7 @@ According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https:
 ```bash
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
 npm i npm@6 --save-dev
-ng update @angular/core@8 @angular/cli@8
+ng update @angular/core@9 @angular/cli@9
 ```
 
 Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for Google).
