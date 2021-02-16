@@ -78,16 +78,31 @@ I had to uninstall `@nguniversal/module-map-ngfactory-loader` in the commands ab
 Finally, the last update to Angular 11:
 
 ```bash
+npm i codelyzer@latest
 npx ng update @angular/core@11 @angular/cli@11
 npm run build
 ```
+
+For this last update, we have to touch `codelyzer` to prevent peer-dependency errors. Also, when we `run build` we should see this warning:
+
+```console
+'node-sass' usage is deprecated and will be removed in a future major version. To opt-out of the deprecated behaviour and start using 'sass' uninstall 'node-sass'
+```
+
+The warning leads to:
+
+```bash
+npm un node-sass
+npm i sass --save-dev
+```
+
+This journey has been quite brutal.
 
 ## updating packages not untouched by `ng update`
 
 To verify the freshness 📦✨ of these `npm` packages, I am currently fond of using `npm-check` [📦 [npm](https://www.npmjs.com/package/npm-check)]:
 
 ```bash
-cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
 npm-check -u
 ```
 
