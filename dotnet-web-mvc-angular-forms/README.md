@@ -68,9 +68,12 @@ After each update I verify that the build is working by following “running the
 I notice that `ng update` complains when the repo is not “clean.” I make sure to commit before updating again:
 
 ```bash
+npm un @nguniversal/module-map-ngfactory-loader
 npx ng update @angular/core@10 @angular/cli@10
 npm run build
 ```
+
+I had to uninstall `@nguniversal/module-map-ngfactory-loader` in the commands above. This package is considered deprecated. I made [a GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779590758) about this inconvenient complication.
 
 ## updating packages not untouched by `ng update`
 
@@ -80,8 +83,6 @@ To verify the freshness 📦✨ of these `npm` packages, I am currently fond of 
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
 npm-check -u
 ```
-
-As of this writing, Microsoft is using Angular 8.x (about two versions behind), so I confine myself to all updates that are _not_ major updates.
 
 ## running the default project
 
