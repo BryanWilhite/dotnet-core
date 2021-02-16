@@ -62,6 +62,14 @@ ng update @angular/core@9 @angular/cli@9
 
 Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for Google).
 
+After each update I verify that the build is working by following “running the default project” (below). I notice that `ng update` complains when the repo is not “clean.” I make sure to commit before updating again:
+
+```bash
+ng update @angular/core@10 @angular/cli@10
+```
+
+## updating packages not untouched by `ng update`
+
 To verify the freshness 📦✨ of these `npm` packages, I am currently fond of using `npm-check` [📦 [npm](https://www.npmjs.com/package/npm-check)]:
 
 ```bash
