@@ -50,9 +50,9 @@ On my machines, I do not have the Angular CLI, `ng`, installed globally. I have 
 },
 ```
 
-## upgrading Angular (twice)
+## upgrading Angular (three times) to 11.x
 
-According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https://jasontaylor.dev/asp-net-core-angular-9-upgrade/)” by Jason Taylor, we can upgrade the Angular 8 defaults from Microsoft to Angular 10 by executing `ng update` (for core and CLI) twice:
+According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https://jasontaylor.dev/asp-net-core-angular-9-upgrade/)” by Jason Taylor, we can upgrade the Angular 8 defaults from Microsoft to Angular 10 by executing `ng update` (for core and CLI) three times:
 
 ```bash
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
@@ -74,6 +74,13 @@ npm run build
 ```
 
 I had to uninstall `@nguniversal/module-map-ngfactory-loader` in the commands above. This package is considered deprecated. I made [a GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779590758) about this inconvenient complication.
+
+Finally, the last update to Angular 11:
+
+```bash
+npx ng update @angular/core@11 @angular/cli@11
+npm run build
+```
 
 ## updating packages not untouched by `ng update`
 
