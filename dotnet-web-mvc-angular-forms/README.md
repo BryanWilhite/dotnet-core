@@ -123,6 +123,41 @@ Everything that happened after running `dotnet new angular` was supposed to be s
 
 ### displaying the Angular version
 
+Add the following HTML to line 7 of the `nav-menu.component.html` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/nav-menu/nav-menu.component.html):
+
+```html
+<span class="framework version">Angular {{clientFrameworkVersion}}</span>
+```
+
+Change the `nav-menu.component.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/nav-menu/nav-menu.component.ts) to look like this:
+
+```typescript
+import { Component, VERSION } from '@angular/core';
+
+@Component({
+  selector: 'app-nav-menu',
+  templateUrl: './nav-menu.component.html',
+  styleUrls: ['./nav-menu.component.css']
+})
+export class NavMenuComponent {
+  clientFrameworkVersion: string;
+  isExpanded = false;
+
+  constructor() {
+    this.clientFrameworkVersion = `${VERSION.major}.${VERSION.minor}.${VERSION.patch
+      }`;
+  }
+
+  collapse() {
+    this.isExpanded = false;
+  }
+
+  toggle() {
+    this.isExpanded = !this.isExpanded;
+  }
+}
+```
+
 ### use `json-server` to drive the form at design time
 
 `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)]

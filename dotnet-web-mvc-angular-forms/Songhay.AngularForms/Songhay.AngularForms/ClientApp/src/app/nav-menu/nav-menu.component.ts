@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, VERSION } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,7 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+  clientFrameworkVersion: string;
   isExpanded = false;
+
+  constructor() {
+    this.clientFrameworkVersion = `${VERSION.major}.${VERSION.minor}.${VERSION.patch
+      }`;
+  }
 
   collapse() {
     this.isExpanded = false;
