@@ -158,8 +158,70 @@ export class NavMenuComponent {
 }
 ```
 
+### add the form components and service
+
+From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+
+```bash
+npx ng g component \
+    reactive-forms/form1 \
+    --flat=false \
+    --module=app \
+    --project Songhay.AngularForms \
+    --skip-import=false \
+    --skip-tests=false \
+    --style=css \
+    --dry-run=true
+
+npx ng g component \
+    reactive-forms/form2 \
+    --flat=false \
+    --module=app \
+    --project Songhay.AngularForms \
+    --skip-import=false \
+    --skip-tests=false \
+    --style=css \
+    --dry-run=true
+
+npx ng g component \
+    reactive-forms/form3 \
+    --flat=false \
+    --module=app \
+    --project Songhay.AngularForms \
+    --skip-import=false \
+    --skip-tests=false \
+    --style=css \
+    --dry-run=true
+
+npx ng g service \
+    reactive-forms/app-data \
+    --flat=false \
+    --project Songhay.AngularForms \
+    --skip-tests=false \
+    --dry-run=true
+
+npx ng g service \
+    reactive-forms/forms-data \
+    --flat=false \
+    --project Songhay.AngularForms \
+    --skip-tests=false \
+    --dry-run=true
+```
+
+I left `--dry-run=true` on the commands above for the safety of the reader.
+
+I know I will need three `form*` components because this layout is loosely based on a [StackBlitz experiment](https://stackblitz.com/edit/akita-with-reactive-forms-and-navigation) of mine.
+
+We need two service files because `app-data.service.ts` is based on my `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) and will serve as the base class of `forms-data.service.ts`.
+
 ### use `json-server` to drive the form at design time
 
-`json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)]
+We are going to install `json-server` and run through the “[Getting started](https://github.com/typicode/json-server#getting-started)” section in their repo using Karma-Jasmine testing.
+
+Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)] from the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+
+```bash
+npm i json-server --save-dev
+```
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
