@@ -33,6 +33,9 @@ import { Form3Component } from './reactive-forms/form3/form3.component';
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'counter', component: CounterComponent },
     { path: 'fetch-data', component: FetchDataComponent },
+    { path: 'wizard', component: Form1Component },
+    { path: 'wizard/step-2-of-3', component: Form2Component },
+    { path: 'wizard/step-3-of-3', component: Form3Component },
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],

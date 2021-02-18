@@ -60,6 +60,6 @@ export class Form1Component implements OnInit , OnDestroy {
 
     console.log({ model: this.reactiveFormService.getStateOfStore() });
 
-    this.router.navigate(['/step-2-of-3']);
+    this.router.navigate(['wizard/step-2-of-3']);
   }
 }

@@ -221,7 +221,25 @@ npx ng add \
   --ui-theme=bootstrap
 ```
 
-We are now in position to re-factor the form components to use formly, but before we get on to that, we need to route to these new components.
+We are now in position to re-factor the form components to use formly, but before we get on to that, we need to route to these new components. We add the form `routes` in `RouterModule.forRoot` (in the `app.module.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/app.module.ts)):
+
+```typescript
+{ path: 'wizard', component: Form1Component },
+{ path: 'wizard/step-2-of-3', component: Form2Component },
+{ path: 'wizard/step-3-of-3', component: Form3Component },
+```
+
+These new routes allow us to add a new `nav-item` to the `nav-menu.component.html` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/nav-menu/nav-menu.component.html):
+
+```html
+<li class="nav-item" [routerLinkActive]="['link-active']">
+  <a class="nav-link text-dark" [routerLink]="['/wizard']"
+    >Form Wizard</a
+  >
+</li>
+```
+
+Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes.
 
 ### use `json-server` to drive the form at design time
 

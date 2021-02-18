@@ -79,6 +79,6 @@ export class Form3Component implements OnInit, OnDestroy {
   }
 
   previous(): void {
-    this.router.navigate(['/step-2-of-3']);
+    this.router.navigate(['wizard/step-2-of-3']);
   }
 }
