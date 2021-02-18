@@ -158,7 +158,17 @@ export class NavMenuComponent {
 }
 ```
 
-### add the form components and service
+### install Akita to get the equivalent of a `BehaviorSubject` data store
+
+I am currently under the impression that [Akita](https://github.com/datorama/akita) can replace my beloved `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) (“[see flippant remarks about BehaviorSubject](http://songhayblog.azurewebsites.net/entry/2019-02-25-flippant-remarks-about-behaviorsubject/)”).
+
+From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+
+```bash
+npm i @datorama/akita
+```
+
+### add formly, the form components and service
 
 From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
@@ -194,15 +204,8 @@ npx ng g component \
     --dry-run=true
 
 npx ng g service \
-    reactive-forms/app-data \
-    --flat=false \
-    --project Songhay.AngularForms \
-    --skip-tests=false \
-    --dry-run=true
-
-npx ng g service \
-    reactive-forms/forms-data \
-    --flat=false \
+    reactive-forms/state/forms-data \
+    --flat=true \
     --project Songhay.AngularForms \
     --skip-tests=false \
     --dry-run=true
@@ -210,9 +213,15 @@ npx ng g service \
 
 I left `--dry-run=true` on the commands above for the safety of the reader.
 
-I know I will need three `form*` components because this layout is loosely based on a [StackBlitz experiment](https://stackblitz.com/edit/akita-with-reactive-forms-and-navigation) of mine.
+I know I will need three `form*` components because this layout is loosely based on a [StackBlitz experiment](https://stackblitz.com/edit/akita-with-reactive-forms-and-navigation). We are going to take steps beyond this experiment which leads to the installation of `formly`:
 
-We need two service files because `app-data.service.ts` is based on my `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) and will serve as the base class of `forms-data.service.ts`.
+```bash
+npx ng add \
+  @ngx-formly/schematics \
+  --ui-theme=bootstrap
+```
+
+We are now in position to re-factor the form components to use formly, but before we get on to that, we need to route to these new components.
 
 ### use `json-server` to drive the form at design time
 
