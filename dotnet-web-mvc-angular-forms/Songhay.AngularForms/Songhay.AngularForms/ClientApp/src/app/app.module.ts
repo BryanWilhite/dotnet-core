@@ -12,6 +12,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { Form1Component } from './reactive-forms/form1/form1.component';
 import { Form2Component } from './reactive-forms/form2/form2.component';
 import { Form3Component } from './reactive-forms/form3/form3.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { Form3Component } from './reactive-forms/form3/form3.component';
     { path: 'wizard', component: Form1Component },
     { path: 'wizard/step-2-of-3', component: Form2Component },
     { path: 'wizard/step-3-of-3', component: Form3Component },
-], { relativeLinkResolution: 'legacy' })
+], { relativeLinkResolution: 'legacy' }),
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

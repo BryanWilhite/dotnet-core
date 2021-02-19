@@ -239,7 +239,7 @@ These new routes allow us to add a new `nav-item` to the `nav-menu.component.htm
 </li>
 ```
 
-Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes.
+Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes. See [the relevant git commit](https://github.com/BryanWilhite/dotnet-core/commit/a92e80828dae278ec3eb8157e14a451e24bad49d) for details.
 
 ### use `json-server` to drive the form at design time
 
