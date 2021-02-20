@@ -1,28 +1,11 @@
 <form [formGroup]="componentForm" [hidden]="success" (ngSubmit)="next()">
 
-  <button type="button" (click)="previous()" >Previous</button>
+  <button class="btn btn-primary" type="button" (click)="previous()" >Previous</button>
 
-  <h4>Password</h4>
-  <input formControlName="password" type="password" />
-  <span class="error" *ngIf="password.invalid && password.touched">
-    That password sucks...
-  </span>
+  <formly-form [form]="componentForm" [fields]="fields" [model]="model"></formly-form>
 
-  <h4>Age</h4>
-  <input class="small" formControlName="age" type="number" />
-  <span class="error" *ngIf="age.invalid && age.touched">
-    Do enter a number!
-  </span>
-  <span class="error" *ngIf="age.errors?.min && age.touched">
-    {{ age.errors.min.actual }} is too young to use this app kiddo!
-  </span>
-  <span class="error" *ngIf="age.errors?.max && age.touched">
-    {{ age.errors.max.actual }} is too old to use this app gramps!
-  </span>
-
-  <button type="submit" [disabled]="componentForm.invalid">Next</button>
+  <button class="btn btn-primary" type="submit" [disabled]="componentForm.invalid">Next</button>
 
 </form>
-
 
 <div *ngIf="success">Yay! We received your submission</div>

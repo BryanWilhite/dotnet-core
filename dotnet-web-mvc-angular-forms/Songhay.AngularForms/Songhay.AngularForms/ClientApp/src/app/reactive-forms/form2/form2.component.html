@@ -1,19 +1,8 @@
 <form [formGroup]="componentForm" [hidden]="success" (ngSubmit)="next()">
 
-  <button type="button" (click)="previous()" >Previous</button>
+  <button class="btn btn-primary" type="button" (click)="previous()" >Previous</button>
 
-  <div class="phones" formArrayName="phones">
-    <h4 *ngIf="phoneForms.controls.length">Phones</h4>
-    <div *ngFor="let phone of phoneForms.controls; let i = index" [formGroupName]="i">
-      <input class="small" formControlName="area" placeholder="area" />
-      <input class="small" formControlName="prefix" placeholder="prefix" />
-      <input formControlName="line" placeholder="line" />
+  <formly-form [form]="componentForm" [fields]="fields" [model]="model"></formly-form>
 
-      <button type="button" (click)="deletePhone(i)">Delete</button>
-    </div>
-  </div>
-
-  <button type="button" (click)="addPhone()">Add Phone Number</button>
-
-  <button type="button" (click)="next()" [disabled]="componentForm.invalid">Next</button>
+  <button class="btn btn-primary" type="button" (click)="next()" [disabled]="componentForm.invalid">Next</button>
 </form>

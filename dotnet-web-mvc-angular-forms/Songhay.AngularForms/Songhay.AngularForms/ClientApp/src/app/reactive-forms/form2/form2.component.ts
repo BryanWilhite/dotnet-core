@@ -1,15 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormGroup,
-  FormBuilder,
-  FormArray,
-  Validators
-} from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 
-import { FormsDataService } from '../state/forms-data.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { FormlyFieldConfig } from '@ngx-formly/core';
+
+import { FormsDataService, ReactiveFormModel } from '../state/forms-data.service';
 
 @Component({
   selector: 'app-form2',
@@ -17,16 +14,18 @@ import { FormsDataService } from '../state/forms-data.service';
   styleUrls: ['./form2.component.css']
 })
 export class Form2Component implements OnInit, OnDestroy {
-  componentForm: FormGroup;
+  componentForm = new FormGroup({});
+
+  fields: FormlyFieldConfig[];
+  model: Partial<ReactiveFormModel>;
   success = false;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
-    private fb: FormBuilder,
     private reactiveFormService: FormsDataService
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     for (const sub of this.subscriptions) {
@@ -36,19 +35,53 @@ export class Form2Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     const state = this.reactiveFormService.getStateOfStore();
-    const phones = state.phones
-      ? state.phones.map(i =>
-          this.fb.group({
-            area: [i.area, Validators.required],
-            prefix: [i.prefix, Validators.required],
-            line: [i.line, Validators.required]
-          })
-        )
-      : [];
 
-    this.componentForm = this.fb.group({
-      phones: this.fb.array(phones)
-    });
+    this.fields = [
+      {
+        key: 'phones',
+        type: 'repeat-phone',
+        templateOptions: {
+          addText: 'Add Phone Number',
+        },
+        fieldArray: {
+          fieldGroupClassName: 'phones row',
+          fieldGroup: [
+            {
+              key: 'area',
+              type: 'input',
+              className: 'col-sm-3',
+              templateOptions: {
+                maxLength: 3,
+                placeholder: 'area',
+                required: true
+              }
+            },
+            {
+              key: 'prefix',
+              type: 'input',
+              className: 'col-sm-3',
+              templateOptions: {
+                maxLength: 3,
+                placeholder: 'prefix',
+                required: true
+              }
+            },
+            {
+              key: 'line',
+              type: 'input',
+              className: 'col-sm-6',
+              templateOptions: {
+                maxLength: 4,
+                placeholder: 'line',
+                required: true
+              }
+            },
+          ]
+        }
+      }
+    ];
+
+    this.model = { phones: state?.phones };
 
     const sub = this.componentForm.valueChanges.subscribe(change => {
       if (!this.componentForm.valid) {
@@ -61,42 +94,10 @@ export class Form2Component implements OnInit, OnDestroy {
     this.subscriptions.push(sub);
   }
 
-  get phoneForms(): FormArray {
-    return this.componentForm.get('phones') as FormArray;
-  }
-
-  addPhone(): void {
-    const phone: FormGroup = this.fb.group({
-      area: [null, Validators.required],
-      prefix: [null, Validators.required],
-      line: [null, Validators.required]
-    });
-
-    this.phoneForms.push(phone);
-  }
-
-  getPhone(
-    i: number,
-    propertyName: 'area' | 'prefix' | 'line'
-  ): AbstractControl | null {
-    if (!this.phoneForms || !this.phoneForms.length) {
-      return null;
-    }
-    if (this.phoneForms.length < i - 1) {
-      return null;
-    }
-    const group = this.phoneForms.at(i) as FormGroup;
-    return group.get(propertyName);
-  }
-
-  deletePhone(i: number) {
-    this.phoneForms.removeAt(i);
-  }
-
   next(): void {
     this.success = true;
 
-    console.log({ model: this.reactiveFormService.getStateOfStore() });
+    console.log('next', { model: this.reactiveFormService.getStateOfStore() });
 
     this.router.navigate(['wizard/step-3-of-3']);
   }

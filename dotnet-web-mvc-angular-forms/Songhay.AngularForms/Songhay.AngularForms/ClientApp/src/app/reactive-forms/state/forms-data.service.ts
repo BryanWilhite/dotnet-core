@@ -38,7 +38,7 @@ export class FormsDataService {
   }
 
   updateBackingStore(formData: Partial<ReactiveFormModel>): void {
-    console.log({ formData });
+    console.log('updateBackingStore', { formData });
     this.reactiveFormStore.update(formData);
   }
 }

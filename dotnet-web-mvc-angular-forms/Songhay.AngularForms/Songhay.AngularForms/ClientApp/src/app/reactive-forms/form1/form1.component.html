@@ -1,9 +1,5 @@
 <form [formGroup]="componentForm" [hidden]="success" (ngSubmit)="next()">
-  <h4>Email</h4>
-  <input formControlName="email" type="email" />
-  <span class="error" *ngIf="email.invalid && email.touched">
-    Your email does not look right
-  </span>
+  <formly-form [form]="componentForm" [fields]="fields" [model]="model"></formly-form>
 
-  <button type="button" (click)="next()" [disabled]="componentForm.invalid">Next</button>
+  <button class="btn btn-primary" type="button" (click)="next()" [disabled]="componentForm.invalid">Next</button>
 </form>
