@@ -1,6 +1,6 @@
 # Angular Forms
 
-The contents of [this folder](../dotnet-web-mvc-angular-forms) represents an approach to Angular over ASP.NET Core. The work here was tracked with [a single GitHub issue](https://github.com/BryanWilhite/dotnet-core/issues/20).
+The contents of [this folder](../dotnet-web-mvc-angular-forms) represents an approach to Angular over ASP.NET Core. The work here was tracked with [a single GitHub issue](https://github.com/BryanWilhite/dotnet-core/issues/20) which is another way of saying I am lazy.
 
 ## running `dotnet new angular`
 
@@ -36,7 +36,7 @@ In addition to the typical Angular `npm` packages, Microsoft adds these:
 
 ## using `npx` in defiance of Google
 
-On my machines, I do not have the Angular CLI, `ng`, installed globally. I have installed `npx` [📦 [npm](https://www.npmjs.com/package/npx)] globally to reduce dragging around and maintaining tools above the repo level. This means the scripts in the `package.json` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/package.json) have been changed:
+On my machines, I do not have the Angular CLI, `ng`, installed globally. I have installed `npx` [📦 [npm](https://www.npmjs.com/package/npx)] globally to reduce the need to maintain tools above the repo level. This means the scripts in the `package.json` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/package.json) have been changed:
 
 ```json
 "scripts": {
@@ -52,7 +52,7 @@ On my machines, I do not have the Angular CLI, `ng`, installed globally. I have 
 
 ## upgrading Angular (three times) to 11.x
 
-According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https://jasontaylor.dev/asp-net-core-angular-9-upgrade/)” by Jason Taylor, we can upgrade the Angular 8 defaults from Microsoft to Angular 10 by executing `ng update` (for core and CLI) three times:
+According to “[Upgrade the Angular .NET Core SPA Template to Angular 9](https://jasontaylor.dev/asp-net-core-angular-9-upgrade/)” by Jason Taylor, we can upgrade the Angular 8 defaults from Microsoft to Angular 11 by executing `ng update` (for core and CLI) _three_ miserable times:
 
 ```bash
 cd ./Songhay.AngularForms/Songhay.AngularForms/ClientApp
@@ -61,9 +61,9 @@ npx ng update @angular/core@9 @angular/cli@9
 npm run build
 ```
 
-Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for Google).
+Note that I installed `npm` 6.x locally because of [an Angular CLI comment](https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654) (and my unwillingness to change my global `npm` for world peace between Google and Node folks).
 
-After each update I verify that the build is working by following “running the default project” (below). There should be a build error that is mentioned and addressed in [my GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779575700).
+After each update, I verify that the build is working by following “running the default project” (below). There should be a build error that is mentioned and addressed in [my GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779575700).
 
 I notice that `ng update` complains when the repo is not “clean.” I make sure to commit before updating again:
 
@@ -73,7 +73,7 @@ npx ng update @angular/core@10 @angular/cli@10
 npm run build
 ```
 
-I had to uninstall `@nguniversal/module-map-ngfactory-loader` in the commands above. This package is considered deprecated. I made [a GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779590758) about this inconvenient complication.
+I had to uninstall `@nguniversal/module-map-ngfactory-loader` in the commands above. This package is considered deprecated (but I suspect SSR features depend on it). I made [a GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-779590758) about this inconvenient complication.
 
 Finally, the last update to Angular 11:
 
@@ -160,7 +160,7 @@ export class NavMenuComponent {
 
 ### install Akita to get the equivalent of a `BehaviorSubject` data store
 
-I am currently under the impression that [Akita](https://github.com/datorama/akita) can replace my beloved `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) (“[see flippant remarks about BehaviorSubject](http://songhayblog.azurewebsites.net/entry/2019-02-25-flippant-remarks-about-behaviorsubject/)”).
+I am currently under the impression that [Akita](https://github.com/datorama/akita) can _partially_ replace my beloved `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) (see “[flippant remarks about BehaviorSubject](http://songhayblog.azurewebsites.net/entry/2019-02-25-flippant-remarks-about-behaviorsubject/)”).
 
 From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
@@ -239,7 +239,7 @@ These new routes allow us to add a new `nav-item` to the `nav-menu.component.htm
 </li>
 ```
 
-Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes. See [the relevant git commit](https://github.com/BryanWilhite/dotnet-core/commit/a92e80828dae278ec3eb8157e14a451e24bad49d) for details.
+Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes. See [the relevant GitHub commit](https://github.com/BryanWilhite/dotnet-core/commit/a92e80828dae278ec3eb8157e14a451e24bad49d) for details.
 
 ### replacing `FormBuilder`, `FormGroup`, `FormArray` and form HTML markup with `FormlyFieldConfig`
 
@@ -305,7 +305,19 @@ this.model = {
 };
 ```
 
-An error is thrown when a straightforward `this.model = state;` statement is made. I think that has to do with Akita magic: Akita wants total control over the mutation of the store.
+An error is thrown when a straightforward `this.model = state;` statement is made. I think that has to do with Akita magic: by design, Akita wants total control over the mutation of the store. This mutation is handled by calling `updateBackingStore` in a pattern like this:
+
+```typescript
+const sub = this.componentForm.valueChanges.subscribe(change => {
+  if (!this.componentForm.valid) {
+    return;
+  }
+  this.reactiveFormService.updateBackingStore(change);
+});
+this.subscriptions.push(sub);
+```
+
+The subscription to the `valueChanges` observable calls `updateBackingStore` too many times (in spite of the `!this.componentForm.valid` logic gate). I think some RxJs finesse is needed to throttle things down a bit but I am not going to do this now because, as stated previously, I am lazy.
 
 ### use `json-server` to drive the form at design time
 
@@ -316,5 +328,12 @@ Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server
 ```bash
 npm i json-server --save-dev
 ```
+
+As of this writing, formly offers two ways to use JSON:
+
+1. emit a stringified (serialized) form of `FormlyFieldConfig[]` [[example](https://formly.dev/examples/other/json-powered)]
+2. emit formal JSON Schema that can be converted to `FormlyFieldConfig[]` with `FormlyJsonschema.toFieldConfig()` [[example](https://formly.dev/examples/advanced/json-schema)]
+
+Today we choose option _1_.
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
