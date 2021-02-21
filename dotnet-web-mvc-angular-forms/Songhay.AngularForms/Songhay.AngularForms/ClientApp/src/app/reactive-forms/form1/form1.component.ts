@@ -34,6 +34,7 @@ export class Form1Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.fields = [
       {
         key: 'email',
@@ -75,10 +76,6 @@ export class Form1Component implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(sub);
-  }
-
-  get email(): AbstractControl {
-    return this.componentForm.get('email');
   }
 
   next() {

@@ -33,6 +33,7 @@ export class Form3Component implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.fields = [
       {
         key: 'password',
@@ -63,7 +64,7 @@ export class Form3Component implements OnInit, OnDestroy {
     this.model = {
       password: state?.password,
       age: state?.age,
-    }
+    };
 
     const sub = this.componentForm.valueChanges.subscribe(change => {
       if (!this.componentForm.valid) {

@@ -34,7 +34,6 @@ export class Form2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const state = this.reactiveFormService.getStateOfStore();
 
     this.fields = [
       {
@@ -81,6 +80,7 @@ export class Form2Component implements OnInit, OnDestroy {
       }
     ];
 
+    const state = this.reactiveFormService.getStateOfStore();
     this.model = { phones: state?.phones };
 
     const sub = this.componentForm.valueChanges.subscribe(change => {

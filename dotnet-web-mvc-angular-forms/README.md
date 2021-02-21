@@ -241,6 +241,72 @@ These new routes allow us to add a new `nav-item` to the `nav-menu.component.htm
 
 Finally, the `router.navigate` commands in the form components have to be updated to recognize these new routes. See [the relevant git commit](https://github.com/BryanWilhite/dotnet-core/commit/a92e80828dae278ec3eb8157e14a451e24bad49d) for details.
 
+### replacing `FormBuilder`, `FormGroup`, `FormArray` and form HTML markup with `FormlyFieldConfig`
+
+The installation of `@ngx-formly/schematics` in the previous step adds `@ngx-formly/core` and `@ngx-formly/bootstrap`. This allows us to eliminate the imperative use of `FormBuilder`, `FormGroup` and , `FormArray` in the form components. It also dramatically eliminates the need to declare so much HTML. This transformation is captured in [a GitHub commit](https://github.com/BryanWilhite/dotnet-core/commit/4c3bf7fad7d875e3f6e7aeafbe8853053f7897f2).
+
+We see that we have added a new component, `RepeatPhoneTypeComponent` (in the `repeat-phone.type.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/form2/repeat-phone.type.ts)), which highlights the one of the complexities of formly: implementing [a repeating section](https://formly.dev/examples/advanced/repeating-section) often calls for a `Repeat*Component` Angular component. In my opinion, formly repeating sections are not as complex as handling `FormArray` markup explicitly.
+
+For me, the toughest part of the formly learning curve is in the realm of [validation](https://formly.dev/guide/validation). What I am seeing in formly (as of this writing) are:
+
+- formly built-in validators (in the `form3.component.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/form3/form3.component.ts))
+- defining and injecting [custom validation messages on the Angular module level](https://formly.dev/examples/validation/validation-message) (in the `app.module.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/app.module.ts))
+- defining [custom validation on the Angular component level](https://formly.dev/examples/validation/custom-validation) (also in the `form3.component.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/form3/form3.component.ts))
+- using Angular `Validators` functions to add custom validation (in the `form1.component.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/form1/form1.component.ts))
+
+Here is what I have today for using Angular `Validators` functions:
+
+```typescript
+emailField.validators = {
+  email: {
+    expression: (c: AbstractControl) => {
+      const errors = Validators.email(c) as { email: boolean };
+      return !errors?.email ?? false;
+    },
+    message: (error: any, field: FormlyFieldConfig) => `"${field.formControl.value}" 
+is not a valid email address`,
+  },
+};
+```
+
+I know the `return` statement with `!errors?.email ?? false` looks quite strange but that is my current workaround for the fact that `Validators` functions return a `ValidationErrors` object (used like a .NET Dictionary) instead of a Boolean.
+
+What is important here is the transfer of responsibility for custom validation to the client side. The `FormlyFieldConfig` array is not concerned with this custom-validation stuff which (to me) positions it for converting it to JSON.
+
+The `FormlyFieldConfig` array is the component property `fields` which is used to set `emailField` (above):
+
+```typescript
+const emailField = this.fields.find(field => field.key === 'email');
+if (!emailField) {
+  console.error('The expected formly field is not here.');
+  return;
+}
+```
+
+At minimum, `formly-form` requires its `fields` property be set along with `form` and `model`:
+
+```html
+<formly-form [form]="componentForm" [fields]="fields" [model]="model"></formly-form>
+```
+
+I mentioned earlier that formly eliminates the ‘imperative use’ of `FormGroup` but I lied. In order for the `[form]="componentForm"` binding to work, we need this one line of imperative code:
+
+```typescript
+componentForm = new FormGroup({});
+```
+
+For `[model]="model"`, we see that I am defining `model: Partial<ReactiveFormModel>;` and setting it like this:
+
+```typescript
+const state = this.reactiveFormService.getStateOfStore();
+this.model = {
+  password: state?.password,
+  age: state?.age,
+};
+```
+
+An error is thrown when a straightforward `this.model = state;` statement is made. I think that has to do with Akita magic: Akita wants total control over the mutation of the store.
+
 ### use `json-server` to drive the form at design time
 
 We are going to install `json-server` and run through the “[Getting started](https://github.com/typicode/json-server#getting-started)” section in their repo using Karma-Jasmine testing.
