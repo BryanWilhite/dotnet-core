@@ -8,7 +8,9 @@
     "start": "npx ng serve",
     "build": "npx ng build",
     "build:ssr": "npx ng run Songhay.AngularForms:server:dev",
+    "start:json-server": "npx json-server --watch ./src/assets/json-server/db.json",
     "test": "npx ng test",
+    "test-with-json-server": "npx run-p start:json-server test",
     "lint": "npx ng lint",
     "e2e": "npx ng e2e"
   },
@@ -55,6 +57,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.4",
     "npm": "^6.14.11",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.32.7",
     "typescript": "^4.1.5"
   },

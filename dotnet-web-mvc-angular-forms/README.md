@@ -326,7 +326,9 @@ We are going to install `json-server` and run through the “[Getting started](h
 Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)] from the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
 ```bash
-npm i json-server --save-dev
+npm i --save-dev \
+  npm-run-all \
+  json-server
 ```
 
 As of this writing, formly offers two ways to use JSON:

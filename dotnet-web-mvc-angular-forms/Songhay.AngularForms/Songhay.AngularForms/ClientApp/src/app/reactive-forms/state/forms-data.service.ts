@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient, HttpResponse } from '@angular/common/http';
+
 import { Store, StoreConfig } from '@datorama/akita';
+import { Observable } from 'rxjs';
 
 export interface PhoneNumber {
   area: number;
@@ -31,7 +34,9 @@ export class ReactiveFormStore extends Store<ReactiveFormModel> {
   providedIn: 'root'
 })
 export class FormsDataService {
-  constructor(private reactiveFormStore: ReactiveFormStore) {}
+  constructor(
+    private reactiveFormStore: ReactiveFormStore,
+    public client: HttpClient) { }
 
   getStateOfStore(): ReactiveFormModel {
     return this.reactiveFormStore.getValue();
