@@ -323,13 +323,23 @@ The subscription to the `valueChanges` observable calls `updateBackingStore` too
 
 We are going to install `json-server` and run through the “[Getting started](https://github.com/typicode/json-server#getting-started)” section in their repo using Karma-Jasmine testing.
 
-Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server)] from the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server/)] and `npm-run-all` [🐙🐈 [GitHub](https://github.com/mysticatea/npm-run-all/)] from the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
 ```bash
 npm i --save-dev \
   npm-run-all \
   json-server
 ```
+
+We need `npm-run-all` for these new `npm` scripts:
+
+```json
+"start:json-server": "npx json-server --watch ./src/assets/json-server/db.json",
+"test": "npx ng test",
+"test-with-json-server": "npx run-p start:json-server test",
+```
+
+The `npm-run-all` package provides that `run-p` command so taking `npx npm run test-with-json-server` to the command line will run `json-server` _and_ `karma-jasmine` in parallel. The `json-server` test in the `forms-data.service.spec.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/state/forms-data.service.spec.ts) verifies that all this stuff is working.
 
 As of this writing, formly offers two ways to use JSON:
 
