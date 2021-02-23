@@ -8,8 +8,15 @@ describe('FormsDataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FormsDataService],
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
+      providers: [
+        {
+          provide: 'BASE_URL_FOR_API',
+          useFactory: () => 'http://localhost:3000/',
+          deps: []
+        },
+        FormsDataService,
+      ],
     });
     service = TestBed.inject(FormsDataService);
   });
@@ -20,10 +27,10 @@ describe('FormsDataService', () => {
 
   it('should see `json-server`',
     waitForAsync(
-      inject([FormsDataService],
-        (formsDataService: FormsDataService) => {
+      inject(['BASE_URL_FOR_API', FormsDataService],
+        (baseUri: string, formsDataService: FormsDataService) => {
 
-          const uri = 'http://localhost:3000/posts/1';
+          const uri = `${baseUri}posts/1`;
           formsDataService.client.get(uri).subscribe(data => {
 
             expect(data).not.toBeFalsy('The expected json-server data is not here.');
@@ -32,6 +39,32 @@ describe('FormsDataService', () => {
             expect(domainData).not.toBeFalsy('The expected json-server domain data is not here.');
 
             expect(domainData.title).toEqual('json-server');
+
+          });
+
+        })
+    )
+  );
+
+  it('should load formly data',
+    waitForAsync(
+      inject(['BASE_URL_FOR_API', FormsDataService],
+        (baseUri: string, formsDataService: FormsDataService) => {
+
+          const uri = `${baseUri}formly`;
+          formsDataService.loadFormlyData().subscribe(data => {
+
+            expect(data).not.toBeFalsy('The expected formly data is not here.');
+
+            expect(formsDataService.formlyData).not.toBeFalsy('The expected formly domain data is not here.');
+
+            const expectedProperties = ['form1', 'form2', 'form3'];
+
+            expectedProperties.forEach(p => {
+              expect(formsDataService.formlyData?.componentSet[p]).not.toBeFalsy(
+                `The expected formly data property, \`${p}\`, is not here.`
+              );
+            });
 
           });
 

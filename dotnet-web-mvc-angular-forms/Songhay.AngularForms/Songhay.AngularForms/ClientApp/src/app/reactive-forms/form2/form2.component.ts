@@ -35,50 +35,7 @@ export class Form2Component implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.fields = [
-      {
-        key: 'phones',
-        type: 'repeat-phone',
-        templateOptions: {
-          addText: 'Add Phone Number',
-        },
-        fieldArray: {
-          fieldGroupClassName: 'phones row',
-          fieldGroup: [
-            {
-              key: 'area',
-              type: 'input',
-              className: 'col-sm-3',
-              templateOptions: {
-                maxLength: 3,
-                placeholder: 'area',
-                required: true
-              }
-            },
-            {
-              key: 'prefix',
-              type: 'input',
-              className: 'col-sm-3',
-              templateOptions: {
-                maxLength: 3,
-                placeholder: 'prefix',
-                required: true
-              }
-            },
-            {
-              key: 'line',
-              type: 'input',
-              className: 'col-sm-6',
-              templateOptions: {
-                maxLength: 4,
-                placeholder: 'line',
-                required: true
-              }
-            },
-          ]
-        }
-      }
-    ];
+    this.fields = this.reactiveFormService.getFormlyConfig('form2');
 
     const state = this.reactiveFormService.getStateOfStore();
     this.model = { phones: state?.phones };

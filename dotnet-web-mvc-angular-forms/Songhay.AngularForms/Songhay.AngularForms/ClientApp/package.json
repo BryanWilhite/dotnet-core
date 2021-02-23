@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "dotnet:build": "dotnet build ../../Songhay.AngularForms.sln",
-    "dotnet:run": "dotnet run --project ../Songhay.AngularForms.csproj",
+    "dotnet:run": "npx npm run dotnet:build && dotnet run --project ../Songhay.AngularForms.csproj",
     "ng": "npx ng",
     "start": "npx ng serve",
+    "start-with-json-server": "npx run-p start:json-server start",
     "build": "npx ng build",
     "build:ssr": "npx ng run Songhay.AngularForms:server:dev",
     "start:json-server": "npx json-server --watch ./src/assets/json-server/db.json",

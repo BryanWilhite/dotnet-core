@@ -35,18 +35,24 @@ export class Form1Component implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.fields = [
-      {
-        key: 'email',
-        type: 'input',
-        templateOptions: {
-          label: 'email',
-          placeholder: 'enter email',
-          required: true,
-          type: 'email',
-        },
-      }
-    ];
+    const sub = this.reactiveFormService.loadFormlyData().subscribe(() => {
+      this.setUpFormly();
+    });
+
+    this.subscriptions.push(sub);
+  }
+
+  next() {
+    this.success = true;
+
+    console.log('next', { model: this.reactiveFormService.getStateOfStore() });
+
+    this.router.navigate(['wizard/step-2-of-3']);
+  }
+
+  private setUpFormly() {
+
+    this.fields = this.reactiveFormService.getFormlyConfig('form1');
 
     const emailField = this.fields.find(field => field.key === 'email');
     if (!emailField) {
@@ -67,7 +73,7 @@ export class Form1Component implements OnInit, OnDestroy {
     const state = this.reactiveFormService.getStateOfStore();
     this.model = { email: state?.email };
 
-    const sub = this.componentForm.valueChanges.subscribe(change => {
+    const sub2 = this.componentForm.valueChanges.subscribe(change => {
       if (!this.componentForm.valid) {
         return;
       }
@@ -75,14 +81,6 @@ export class Form1Component implements OnInit, OnDestroy {
       this.reactiveFormService.updateBackingStore(change);
     });
 
-    this.subscriptions.push(sub);
-  }
-
-  next() {
-    this.success = true;
-
-    console.log('next', { model: this.reactiveFormService.getStateOfStore() });
-
-    this.router.navigate(['wizard/step-2-of-3']);
+    this.subscriptions.push(sub2);
   }
 }

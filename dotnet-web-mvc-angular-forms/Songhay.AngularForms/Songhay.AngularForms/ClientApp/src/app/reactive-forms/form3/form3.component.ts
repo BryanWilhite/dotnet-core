@@ -34,31 +34,7 @@ export class Form3Component implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.fields = [
-      {
-        key: 'password',
-        type: 'input',
-        templateOptions: {
-          label: 'Password',
-          minLength: 8,
-          pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$',
-          required: true,
-          type: 'password',
-        },
-      },
-      {
-        key: 'age',
-        type: 'input',
-        templateOptions: {
-          label: 'Age',
-          type: 'number',
-          min: 18,
-          minLength: 2,
-          max: 65,
-          required: true,
-        }
-      }
-    ];
+    this.fields = this.reactiveFormService.getFormlyConfig('form3');
 
     const state = this.reactiveFormService.getStateOfStore();
     this.model = {

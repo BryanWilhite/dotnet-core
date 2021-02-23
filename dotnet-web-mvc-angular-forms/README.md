@@ -346,6 +346,81 @@ As of this writing, formly offers two ways to use JSON:
 1. emit a stringified (serialized) form of `FormlyFieldConfig[]` [[example](https://formly.dev/examples/other/json-powered)]
 2. emit formal JSON Schema that can be converted to `FormlyFieldConfig[]` with `FormlyJsonschema.toFieldConfig()` [[example](https://formly.dev/examples/advanced/json-schema)]
 
-Today we choose option _1_.
+Today we choose option _1_ by adding a `formly` property to the `db.json` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/assets/json-server/db.json). In Typescript, this `formly` property can be defined as:
+
+```typescript
+export interface FormlyData {
+  componentSet: {
+    [index: string]: {
+      fields: FormlyFieldConfig[],
+      model?: {},
+    }
+  };
+  model: Partial<ReactiveFormModel>;
+}
+```
+
+A `model` can be added for each form and/or at the top level next to `componentSet`. For this exercise, we only need the top-level `model`.
+
+To start this new `json-server`-based way to build at design time, we need more `npm` scripting:
+
+```json
+"start": "npx ng serve",
+"start-with-json-server": "npx run-p start:json-server start",
+```
+
+By default, when we `ng serve`, port `4200` is used. With `json-server` running on port `3000` by default, I wrote a factory function, `changeBaseUrlForJsonServer`, in the `main.ts` bootstrapping [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/main.ts) to provide a new scalar, `'BASE_URL_FOR_API'`, to ensure that `FormsDataService` finds the JSON data it requests at design time:
+
+```typescript
+export function changeBaseUrlForJsonServer() {
+
+  let baseUrl = getBaseUrl();
+
+  const ngPort = ':4200'; // default Angular server port
+  const jsonPort = ':3000'; // default json-server port
+
+  if (baseUrl?.indexOf(ngPort) !== -1) {
+    baseUrl = baseUrl.replace(ngPort, jsonPort);
+  }
+
+  return baseUrl;
+}
+```
+
+We refactor `Form1Component` to subscribe to `FormsDataService.loadFormlyData()` which loads formly field data for all reactive forms:
+
+```typescript
+ngOnInit() {
+  const sub = this.reactiveFormService.loadFormlyData().subscribe(() => {
+    this.setUpFormly();
+  });
+  this.subscriptions.push(sub);
+}
+```
+
+This means subsequent forms use `FormsDataService.getFormlyConfig()` to retrieve stringified `FormlyFieldConfig[]` by `fieldId`:
+
+```typescript
+getFormlyConfig(formId: 'form1' | 'form2' | 'form3'): FormlyFieldConfig[] {
+  this.verifyFormlyData();
+  const config = this.formlyData.componentSet[formId];
+  if (!config) {
+    throw new Error('The expected formly fields are not here.');
+  }
+  return config.fields;
+}
+```
+
+For example, in the `form2.component.ts` [file](./Songhay.AngularForms/Songhay.AngularForms/ClientApp/src/app/reactive-forms/form2/form2.component.ts), we call like this:
+
+```typescript
+ngOnInit() {
+
+  this.fields = this.reactiveFormService.getFormlyConfig('form2');
+
+  // ...
+
+}
+```
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)

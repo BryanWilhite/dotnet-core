@@ -12,6 +12,13 @@ describe('Form2Component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [Form2Component],
+      providers: [
+        {
+          provide: 'BASE_URL_FOR_API',
+          useFactory: () => 'http://localhost:3000/',
+          deps: []
+        },
+      ],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
       .compileComponents();
