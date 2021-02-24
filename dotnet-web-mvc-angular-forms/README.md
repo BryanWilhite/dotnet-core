@@ -423,4 +423,19 @@ ngOnInit() {
 }
 ```
 
+Commit [5377b67](https://github.com/BryanWilhite/dotnet-core/commit/5377b670ab690ac14ac2255576b45658496d26fa) represents the work done to add design-time JSON service to this app.
+
+### add ASP.NET Core endpoint to emit formly JSON
+
+From the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms):
+
+```bash
+dotnet add \
+    Songhay.AngularForms/Songhay.AngularForms/Songhay.AngularForms.csproj \
+    package Wap.Builders.Formly.JsonPowered
+dotnet add \
+    Songhay.AngularForms/Songhay.AngularForms/Songhay.AngularForms.csproj \
+    package Newtonsoft.Json
+```
+
 @[BryanWilhite](https://twitter.com/BryanWilhite)
