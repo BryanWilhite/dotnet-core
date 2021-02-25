@@ -8,9 +8,9 @@ We make the first moves from the `dotnet-tests` [folder](../dotnet-tests):
 
 ```bash
 dotnet new sln -n Songhay.DotNet -o Songhay.DotNet
-dotnet new xunit -o Songhay.DotNet/Songhay.DotNet/Songhay.DotNet.Tests
+dotnet new xunit -o Songhay.DotNet/Songhay.DotNet.Tests
 dotnet sln Songhay.DotNet/Songhay.DotNet.sln add \
-    Songhay.DotNet/Songhay.DotNet/Songhay.DotNet.Tests/Songhay.DotNet.Tests.csproj
+    Songhay.DotNet/Songhay.DotNet.Tests/Songhay.DotNet.Tests.csproj
 ```
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
