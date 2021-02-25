@@ -11,11 +11,11 @@ export interface FormlyData {
   componentSet: {
     [index: string]: {
       fields: FormlyFieldConfig[],
-      model?: {},
+      model?: Partial<ReactiveFormModel>,
     }
   };
 
-  model: Partial<ReactiveFormModel>;
+  model?: Partial<ReactiveFormModel>;
 }
 
 export interface PhoneNumber {

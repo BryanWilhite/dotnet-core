@@ -17,23 +17,18 @@ namespace Songhay.AngularForms.Controllers
                     form1 = new
                     {
                         fields = JArray.Parse("[]").AddForm1Configuration(),
-                        model = new object()
                     },
 
                     form2 = new
                     {
                         fields = JArray.Parse("[]").FillWithForm2Configuration(),
-                        model = new object()
                     },
 
                     form3 = new
                     {
                         fields = JArray.Parse("[]").FillWithForm3Configuration(),
-                        model = new object()
                     },
                 },
-
-                model = new object()
             };
 
             return JObject.FromObject(anon);
