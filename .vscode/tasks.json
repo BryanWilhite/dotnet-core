@@ -83,6 +83,20 @@
                     "${workspaceRoot}/dotnet-web-static-content/Songhay.StaticOne"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test [Songhay.DotNet, filtered by selected text]",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "test",
+                "${workspaceFolder}/dotnet-tests/Songhay.DotNet/Songhay.DotNet.Tests/Songhay.DotNet.Tests.csproj",
+                "--filter:${selectedText}",
+                "--logger:trx",
+                "--results-directory:${workspaceFolder}/dotnet-tests/TestResults",
+                "--verbosity:normal"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }
