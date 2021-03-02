@@ -45,7 +45,7 @@ namespace BenchmarkDotNet.Shell
                 .WithOption(ConfigOptions.StopOnFirstError, false)
                 ;
 
-            BenchmarkRunner.Run<MyBenchmarks.Md5VsSha256>(config);
+            BenchmarkRunner.Run<MyBenchmarks.JObjectVsJsonDocument>(config);
         }
     }
 }
