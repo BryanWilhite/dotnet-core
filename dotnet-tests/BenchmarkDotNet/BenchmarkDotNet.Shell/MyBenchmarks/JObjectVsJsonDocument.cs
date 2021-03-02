@@ -7,17 +7,37 @@ namespace MyBenchmarks
     public class JObjectVsJsonDocument
     {
         [Benchmark]
-        public void Serialize()
+        public void Parse()
         {
-            var o = GetObject();
-            System.Text.Json.JsonSerializer.Serialize(o);
+            var json = this.Serialize();
+
+            System.Text.Json.JsonDocument.Parse(json);
         }
 
         [Benchmark]
-        public void SerializeNewtonsoft()
+        public void ParseNewtonsoft()
+        {
+            var json = this.Serialize();
+
+            Newtonsoft.Json.Linq.JObject.Parse(json);
+        }
+
+        [Benchmark]
+        public string Serialize()
         {
             var o = GetObject();
-            Newtonsoft.Json.JsonConvert.SerializeObject(o);
+            var json = System.Text.Json.JsonSerializer.Serialize(o);
+
+            return json;
+        }
+
+        [Benchmark]
+        public string SerializeNewtonsoft()
+        {
+            var o = GetObject();
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(o);
+
+            return json;
         }
 
         static object GetObject()

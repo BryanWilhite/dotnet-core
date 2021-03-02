@@ -62,22 +62,34 @@ static void Main(string[] args)
 
 Note that `MarkdownExporter.GitHub` is specified, generating a `Md5VsSha256-report-github.md` [file](./BenchmarkDotNet.Shell/BenchmarkDotNet.Artifacts/results/MyBenchmarks.Md5VsSha256-report-github.md) in the conventional `results/` directory.
 
+## getting started with `BenchmarkDotNet`
+
+I am going to jog real quick through 👟 the “[Getting Started](https://benchmarkdotnet.org/articles/guides/getting-started.html)” guide by manually adding the `MyBenchmarks/Md5VsSha256.cs` file to the `BenchmarkDotNet.Shell` [directory](./BenchmarkDotNet.Shell). See how I run the benchmarks in this file in “`Permission denied` error message on linux” below.
+
 ## `Permission denied` error message on linux
 
-Not only does `BenchmarkDotNet` require a release build for testing, on Linux it needs `sudo` permissions to avoid this error:
+Not only does `BenchmarkDotNet` require a release build for testing, on Linux, it needs `sudo` permissions to avoid this error:
 
 ```plaintext
 Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
 ```
 
-To avoid this error, we run from the [directory](./BenchmarkDotNet.Shell):
+To avoid this error, we run from the `BenchmarkDotNet/` [directory](../BenchmarkDotNet):
 
 ```bash
-sudo dotnet run --configuration release
+sudo dotnet run \
+    --project BenchmarkDotNet.Shell/BenchmarkDotNet.Shell.csproj \
+    --configuration release
+
+sudo rm -r BenchmarkDotNet.Shell/obj/
+
+dotnet build
 ```
 
-## getting started with `BenchmarkDotNet`
+The need for the `rm` command above reveals the downside of using `sudo` to run benchmarks. I look forward to avoiding this in future. It is recommended to rebuild without `sudo` permissions to return to the expected, design-time development experience.
 
-I am going to jog real quick through 👟 the “[Getting Started](https://benchmarkdotnet.org/articles/guides/getting-started.html)” guide by manually adding `MyBenchmarks/Md5VsSha256.cs` to the `BenchmarkDotNet.Shell` [directory](./BenchmarkDotNet.Shell).
+>I just delete the whole directory so that I manually clean the `bin/obj/packages` folders. That seems to do the trick.
+>
+>—John Zabroski [[StackOverflow](https://stackoverflow.com/questions/59006360/jenkins-msbuild-fails-error-netsdk1064-package-microsoft-codeanalysis-analyzer)]
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
