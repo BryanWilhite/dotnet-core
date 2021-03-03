@@ -427,11 +427,11 @@ Commit [5377b67](https://github.com/BryanWilhite/dotnet-core/commit/5377b670ab69
 
 ### add ASP.NET Core endpoint to emit formly JSON
 
-The `FormlyController.cs` [file](./Songhay.AngularForms/Songhay.AngularForms/Controllers/FormlyController.cs) adds an endpoint to emit formly JSON. The `JArray` of the famous `Newtonsoft.Json` [package](https://www.nuget.org/packages/Newtonsoft.Json) mixed with a C# [anonymous object](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/anonymous-types) backs this endpoint, eliminating the need for whipping up a formal Model (in Model View Controller):
+The `FormlyController.cs` [file](./Songhay.AngularForms/Songhay.AngularForms/Controllers/FormlyController.cs) adds an endpoint to emit a formly JSON string wrapped in a `ContentResult` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.contentresult?view=aspnet-mvc-5.2)]. The JSON string is constructed from a C# [anonymous object](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/anonymous-types) and utility methods in the `FormlyUtility` [file](./Songhay.AngularForms/Songhay.AngularForms/FormlyUtility.cs), eliminating the need for whipping up a formal Model (in Model View Controller):
 
 ```csharp
 [HttpGet]
-public JObject Get()
+public IActionResult Get()
 {
     var anon = new
     {
@@ -439,36 +439,23 @@ public JObject Get()
         {
             form1 = new
             {
-                fields = JArray.Parse("[]").AddForm1Configuration(),
+                fields = FormlyUtility.GetForm1Configuration(),
             },
             form2 = new
             {
-                fields = JArray.Parse("[]").FillWithForm2Configuration(),
+                fields = FormlyUtility.GetForm2Configuration(),
             },
             form3 = new
             {
-                fields = JArray.Parse("[]").FillWithForm3Configuration(),
+                fields = FormlyUtility.GetForm3Configuration(),
             },
         },
     };
-    return JObject.FromObject(anon);
+    var json = JsonSerializer.Serialize(anon);
+    return this.Content(json, "application/json");
  }
- ```
-
-We installed `Newtonsoft.Json`, from the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms):
-
-```bash
-dotnet add \
-    Songhay.AngularForms/Songhay.AngularForms/Songhay.AngularForms.csproj \
-    package Newtonsoft.Json
-
-dotnet add \
-    Songhay.AngularForms/Songhay.AngularForms/Songhay.AngularForms.csproj \
-    package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 ```
 
-Notice that for ASP.NET Core 3 and above we also need the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` [package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson). For more detail on this issue, see “[Why model binding to JObject from a request doesn’t work anymore in ASP.NET Core 3.1 and what’s the alternative?](https://anthonygiretti.com/2020/05/10/why-model-binding-to-jobject-from-a-request-doesnt-work-anymore-in-asp-net-core-3-1-and-whats-the-alternative/)”
-
-The `AddForm*Configuration()` and `FillForm*Configuration()` extension methods are defined in the `JArrayExtensions.cs` [file](./Songhay.AngularForms/Songhay.AngularForms/JArrayExtensions.cs). These extension methods of `JArray` act as builders of the fieldly JSON.
+💡Note that I also built this endpoint using `Newtonsoft.Json` types. For detail on this, [browse the files](https://github.com/BryanWilhite/dotnet-core/blob/0b5bcfb22269e395822633f0864bd3e38909f4fc/dotnet-web-mvc-angular-forms/Songhay.AngularForms/Songhay.AngularForms/Controllers/FormlyController.cs) of commit `0b5bcfb` and read [my GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-789504240).
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)

@@ -1,5 +1,5 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace Songhay.AngularForms.Controllers
 {
@@ -8,7 +8,7 @@ namespace Songhay.AngularForms.Controllers
     public class FormlyController : ControllerBase
     {
         [HttpGet]
-        public JObject Get()
+        public IActionResult Get()
         {
             var anon = new
             {
@@ -16,22 +16,24 @@ namespace Songhay.AngularForms.Controllers
                 {
                     form1 = new
                     {
-                        fields = JArray.Parse("[]").AddForm1Configuration(),
+                        fields = FormlyUtility.GetForm1Configuration(),
                     },
 
                     form2 = new
                     {
-                        fields = JArray.Parse("[]").FillWithForm2Configuration(),
+                        fields = FormlyUtility.GetForm2Configuration(),
                     },
 
                     form3 = new
                     {
-                        fields = JArray.Parse("[]").FillWithForm3Configuration(),
+                        fields = FormlyUtility.GetForm3Configuration(),
                     },
                 },
             };
 
-            return JObject.FromObject(anon);
+            var json = JsonSerializer.Serialize(anon);
+
+            return this.Content(json, "application/json");
          }
     }
 }
