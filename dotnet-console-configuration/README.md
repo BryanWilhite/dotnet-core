@@ -2,7 +2,7 @@
 
 This sample serves as my introduction to configuration files on .NET Core. Configuration files are in XML [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Xml/)], JSON [[NuGet](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/)] _or_ any other format with a valid provider. The preference here is for JSON.
 
-This sample was built from the sample [folder](../dotnet-console-configuration):
+This sample was built from the sample [directory](../dotnet-console-configuration):
 
 ```bash
 dotnet new console -o Songhay.ConfigurationOne
@@ -32,7 +32,7 @@ We would need `Microsoft.Extensions.Configuration.Binder` to instantiate .NET cl
 IConfigurationRoot configuration = builder.Build();
 ```
 
-To see command line arguments being passed in configuration, from the `Songhay.ConfigurationOne` [folder](./Songhay.ConfigurationOne) run:
+To see command line arguments being passed in configuration, from the `Songhay.ConfigurationOne` [directory](./Songhay.ConfigurationOne) run:
 
 ```bash
 dotnet run -- key1="one" key2="two" /key3 "value of three" --key-four "value of four"

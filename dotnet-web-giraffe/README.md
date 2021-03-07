@@ -16,7 +16,7 @@ dotnet sln Songhay.GiraffeOne/Songhay.GiraffeOne.sln add \
     Songhay.GiraffeOne/Songhay.GiraffeOne/Songhay.GiraffeOne.fsproj
 ```
 
-Now it is very important to run this from folder of the Solution. So we build/run from the `Songhay.GiraffeOne` [folder](./Songhay.GiraffeOne):
+Now it is very important to run this from directory of the Solution. So we build/run from the `Songhay.GiraffeOne` [directory](./Songhay.GiraffeOne):
 
 ```bash
 dotnet build

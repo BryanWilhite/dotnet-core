@@ -2,7 +2,7 @@
 
 This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[📖 docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0)] working in ASP.NET Core.
 
-To get this minimal sample to work we first run this (from the `dotnet-web-static-content` [folder](../dotnet-web-static-content)):
+To get this minimal sample to work we first run this (from the `dotnet-web-static-content` [directory](../dotnet-web-static-content)):
 
 ```bash
 dotnet new web -o Songhay.StaticOne/Songhay.StaticOne

@@ -1,10 +1,10 @@
 # Angular Forms
 
-The contents of [this folder](../dotnet-web-mvc-angular-forms) represents an approach to Angular over ASP.NET Core. The work here was tracked with [a single GitHub issue](https://github.com/BryanWilhite/dotnet-core/issues/20) which is another way of saying I am lazy.
+The contents of [this directory](../dotnet-web-mvc-angular-forms) represents an approach to Angular over ASP.NET Core. The work here was tracked with [a single GitHub issue](https://github.com/BryanWilhite/dotnet-core/issues/20) which is another way of saying I am lazy.
 
 ## running `dotnet new angular`
 
-From the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms), we start with `dotnet new angular`:
+From the `dotnet-web-mvc-angular-forms/` [directory](../dotnet-web-mvc-angular-forms), we start with `dotnet new angular`:
 
 ```bash
 dotnet new angular \
@@ -110,7 +110,7 @@ Everything was updated except for that local `npm` installed  earlier.
 
 ## running the `Songhay.AngularForms` project
 
-To run what Microsoft and Google are giving us, we can call `dotnet build` and `dotnet run` from the `dotnet-web-mvc-angular-forms/` [folder](../dotnet-web-mvc-angular-forms):
+To run what Microsoft and Google are giving us, we can call `dotnet build` and `dotnet run` from the `dotnet-web-mvc-angular-forms/` [directory](../dotnet-web-mvc-angular-forms):
 
 ```bash
 dotnet build Songhay.AngularForms/Songhay.AngularForms.sln
@@ -162,7 +162,7 @@ export class NavMenuComponent {
 
 I am currently under the impression that [Akita](https://github.com/datorama/akita) can _partially_ replace my beloved `BehaviorSubject` [store](https://github.com/BryanWilhite/songhay-ng-workspace/blob/master/songhay/projects/songhay/core/src/lib/services/app-data.store.ts) (see “[flippant remarks about BehaviorSubject](http://songhayblog.azurewebsites.net/entry/2019-02-25-flippant-remarks-about-behaviorsubject/)”).
 
-From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+From the `ClientApp/` [directory](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
 ```bash
 npm i @datorama/akita
@@ -170,7 +170,7 @@ npm i @datorama/akita
 
 ### add formly, the form components and service
 
-From the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+From the `ClientApp/` [directory](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
 ```bash
 npx ng g component \
@@ -323,7 +323,7 @@ The subscription to the `valueChanges` observable calls `updateBackingStore` too
 
 We are going to install `json-server` and run through the “[Getting started](https://github.com/typicode/json-server#getting-started)” section in their repo using Karma-Jasmine testing.
 
-Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server/)] and `npm-run-all` [🐙🐈 [GitHub](https://github.com/mysticatea/npm-run-all/)] from the `ClientApp/` [folder](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
+Install `json-server` [🐙🐈 [GitHub](https://github.com/typicode/json-server/)] and `npm-run-all` [🐙🐈 [GitHub](https://github.com/mysticatea/npm-run-all/)] from the `ClientApp/` [directory](./Songhay.AngularForms/Songhay.AngularForms/ClientApp):
 
 ```bash
 npm i --save-dev \

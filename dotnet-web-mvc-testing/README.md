@@ -1,6 +1,6 @@
 # integration testing ASP.NET Core with `Microsoft.AspNetCore.Mvc.Testing`
 
-This sample demonstrates how integration testing works with `Microsoft.AspNetCore.Mvc.Testing` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing)]. From the `dotnet-web-mvc-testing` [folder](../dotnet-web-mvc-testing), we add this package with these commands:
+This sample demonstrates how integration testing works with `Microsoft.AspNetCore.Mvc.Testing` [[nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing)]. From the `dotnet-web-mvc-testing` [directory](../dotnet-web-mvc-testing), we add this package with these commands:
 
 ```bash
 dotnet new webapi -o Songhay.WebApiProject/Songhay.WebApiProject
