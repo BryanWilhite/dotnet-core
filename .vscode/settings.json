@@ -23,5 +23,11 @@
         "xbuild",
         "zaefferer"
     ],
-    "eslint.enable": true
+    "eslint.enable": true,
+    "azureFunctions.deploySubpath": "dotnet-azure-functions-quickstart/My.Functions/bin/Release/net5.0/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~3",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "publish",
+    "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions"
 }

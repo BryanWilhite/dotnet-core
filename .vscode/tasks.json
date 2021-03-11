@@ -6,10 +6,12 @@
             "label": "dotnet console-configuration: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "Songhay.ConfigurationOne.csproj"],
+            "args": [
+                "build",
+                "Songhay.ConfigurationOne.csproj"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
+                "cwd": "${workspaceRoot}/dotnet-console-configuration/Songhay.ConfigurationOne"
             },
             "problemMatcher": "$msCompile"
         },
@@ -18,7 +20,10 @@
             "label": "dotnet console-minimal: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "hwapp.csproj"],
+            "args": [
+                "build",
+                "hwapp.csproj"
+            ],
             "options": {
                 "cwd": "${workspaceRoot}/dotnet-console-minimal/hwapp"
             },
@@ -29,10 +34,12 @@
             "label": "dotnet console-syndication: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "Songhay.SyndicationOne.csproj"],
+            "args": [
+                "build",
+                "Songhay.SyndicationOne.csproj"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-console-syndication/Songhay.SyndicationOne"
+                "cwd": "${workspaceRoot}/dotnet-console-syndication/Songhay.SyndicationOne"
             },
             "problemMatcher": "$msCompile"
         },
@@ -41,10 +48,12 @@
             "label": "dotnet console-textwritertracelistener: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "Songhay.ListenerOne.Shell.sln"],
+            "args": [
+                "build",
+                "Songhay.ListenerOne.Shell.sln"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
+                "cwd": "${workspaceRoot}/dotnet-console-textwritertracelistener/Songhay.ListenerOne.Shell"
             },
             "problemMatcher": "$msCompile"
         },
@@ -53,10 +62,12 @@
             "label": "dotnet ef-core-in-memory: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "InMemoryOne.Tests.csproj"],
+            "args": [
+                "build",
+                "InMemoryOne.Tests.csproj"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-ef-core-in-memory/InMemoryOne.Tests"
+                "cwd": "${workspaceRoot}/dotnet-ef-core-in-memory/InMemoryOne.Tests"
             },
             "problemMatcher": "$msCompile"
         },
@@ -65,10 +76,12 @@
             "label": "dotnet web MVC content-negotiation: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "Songhay.ContentNegotiation.sln"],
+            "args": [
+                "build",
+                "Songhay.ContentNegotiation.sln"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-web-mvc-content-negotiation/Songhay.ContentNegotiation"
+                "cwd": "${workspaceRoot}/dotnet-web-mvc-content-negotiation/Songhay.ContentNegotiation"
             },
             "problemMatcher": "$msCompile"
         },
@@ -77,10 +90,12 @@
             "label": "dotnet web static-content: build",
             "isBackground": false,
             "type": "shell",
-            "args": ["build", "Songhay.StaticOne.csproj"],
+            "args": [
+                "build",
+                "Songhay.StaticOne.csproj"
+            ],
             "options": {
-                "cwd":
-                    "${workspaceRoot}/dotnet-web-static-content/Songhay.StaticOne"
+                "cwd": "${workspaceRoot}/dotnet-web-static-content/Songhay.StaticOne"
             },
             "problemMatcher": "$msCompile"
         },
@@ -97,6 +112,82 @@
                 "--verbosity:normal"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "args": [
+                "clean",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "type": "process",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions"
+            }
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "type": "process",
+            "dependsOn": "clean",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions"
+            }
+        },
+        {
+            "label": "clean release",
+            "command": "dotnet",
+            "args": [
+                "clean",
+                "--configuration",
+                "Release",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "type": "process",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions"
+            }
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "args": [
+                "publish",
+                "--configuration",
+                "Release",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "type": "process",
+            "dependsOn": "clean release",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions"
+            }
+        },
+        {
+            "type": "func",
+            "dependsOn": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions/bin/Debug/net5.0"
+            },
+            "command": "host start",
+            "isBackground": true,
+            "problemMatcher": "$func-dotnet-watch"
         }
     ]
 }
