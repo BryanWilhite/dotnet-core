@@ -17,6 +17,7 @@ export class Form3Component implements OnInit, OnDestroy {
 
   fields: FormlyFieldConfig[];
   model: Partial<ReactiveFormModel>;
+  serverMessage = '[nothing from the server 😑]';
   success = false;
 
   private subscriptions: Subscription[] = [];
@@ -55,6 +56,18 @@ export class Form3Component implements OnInit, OnDestroy {
 
   next() {
     this.success = true;
+
+    const sub = this.reactiveFormService.saveReactiveFormModel().subscribe(() => {
+
+      const state = this.reactiveFormService.getStateOfStore();
+
+      console.log('saveReactiveFormModel', { model: state });
+
+      this.serverMessage = state.serverData;
+
+    });
+
+    this.subscriptions.push(sub);
 
     console.log('next', { model: this.reactiveFormService.getStateOfStore() });
   }

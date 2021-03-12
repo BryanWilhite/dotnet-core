@@ -29,6 +29,7 @@ export interface ReactiveFormModel {
   password: string;
   phones: PhoneNumber[];
   age: number;
+  serverData: string;
 }
 
 const initialState = {} as ReactiveFormModel;
@@ -79,6 +80,21 @@ export class FormsDataService {
 
       this.formlyData = data as FormlyData;
       this.verifyFormlyData();
+    });
+
+    return observable;
+  }
+
+  saveReactiveFormModel(): Observable<{}> {
+    const state = this.getStateOfStore();
+    const observable = this.client.post(`${this.apiBaseUri}reactiveformmodel`, state);
+
+    observable.subscribe((data: ReactiveFormModel) => {
+      if (!data) {
+        throw new Error('The expected formly data is not here.');
+      }
+
+      this.updateBackingStore(data);
     });
 
     return observable;
