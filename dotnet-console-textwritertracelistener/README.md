@@ -1,16 +1,17 @@
 # .NET Core `TextWriterTraceListener`
 
-This sample demonstrates the only way (as of this writing) to use `TraceSource` with Console output in .NET Core:
+This sample demonstrates the only way (as of this writing) to use `TraceSource` with Console output in .NET Standard:
 
 ```c#
-using(var listener = new TextWriterTraceListener(Console.Out))
+using (var listener = new TextWriterTraceListener(Console.Out))
 {
     traceSource?.Listeners.Add(listener);
-
-    var biz = new BusinessOne();
-    biz.DoBusiness();
-
-    listener.Flush();
+    try
+    {
+        var biz = new BusinessOne();
+        biz.DoBusiness();
+    }
+    finally { listener.Flush(); }
 }
 ```
 
