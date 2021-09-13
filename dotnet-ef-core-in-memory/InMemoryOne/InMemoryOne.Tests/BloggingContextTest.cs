@@ -49,7 +49,7 @@ namespace InMemoryOne.Tests
                 catch (InvalidOperationException ex)
                 {
                     test = true;
-                    Assert.True(ex.Message.Contains(expectedMessage));
+                    Assert.Contains(expectedMessage, ex.Message);
                 }
                 Assert.True(test, "The expected exception was not caught.");
             }
