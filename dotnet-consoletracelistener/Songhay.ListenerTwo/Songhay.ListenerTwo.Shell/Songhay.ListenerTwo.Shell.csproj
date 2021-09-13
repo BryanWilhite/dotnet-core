@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SonghayCore" Version="5.0.0" />
+    <PackageReference Include="SonghayCore" Version="5.2.1" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
