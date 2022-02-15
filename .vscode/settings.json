@@ -24,10 +24,10 @@
         "zaefferer"
     ],
     "eslint.enable": true,
-    "azureFunctions.deploySubpath": "dotnet-azure-functions-quickstart/My.Functions/bin/Release/net5.0/publish",
+    "azureFunctions.deploySubpath": "dotnet-azure-functions-quickstart/My.Functions/bin/Release/net6.0/publish",
     "azureFunctions.projectLanguage": "C#",
-    "azureFunctions.projectRuntime": "~3",
+    "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "publish",
+    "azureFunctions.preDeployTask": "publish (functions)",
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions"
 }
