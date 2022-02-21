@@ -6,7 +6,15 @@ The only independent steps I am going to take are:
 
 ## installing Azurite on Ubuntu
 
-The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward.
+The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward. The assumption here is that Azurite is a _complete replacement_ of any storage emulator included (or previously included) in Azure Core Tools. Whether this assumption is correct or incorrect, on Ubuntu, we can run the following (referenced by the current Microsoft docs) _before_ installing Azurite:
+
+```shell
+sudo apt-get install azure-functions-core-tools-4
+```
+
+I optimistically assume that installing Azurite after installing `azure-functions-core-tools-4` will disable, overwrite or simply add the correct storage emulator. Here is an [important message](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) from the young folks 👶 at Microsoft:
+
+>The Azure Storage Emulator is now deprecated. Microsoft recommends that you use the Azurite emulator for local development with Azure Storage. Azurite supersedes the Azure Storage Emulator. Azurite will continue to be updated to support the latest versions of Azure Storage APIs. For more information, see “[Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio-code).”
 
 ## installing the Azurite Visual Studio Code extension
 
