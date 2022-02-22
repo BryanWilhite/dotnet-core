@@ -24,7 +24,7 @@
         "zaefferer"
     ],
     "eslint.enable": true,
-    "azureFunctions.deploySubpath": "dotnet-azure-functions-quickstart/bin/Release/net6.0/publish",
+    "azureFunctions.deploySubpath": "dotnet-azure-functions-quickstart/My.Functions/bin/Release/net6.0/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",

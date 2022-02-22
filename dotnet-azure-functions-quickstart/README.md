@@ -6,15 +6,32 @@ The only independent steps I am going to take are:
 
 ## installing Azurite on Ubuntu
 
-The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward. The assumption here is that Azurite is a _complete replacement_ of any storage emulator included (or previously included) in Azure Core Tools. Whether this assumption is correct or incorrect, on Ubuntu, we can run the following (referenced by the current Microsoft docs) _before_ installing Azurite:
+The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward. The assumption here is that Azurite is a _complete replacement_ of any storage emulator included (or previously included) in Azure Functions Core Tools [[GitHub](https://github.com/Azure/azure-functions-core-tools)]. Whether this assumption is correct or incorrect, on Ubuntu, we can run the following (referenced by the current Microsoft docs) _before_ installing Azurite:
 
 ```shell
 sudo apt-get install azure-functions-core-tools-4
 ```
 
+- Azure Functions Core Tools essentially refers to the `func` shell command
+- Azurite refers to the `azurite` shell command
+
 I optimistically assume that installing Azurite after installing `azure-functions-core-tools-4` will disable, overwrite or simply add the correct storage emulator. Here is an [important message](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) from the young folks 👶 at Microsoft:
 
 >The Azure Storage Emulator is now deprecated. Microsoft recommends that you use the Azurite emulator for local development with Azure Storage. Azurite supersedes the Azure Storage Emulator. Azurite will continue to be updated to support the latest versions of Azure Storage APIs. For more information, see “[Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio-code).”
+
+## installing Azurite on Windows
+
+The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward:
+
+```shell
+npm install -g azurite
+```
+
+And, like what we have on Linux (above), we need to install Azure Functions Core Tools [[GitHub](https://github.com/Azure/azure-functions-core-tools)]. However, on Windows we use `npm`:
+
+```shell
+npm i -g azure-functions-core-tools@4 --unsafe-perm true
+```
 
 ## installing the Azurite Visual Studio Code extension
 
@@ -183,7 +200,11 @@ This is an example of what is added to `tasks.json` while stepping through the �
 }
 ```
 
-The F5-debugging experience in Visual Studio Code actually depends on these tasks (specifically, `"command": "host start"`) which makes me concerned about stepping through the “[Create your local project](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process#create-an-azure-functions-project)” wizard intending to support multiple Azure Functions projects in the same parent directory (with `/.vscode/` at the root).
+The F5-debugging experience in Visual Studio Code actually depends on these tasks (specifically, `"command": "host start"`) which makes me concerned about stepping through the “[Create your local project](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process#create-an-azure-functions-project)” wizard, intending to support multiple Azure Functions projects in the same parent directory (with `/.vscode/` at the root).
+
+## being aware of the `azureFunctions.preDeployTask` setting
+
+Among the `azureFunctions.*` settings in the local `.vscode/settings.json` file, it is most important to remember that the `azureFunctions.preDeployTask` setting in pointing at `.vscode/tasks.json` (see “being aware that VSCode `tasks.json` file is changed by **Create New Project…** wizard” above).
 
 ## adding a `*.sln` file
 
