@@ -33,6 +33,16 @@ And, like what we have on Linux (above), we need to install Azure Functions Core
 npm i -g azure-functions-core-tools@4 --unsafe-perm true
 ```
 
+When Azure Functions Core Tools is not installed then, in Visual Studio Code, this dialog should appear while attempting to start a Debug session:
+
+![Visual Studio Code, Azure Functions Core Tools prompt](./images/vscode-func-prompt.png)
+
+This is an install prompt that will effectively run the `npm` command above.
+
+When debugging Azure Functions locally for the first time, there might also be a Windows Defender Firewall prompt:
+
+![Windows Defender Firewall prompt](./images/windows-defender-firewall-prompt.png)
+
 ## installing the Azurite Visual Studio Code extension
 
 The Azurite Visual Studio Code [extension](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite) allows us to control `azurite` from VS Code. The following table summarizes an Azurite lifecycle in terms of extension commands:
