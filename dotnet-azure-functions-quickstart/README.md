@@ -19,9 +19,9 @@ I optimistically assume that installing Azurite after installing `azure-function
 
 >The Azure Storage Emulator is now deprecated. Microsoft recommends that you use the Azurite emulator for local development with Azure Storage. Azurite supersedes the Azure Storage Emulator. Azurite will continue to be updated to support the latest versions of Azure Storage APIs. For more information, see “[Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio-code).”
 
-## installing Azurite on Windows
+## installing Azure Functions Core Tools and Azurite on Windows
 
-The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward:
+Azure Functions development requires Azure Functions Core Tools and Azurite. The `npm`-based installation [📖 [docs](https://github.com/azure/azurite#npm)] of `azurite` is straight forward:
 
 ```shell
 npm install -g azurite
