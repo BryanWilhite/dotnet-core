@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Songhay.Validation.Models", "Songhay.Validation.Models\Songhay.Validation.Models.csproj", "{AF9794FF-1CB6-4A7E-BB1A-69EF80381EAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Songhay.ValidationWithAjax.Web", "Songhay.ValidationWithAjax.Web\Songhay.ValidationWithAjax.Web.csproj", "{9EB33A9B-A991-4E72-BC28-140B3CF10723}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF9794FF-1CB6-4A7E-BB1A-69EF80381EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9794FF-1CB6-4A7E-BB1A-69EF80381EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9794FF-1CB6-4A7E-BB1A-69EF80381EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9794FF-1CB6-4A7E-BB1A-69EF80381EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB33A9B-A991-4E72-BC28-140B3CF10723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB33A9B-A991-4E72-BC28-140B3CF10723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB33A9B-A991-4E72-BC28-140B3CF10723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB33A9B-A991-4E72-BC28-140B3CF10723}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

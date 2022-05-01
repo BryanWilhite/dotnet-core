@@ -1,0 +1,23 @@
+@model IEnumerable<Songhay.Validation.Models.TodoList>
+
+@{
+    ViewData["Title"] = "TODOs";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(i => i.Name)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var list in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(_ => list.Name)</td><td><a asp-action="Edit" asp-route-id="@list.Id">Edit</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
