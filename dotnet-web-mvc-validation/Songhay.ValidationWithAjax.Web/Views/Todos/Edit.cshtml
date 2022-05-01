@@ -1,19 +1,30 @@
-@page
-@model Songhay.ValidationWithAjax.Web.Views.Todos.Edit
+@model Songhay.Validation.Models.TodoList
 
 @{
-    Layout = null;
+    ViewData["Title"] = $"TODO Item ({Model.Id})";
 }
 
-<!DOCTYPE html>
+<h1>@ViewData["Title"]</h1>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+<form asp-controller="Todos" asp-action="Save" data-ajax="true" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" readonly="readonly" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpirationDate" class="control-label"></label>
+        <input asp-for="ExpirationDate" class="form-control" />
+        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

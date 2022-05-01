@@ -5,6 +5,8 @@ namespace Songhay.Validation.Models;
 
 public class TodoItem
 {
+    public int Id { get; set; }
+
     [DisplayName("TODO Item Name")]
     [Required]
     [MaxLength(100, ErrorMessage = "Value is limited to 100 characters.")]
