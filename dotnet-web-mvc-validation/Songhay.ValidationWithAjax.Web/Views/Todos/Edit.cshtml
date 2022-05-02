@@ -22,6 +22,10 @@
         <input asp-for="ExpirationDate" class="form-control" />
         <span asp-validation-for="ExpirationDate" class="text-danger"></span>
     </div>
+    @for (var i = 0; i < Model.Items.Count; i++)
+    {
+        @Html.EditorFor(model => model.Items[i])
+    }
     <button type="submit">Save</button>
 </form>
 

@@ -1,0 +1,15 @@
+@model Songhay.Validation.Models.TodoItem
+
+<div class="form-group">
+    <label asp-for="Id" class="control-label"></label>
+    <input asp-for="Id" class="form-control" readonly="readonly"  />
+</div>
+<div class="form-group">
+    <label asp-for="Name" class="control-label"></label>
+    <input asp-for="Name" class="form-control" data-val="true" data-val-required=”ErrMsg” />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="IsComplete" class="control-label"></label>
+    <input asp-for="IsComplete" class="form-control" />
+</div>

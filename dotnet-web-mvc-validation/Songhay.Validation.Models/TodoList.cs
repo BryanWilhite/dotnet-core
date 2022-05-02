@@ -23,5 +23,5 @@ public class TodoList
     [DataType(DataType.Date)]
     [DisplayName("List Expiration Date")]
     public DateTime? ExpirationDate { get; set; }
-    public ICollection<TodoItem> Items { get; }
+    public List<TodoItem> Items { get; }
 }
