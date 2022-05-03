@@ -25,15 +25,15 @@ What remains is the application of the attributes used for “unobtrusive” val
 
 ### there is no `System.Web.Mvc.Ajax` in the world of .NET Core
 
-The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade.
+The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade. A relatively recent article on this subject is “[ASP.NET MVC 5 - Razor AJAX Form Control](https://www.c-sharpcorner.com/article/asp-net-mvc5-razor-ajax-form-control/).”
 
 ## three approaches to validation with jQuery AJAX
 
 I have here three approaches to validation with jQuery AJAX:
 
-1. declaring in markup manually by hand (and optionally using `Html.PartialAsync`)
-2. using HTML helpers (e.g. `Html.EditorFor`) and Data Annotations
-3. repeating #2 with FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)]
+1. declaring in markup manually by hand and `Html.EditorFor`
+2. using `Html.EditorFor` and Data Annotations
+3. repeating #2 with FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] instead of Data Annotations
 
 The following links provide the background for this work:
 

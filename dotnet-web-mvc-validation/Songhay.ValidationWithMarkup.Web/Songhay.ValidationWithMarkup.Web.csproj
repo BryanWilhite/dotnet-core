@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Todos\EditorTemplates\TodoItem.cshtml" />
+  </ItemGroup>
+
 </Project>
