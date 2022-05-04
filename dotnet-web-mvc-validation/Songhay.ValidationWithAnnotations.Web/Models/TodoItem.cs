@@ -10,7 +10,7 @@ public class TodoItem
 
     [DisplayName("TODO Item Name")]
     [Required]
-    [MaxLength(16, ErrorMessage = "Value is limited to 16 characters.")]
+    [MaxLength(32, ErrorMessage = "Value is limited to 32 characters.")]
     public string Name { get; set; } = null!;
 
     [DisplayName("Complete?")]

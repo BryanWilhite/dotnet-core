@@ -17,7 +17,7 @@ public class TodoList
 
     [DisplayName("TODO List Name")]
     [Required]
-    [MaxLength(24, ErrorMessage = "Value is limited to 24 characters.")]
+    [MaxLength(64, ErrorMessage = "Value is limited to 64 characters.")]
     public string Name { get; set; } = null!;
 
     [DataType(DataType.Date)]

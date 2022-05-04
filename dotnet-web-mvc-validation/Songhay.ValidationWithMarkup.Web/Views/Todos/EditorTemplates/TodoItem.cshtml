@@ -1,19 +1,24 @@
 @model Songhay.ValidationWithMarkup.Web.Models.TodoItem
 
-<div class="form-group">
-    <label asp-for="Id" class="control-label">TODO Item ID</label>
-    <input asp-for="Id" class="form-control" readonly="readonly"  />
+<div class="form-group mb-3 row">
+    <div class="col-auto">
+        <label asp-for="Id" class="form-label">TODO Item ID</label>
+    </div>
+    <div class="col-auto">
+        <input asp-for="Id" class="form-control" readonly="readonly" type="text" />
+    </div>
 </div>
-<div class="form-group">
-    <label asp-for="Name" class="control-label">TODO Item Name</label>
+<div class="form-group mb-3">
+    <label asp-for="Name" class="form-label">TODO Item Name</label>
     <input asp-for="Name" class="form-control"
            data-val="true"
-           data-val-length-max="16"
+           data-val-length-max="32"
            data-val-required="Value is required."
            />
     <span asp-validation-for="Name" class="text-danger"></span>
 </div>
-<div class="form-group">
-    <label asp-for="IsComplete" class="control-label">Complete?</label>
-    <input asp-for="IsComplete" type="checkbox" checked="@Model.IsComplete" />
+<div class="form-check form-group mb-3">
+    <input asp-for="IsComplete" class="form-check-input" checked="@Model.IsComplete" />
+    <label asp-for="IsComplete" class="form-check-label">Complete?</label>
 </div>
+

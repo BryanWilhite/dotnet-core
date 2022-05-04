@@ -11,8 +11,8 @@ public class TodoListValidator: AbstractValidator<TodoList>
             .WithMessage("Value is required")
             .NotEmpty()
             .WithMessage("Value is required")
-            .MaximumLength(24)
-            .WithMessage("Value is limited to 24 characters.")
+            .MaximumLength(64)
+            .WithMessage("Value is limited to 64 characters.")
             ;
 
         RuleForEach(i => i.Items).SetValidator(new TodoItemValidator());

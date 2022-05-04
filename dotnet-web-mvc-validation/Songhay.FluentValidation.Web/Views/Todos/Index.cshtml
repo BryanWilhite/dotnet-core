@@ -5,18 +5,14 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<table>
-    <thead>
-    <tr>
-        <th>@Html.DisplayNameFor(i => i.Name)</th>
-    </tr>
-    </thead>
+<h2>@Html.DisplayNameFor(i => i.Name)</h2>
+<table class="table table-hover w-50">
     <tbody>
     @foreach (var list in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(_ => list.Name)</td><td><a asp-action="Edit" asp-route-id="@list.Id">Edit</a></td>
+            <th>@Html.DisplayFor(_ => list.Name)</th>
+            <td><a asp-action="Edit" asp-route-id="@list.Id">Edit</a></td>
         </tr>
     }
     </tbody>
