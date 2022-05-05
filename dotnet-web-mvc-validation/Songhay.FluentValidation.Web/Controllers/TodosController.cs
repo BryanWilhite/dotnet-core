@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using Songhay.ValidationWithAnnotations.Web.Models;
+using Songhay.FluentValidation.Web.Models;
 
-namespace Songhay.ValidationWithAnnotations.Web.Controllers;
+namespace Songhay.FluentValidation.Web.Controllers;
 
-
-public class Todos : Controller
+public class TodosController : Controller
 {
     readonly ITodosContext _todosContext;
 
-    public Todos(ITodosContext todosContext)
+    public TodosController(ITodosContext todosContext)
     {
         _todosContext = todosContext;
     }
