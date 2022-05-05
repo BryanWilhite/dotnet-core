@@ -82,8 +82,34 @@ dotnet sln Songhay.Validation.sln \
 
 All three approaches will use the same, famous models: a `TodoList` which contains a list of `TodoItem`.
 
+## `Html.EditorFor` and `Html.PartialAsync`
+
+Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page _synchronously_, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
+
+When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
+
+```html
+<div asp-validation-summary="All" class="text-danger"></div>
+```
+
+My work is showing me that we should prefer the following instead:
+
+```csharp
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+```
+
+Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessage?view=aspnet-mvc-5.2)] or `@Html.ValidationMessageFor` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessagefor?view=aspnet-mvc-5.2)] over this:
+
+```html
+<span asp-validation-for="Name" class="text-danger"></span>
+```
+
+These preferences of mine should be considered when the HTML declared inside a partial is ignored by jQuery validation.
+
 ## related links
 
 - [according to Wikipedia](https://en.wikipedia.org/wiki/ASP.NET_MVC), the final release of ASP.NET MVC was 2022-04-12
+- [jqueryvalidation.org](https://jqueryvalidation.org/)
+- Form Helper [[GitHub](https://github.com/sinanbozkus/FormHelper)] [[Form Helper sample project](https://github.com/sinanbozkus/fluent-validation-with-form-helper/tree/master/StudentProject)]
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)

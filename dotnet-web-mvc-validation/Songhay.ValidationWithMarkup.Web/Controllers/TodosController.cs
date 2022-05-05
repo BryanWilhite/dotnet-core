@@ -3,11 +3,11 @@ using Songhay.ValidationWithMarkup.Web.Models;
 
 namespace Songhay.ValidationWithMarkup.Web.Controllers;
 
-public class Todos : Controller
+public class TodosController : Controller
 {
     readonly ITodosContext _todosContext;
 
-    public Todos(ITodosContext todosContext)
+    public TodosController(ITodosContext todosContext)
     {
         _todosContext = todosContext;
     }
