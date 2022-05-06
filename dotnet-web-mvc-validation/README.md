@@ -103,6 +103,16 @@ And, in case there are edge cases where we cannot use this Helper, we can resort
 
 When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
 
+## Steve Sanderson’s `Html.BeginCollectionItem`
+
+“[Editing a variable length list, ASP.NET MVC 2-style](http://blog.stevensanderson.com/2010/01/28/editing-a-variable-length-list-aspnet-mvc-2-style/)” is the oft cited Steve Sanderson Blog post introducing us to:
+
+>…a HTML helper I made that you can use when rendering a sequence of items that should later be model bound to a single collection.
+>
+>—Steve Sanderson
+
+The eventually needed **Add New** button for adding to a child collection of items would depend on this Helper. In the ASP.NET Core time frame, Sanderson’s code (now [under Dan Ludwig](https://github.com/danludwig/BeginCollectionItem)) cannot work. BeginCollectionItemCore [[GitHub](https://github.com/saad749/BeginCollectionItemCore)] promises to be a faithful port to ASP.NET Core. “[MVC Series Part 1: Dynamically Adding Items Part 1](https://jasonco.org/2015/04/08/mvc-series-part-1-dynamically-adding-items-part-1/)” also promises to be the Blog series to detail how to use `Html.BeginCollectionItem` in 2015 which could be ‘close enough’ to ASP.NET Core.
+
 ## sample set up
 
 From the `dotnet-web-mvc-validation/` [directory](../dotnet-web-mvc-validation):
