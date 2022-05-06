@@ -10,4 +10,8 @@
     <_ContentIncludedByDefault Remove="Views\Todos\EditorTemplates\TodoItem.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BeginCollectionItemCore" Version="1.1.0" />
+  </ItemGroup>
+
 </Project>
