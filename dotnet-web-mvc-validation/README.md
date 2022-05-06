@@ -23,10 +23,6 @@ Once jQuery validation files are ‘wired up’ (which is conventionally done by
 
 What remains is the application of the attributes used for “unobtrusive” validation. My work here will show that it can be done auto-magically by Microsoft “helpers” or declared in markup manually by hand (see “three approaches to validation with jQuery AJAX” below).
 
-### there is no `System.Web.Mvc.Ajax` in the world of .NET Core
-
-The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade. A relatively recent article on this subject is “[ASP.NET MVC 5 - Razor AJAX Form Control](https://www.c-sharpcorner.com/article/asp-net-mvc5-razor-ajax-form-control/).”
-
 ## three approaches to validation with jQuery AJAX
 
 I have here three approaches to validation with jQuery AJAX:
@@ -44,6 +40,68 @@ The following links provide the background for this work:
 - “[Multiple ViewModels in a single MVC View](https://damienbod.com/2014/01/27/multiple-viewmodels-in-a-single-mvc-view/)”
 - “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)”
 - “[ASP.NET MVC EditorTemplate sub folders](https://stackoverflow.com/questions/21945426/asp-net-mvc-editortemplate-sub-folders)”
+
+### the approaches with `Html.PartialAsync`
+
+Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
+
+The most common way toward using When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
+
+```html
+<div asp-validation-summary="All" class="text-danger"></div>
+```
+
+My work is showing me that we should prefer the following instead:
+
+```csharp
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+```
+
+Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessage?view=aspnet-mvc-5.2)] or `@Html.ValidationMessageFor` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessagefor?view=aspnet-mvc-5.2)] over this:
+
+```html
+<span asp-validation-for="Name" class="text-danger"></span>
+```
+
+## `enum` and the `select` element
+
+I must not forget about the `@Html.GetEnumSelectList` method [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.htmlhelper.getenumselectlist?view=aspnetcore-6.0)]. This HTML Helper turns an `enum` into a dropdown list as described in “[ASP.NET Core - how to bind enum to HTML select tag](https://kmatyaszek.github.io/2019/10/27/asp.net-core-how-to-bind-enum-to-html-select-tag.html).”
+
+A StackOverflow [answer](https://stackoverflow.com/a/53742229/22944) shows what we might end up with:
+
+```html
+<select asp-for="Status" 
+        asp-items="Html.GetEnumSelectList<EnumStatus>()" 
+        class="form-control>
+    <option selected="selected" value="">Please select</option>
+</select>
+```
+
+And, in case there are edge cases where we cannot use this Helper, we can resort to something like [this](https://stackoverflow.com/a/55506887/22944):
+
+```csharp
+<select class="custom-select" asp-for="ValueType.Controller">
+@foreach (var e in Enum.GetValues(typeof(ValueTypeModel.PageType)).Cast<int>())
+{
+    if (Enum.GetName(typeof(ValueTypeModel.PageType), e) == Model.ValueType.Controller)
+    {
+        <option value="@e.ToString()" selected>@Enum.GetName(typeof(ValueTypeModel.PageType), e)</option>
+    }
+    else
+    {
+        <option value="@e.ToString()">@Enum.GetName(typeof(ValueTypeModel.PageType), e)</option>
+    }
+}
+</select>
+```
+
+## adding a new row on the client side is adding “dynamic content”
+
+“[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)” details how to add a new row without a post-back by extending `$.validator.unobtrusive`.
+
+## the importance of calling `ModelState.Clear()`
+
+When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
 
 ## sample set up
 
@@ -82,29 +140,9 @@ dotnet sln Songhay.Validation.sln \
 
 All three approaches will use the same, famous models: a `TodoList` which contains a list of `TodoItem`.
 
-## `Html.EditorFor` and `Html.PartialAsync`
+### there is no `System.Web.Mvc.Ajax` in the world of .NET Core
 
-Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page _synchronously_, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
-
-When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
-
-```html
-<div asp-validation-summary="All" class="text-danger"></div>
-```
-
-My work is showing me that we should prefer the following instead:
-
-```csharp
-@Html.ValidationSummary(false, "", new { @class = "text-danger" })
-```
-
-Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessage?view=aspnet-mvc-5.2)] or `@Html.ValidationMessageFor` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessagefor?view=aspnet-mvc-5.2)] over this:
-
-```html
-<span asp-validation-for="Name" class="text-danger"></span>
-```
-
-These preferences of mine should be considered when the HTML declared inside a partial is ignored by jQuery validation.
+The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade. A relatively recent article on this subject is “[ASP.NET MVC 5 - Razor AJAX Form Control](https://www.c-sharpcorner.com/article/asp-net-mvc5-razor-ajax-form-control/).”
 
 ## related links
 
