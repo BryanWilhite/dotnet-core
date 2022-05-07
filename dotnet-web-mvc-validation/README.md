@@ -43,7 +43,7 @@ The following links provide the background for this work:
 
 ### the approaches with `Html.PartialAsync`
 
-Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
+Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
 
 The most common way toward using When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
 
@@ -62,6 +62,10 @@ Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](http
 ```html
 <span asp-validation-for="Name" class="text-danger"></span>
 ```
+
+___
+
+<sup>1</sup> <small>The `EditorFor<TResult>` [method](https://github.com/dotnet/aspnetcore/blob/c85baf8db0c72ae8e68643029d514b2e737c9fae/src/Mvc/Mvc.ViewFeatures/src/HtmlHelperOfT.cs#L192) calls the `GenerateEditor` [method](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/HtmlHelper.cs#L897) which returns an instance of the internal `TemplateBuilder` [class](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateBuilder.cs#L14), building a `TemplateRenderer` which features a `Render` method, using a [render Task](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateRenderer.cs#L139) that is made synchronous with the old, `.GetAwaiter().GetResult()` business.</small>
 
 ## `enum` and the `select` element
 
@@ -97,11 +101,28 @@ And, in case there are edge cases where we cannot use this Helper, we can resort
 
 ## adding a new row on the client side is adding “dynamic content”
 
-“[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)” details how to add a new row without a post-back by extending `$.validator.unobtrusive`.
+“[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)” details how to add a new row without a post-back by extending `$.validator.unobtrusive`. This exploration introduces me to one of two techniques of using `$.validator.unobtrusive` directly. The second one is far less complex, featuring a pattern like this:
 
-## the importance of calling `ModelState.Clear()`
+```javascript
+if($.validator.unobtrusive) {
+    $.validator.parse('.row.insert');
 
-When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
+    if($(#MyForm).validate) {
+        $(#MyForm).validate();
+        if(!$(#MyForm).valid()) { return; }
+    }
+}
+```
+
+This simple script shows us that:
+
+- `$.validator.parse` can be called to validate a subset of an entire form
+- nothing interactive happens after parsing until `$(#MyForm).validate()` is called
+- `$(#MyForm).valid()` can be used as a logic gate to prevent a post-back or an AJAX call
+
+When we are adding a row, then our ‘subset of an entire form’ represents that new row submission. When this new row submission is validated on the client side then, our add-new script often performs a post-back to a Controller Action that validates it again on the server side and returns a Partial which appends itself to the entire form. This new data is not really saved in a datastore until the entire form is submitted.
+
+See “Steve Sanderson’s `Html.BeginCollectionItem`” below to investigate how the Partial is used when adding to a child collection.
 
 ## Steve Sanderson’s `Html.BeginCollectionItem`
 
@@ -112,6 +133,10 @@ When validation errors show up in the client _after_ a post-back, this means ASP
 >—Steve Sanderson
 
 The eventually needed **Add New** button for adding to a child collection of items would depend on this Helper. In the ASP.NET Core time frame, Sanderson’s code (now [under Dan Ludwig](https://github.com/danludwig/BeginCollectionItem)) cannot work. BeginCollectionItemCore [[GitHub](https://github.com/saad749/BeginCollectionItemCore)] promises to be a faithful port to ASP.NET Core. “[MVC Series Part 1: Dynamically Adding Items Part 1](https://jasonco.org/2015/04/08/mvc-series-part-1-dynamically-adding-items-part-1/)” also promises to be the Blog series to detail how to use `Html.BeginCollectionItem` in 2015 which could be ‘close enough’ to ASP.NET Core.
+
+## the importance of calling `ModelState.Clear()`
+
+When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
 
 ## sample set up
 
