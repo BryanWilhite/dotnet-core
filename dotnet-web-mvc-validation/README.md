@@ -45,7 +45,7 @@ The following links provide the background for this work:
 
 Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
 
-The most common way toward using When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
+When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
 
 ```html
 <div asp-validation-summary="All" class="text-danger"></div>
