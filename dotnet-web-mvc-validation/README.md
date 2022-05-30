@@ -1,49 +1,25 @@
 # ASP.NET MVC validation with jQuery AJAX
 
-This folder contains the various ways [ASP.NET Core](https://en.wikipedia.org/wiki/ASP.NET_Core) supports validation with jQuery AJAX. This represents my public recognition that jQuery [[GitHub](https://github.com/jquery)] (by the [OpenJS Foundation](https://openjsf.org/)) _still_ plays a default role in the surfacing of .NET validation solutions to the the Web. Since the turn of the century, jQuery has been accompanied by:
+This directory represents the recommended way [ASP.NET Core](https://en.wikipedia.org/wiki/ASP.NET_Core) should support validation with jQuery Validation by Jörn Zaefferer [📖 [docs](https://jqueryvalidation.org/documentation/)]. After decades of avoiding this by working with SPAs, this sample represents my public recognition that jQuery [[GitHub](https://github.com/jquery)] (by the [OpenJS Foundation](https://openjsf.org/)) _still_ plays a default role in the surfacing of .NET validation solutions to the the Web.
 
-- jQuery Validation by Jörn Zaefferer
-- jQuery Unobtrusive Validation [[GitHub](https://github.com/aspnet/jquery-validation-unobtrusive#jquery-unobtrusive-validation)] by the .NET Foundation
+## recommendations
 
-## historical jQuery validation articles
+On the client side:
 
-These historical jQuery validation articles may select the background which might be relevant to ASP.NET (Core) in the .NET 6 time frame:
+- understand that [HTML5 validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) should be at the core of our design thinking
+- leverage [Bootstrap validation](https://getbootstrap.com/docs/5.1/forms/validation/) UX in harmony with the MVC defaults
+- consider calling `$(control).valid()` on individual form elements for maximum flexibility of form design
+- prefer `Html.PartialAsync` over `Html.EditorFor` (which is only required for [unobtrusive validation](../dotnet-web-mvc-unobtrusive-validation))
 
-- Document unobtrusive validation #1111 [[GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/1111)]
-- `jquery-ajax-unobtrusive` documentation [[StackOverflow](https://stackoverflow.com/a/50148838/22944) and [StackOverflow](https://stackoverflow.com/a/15977785/22944)] (see “[Unobtrusive validation](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0#unobtrusive-validation)”)
-- “[Setting up jQuery Unobtrusive Validation](https://www.mobzystems.com/blog/setting-up-jquery-unobtrusive-validation/)”
-- “[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)”
-- “[ASP.NET MVC 3 unobtrusive jQuery client-side validation with child collections](https://stackoverflow.com/questions/7015526/asp-net-mvc-3-unobtrusive-jquery-client-side-validation-with-child-collections)”
+On the server side:
 
-The first links in the list above are suggesting that StackOverflow is being used as a documentation location for jQuery validation technologies which I will perpetually find unusual.
+- use FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] with static methods in classes implementing `AbstractValidator<T>` that emit form validation attributes
+- test `AbstractValidator<T>` classes with help from Bogus [[GitHub](https://github.com/bchavez/Bogus)] and AutoBogus [[GitHub](https://github.com/nickdodd79/AutoBogus)]
+- prevent unnecessary server-side validation (and redundantly saving data) with Compare-Net-Objects [[GitHub](https://github.com/GregFinzer/Compare-Net-Objects)]
 
-### the most important bits from the links above
+### to benefit from unobtrusive validation, prefer `Html.EditorFor` over `Html.PartialAsync`
 
-Once jQuery validation files are ‘wired up’ (which is conventionally done by referencing the partial, `Views/Shared/_ValidationScriptsPartial.cshtml`, generated via `dotnet new mvc`), we activate client-side validation by adding the following attribute to the `form` element: `data-ajax=true`.
-
-What remains is the application of the attributes used for “unobtrusive” validation. My work here will show that it can be done auto-magically by Microsoft “helpers” or declared in markup manually by hand (see “three approaches to validation with jQuery AJAX” below).
-
-## three approaches to validation with jQuery AJAX
-
-I have here three approaches to validation with jQuery AJAX:
-
-1. declaring in markup manually by hand and `Html.EditorFor`
-2. using `Html.EditorFor` and Data Annotations
-3. repeating #2 with FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] instead of Data Annotations
-
-The following links provide the background for this work:
-
-- “The Form Action Tag Helper” [📖 [docs](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-form-action-tag-helper)]
-- “Using DataType Attributes” [📖 [docs](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-6.0#using-datatype-attributes)]
-- “`HtmlHelperEditorExtensions.EditorFor` Method” [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelpereditorextensions.editorfor?view=aspnetcore-6.0)]
-- “Asynchronous HTML Helper” [📖 [docs](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/partial?view=aspnetcore-6.0#asynchronous-html-helper)]
-- “[Multiple ViewModels in a single MVC View](https://damienbod.com/2014/01/27/multiple-viewmodels-in-a-single-mvc-view/)”
-- “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)”
-- “[ASP.NET MVC EditorTemplate sub folders](https://stackoverflow.com/questions/21945426/asp-net-mvc-editortemplate-sub-folders)”
-
-### the approaches with `Html.PartialAsync`
-
-Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
+Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet unobtrusive validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
 
 When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
 
@@ -67,7 +43,13 @@ ___
 
 <sup>1</sup> <small>The `EditorFor<TResult>` [method](https://github.com/dotnet/aspnetcore/blob/c85baf8db0c72ae8e68643029d514b2e737c9fae/src/Mvc/Mvc.ViewFeatures/src/HtmlHelperOfT.cs#L192) calls the `GenerateEditor` [method](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/HtmlHelper.cs#L897) which returns an instance of the internal `TemplateBuilder` [class](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateBuilder.cs#L14), building a `TemplateRenderer` which features a `Render` method, using a [render Task](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateRenderer.cs#L139) that is made synchronous with the old, `.GetAwaiter().GetResult()` business.</small>
 
-## `enum` and the `select` element
+## other validation-related notes
+
+### the importance of calling `ModelState.Clear()`
+
+When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
+
+### `enum` and the `select` element
 
 I must not forget about the `@Html.GetEnumSelectList` method [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.htmlhelper.getenumselectlist?view=aspnetcore-6.0)]. This HTML Helper turns an `enum` into a dropdown list as described in “[ASP.NET Core - how to bind enum to HTML select tag](https://kmatyaszek.github.io/2019/10/27/asp.net-core-how-to-bind-enum-to-html-select-tag.html).”
 
@@ -99,44 +81,9 @@ And, in case there are edge cases where we cannot use this Helper, we can resort
 </select>
 ```
 
-## adding a new row on the client side is adding “dynamic content”
+### there is no `System.Web.Mvc.Ajax` in the world of .NET Core
 
-“[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)” details how to add a new row without a post-back by extending `$.validator.unobtrusive`. This exploration introduces me to one of two techniques of using `$.validator.unobtrusive` directly. The second one is far less complex, featuring a pattern like this:
-
-```javascript
-if($.validator.unobtrusive) {
-    $.validator.parse('.row.insert');
-
-    if($(#MyForm).validate) {
-        $(#MyForm).validate();
-        if(!$(#MyForm).valid()) { return; }
-    }
-}
-```
-
-This simple script shows us that:
-
-- `$.validator.parse` can be called to validate a subset of an entire form
-- nothing interactive happens after parsing until `$(#MyForm).validate()` is called
-- `$(#MyForm).valid()` can be used as a logic gate to prevent a post-back or an AJAX call
-
-When we are adding a row, then our ‘subset of an entire form’ represents that new row submission. When this new row submission is validated on the client side then, our add-new script often performs a post-back to a Controller Action that validates it again on the server side and returns a Partial which appends itself to the entire form. This new data is not really saved in a datastore until the entire form is submitted.
-
-See “Steve Sanderson’s `Html.BeginCollectionItem`” below to investigate how the Partial is used when adding to a child collection.
-
-## Steve Sanderson’s `Html.BeginCollectionItem`
-
-“[Editing a variable length list, ASP.NET MVC 2-style](http://blog.stevensanderson.com/2010/01/28/editing-a-variable-length-list-aspnet-mvc-2-style/)” is the oft cited Steve Sanderson Blog post introducing us to:
-
->…a HTML helper I made that you can use when rendering a sequence of items that should later be model bound to a single collection.
->
->—Steve Sanderson
-
-The eventually needed **Add New** button for adding to a child collection of items would depend on this Helper. In the ASP.NET Core time frame, Sanderson’s code (now [under Dan Ludwig](https://github.com/danludwig/BeginCollectionItem)) cannot work. BeginCollectionItemCore [[GitHub](https://github.com/saad749/BeginCollectionItemCore)] promises to be a faithful port to ASP.NET Core. “[MVC Series Part 1: Dynamically Adding Items Part 1](https://jasonco.org/2015/04/08/mvc-series-part-1-dynamically-adding-items-part-1/)” also promises to be the Blog series to detail how to use `Html.BeginCollectionItem` in 2015 which could be ‘close enough’ to ASP.NET Core.
-
-## the importance of calling `ModelState.Clear()`
-
-When validation errors show up in the client _after_ a post-back, this means ASP.NET validations conventions are working correctly, reading the contents of `Controller.ModelState` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.controller.modelstate?view=aspnet-mvc-5.2)]. When these errors are unexpected, this is likely a side effect of server-side validation being out of sync with client-side validation. This likely happens when the model passed to the controller method is _not_ the model that is saved to the data store. `Controller.ModelState` is bound to the data passed to the controller which can be deemed irrelevant after it is processed in some kind of server-side transformation. When such a transformation is considered successful, then we should call `ModelState.Clear()` to prevent unexpected validation errors after post-back.
+The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade. A relatively recent article on this subject is “[ASP.NET MVC 5 - Razor AJAX Form Control](https://www.c-sharpcorner.com/article/asp-net-mvc5-razor-ajax-form-control/).”
 
 ## sample set up
 
@@ -144,40 +91,20 @@ From the `dotnet-web-mvc-validation/` [directory](../dotnet-web-mvc-validation):
 
 ```bash
 dotnet new sln -n Songhay.Validation
-```
-
-For approach #1:
-
-```bash
-dotnet new mvc -o Songhay.ValidationWithMarkup.Web
-
+dotnet new mvc -o Songhay.Validation.Web
 dotnet sln Songhay.Validation.sln \
-      add Songhay.ValidationWithMarkup.Web/Songhay.ValidationWithMarkup.Web.csproj
+      add Songhay.Validation.Web/Songhay.Validation.Web.csproj
+
+dotnet add \
+    Songhay.Validation.Web/Songhay.Validation.Web.csproj \
+    package FluentValidation
+
+touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/ErrorViewModel.cs
+touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/ITodosContext.cs
+touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodoItem.cs
+touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodoList.cs
+touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodosContext.cs
 ```
-
-For approach #2:
-
-```bash
-dotnet new mvc -o Songhay.ValidationWithAnnotations.Web
-
-dotnet sln Songhay.Validation.sln \
-      add Songhay.ValidationWithAnnotations.Web/Songhay.ValidationWithAnnotations.Web.csproj
-```
-
-For approach #3:
-
-```bash
-dotnet new mvc -o Songhay.FluentValidation.Web
-
-dotnet sln Songhay.Validation.sln \
-      add Songhay.FluentValidation.Web/Songhay.FluentValidation.Web.csproj
-```
-
-All three approaches will use the same, famous models: a `TodoList` which contains a list of `TodoItem`.
-
-### there is no `System.Web.Mvc.Ajax` in the world of .NET Core
-
-The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.BeginForm` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.ajax.ajaxextensions.beginform?view=aspnet-mvc-5.2)] which might be carried around in the `MicrosoftMvcAjax.Mvc5` [NuGet package](https://www.nuget.org/packages/MicrosoftMvcAjax.Mvc5/). I assume this work is not continued and not intended for the world of .NET Core because of the dependency on jQuery libraries—and jQuery itself has been regarded as a legacy technology for over a decade. A relatively recent article on this subject is “[ASP.NET MVC 5 - Razor AJAX Form Control](https://www.c-sharpcorner.com/article/asp-net-mvc5-razor-ajax-form-control/).”
 
 ## related links
 
