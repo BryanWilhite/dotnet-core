@@ -13,7 +13,7 @@ On the client side:
 
 On the server side:
 
-- use FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] with static methods in classes implementing `AbstractValidator<T>` that emit form validation attributes
+- use FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] (and FluentValidation.AspNetCore [[GitHub](https://github.com/FluentValidation/FluentValidation)]) with static methods in classes implementing `AbstractValidator<T>` that emit form validation attributes
 - test `AbstractValidator<T>` classes with help from Bogus [[GitHub](https://github.com/bchavez/Bogus)] and AutoBogus [[GitHub](https://github.com/nickdodd79/AutoBogus)]
 - prevent unnecessary server-side validation (and redundantly saving data) with Compare-Net-Objects [[GitHub](https://github.com/GregFinzer/Compare-Net-Objects)]
 
@@ -99,11 +99,23 @@ dotnet add \
     Songhay.Validation.Web/Songhay.Validation.Web.csproj \
     package FluentValidation
 
-touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/ErrorViewModel.cs
-touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/ITodosContext.cs
-touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodoItem.cs
-touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodoList.cs
-touch dotnet-web-mvc-validation/Songhay.Validation.Web/Models/TodosContext.cs
+dotnet add \
+    Songhay.Validation.Web/Songhay.Validation.Web.csproj \
+    package FluentValidation.AspNetCore
+
+touch Songhay.Validation.Web/Controllers/TodosController.cs
+
+touch Songhay.Validation.Web/Models/ITodosContext.cs
+touch Songhay.Validation.Web/Models/TodoItem.cs
+touch Songhay.Validation.Web/Models/TodoItemValidator.cs
+touch Songhay.Validation.Web/Models/TodoList.cs
+touch Songhay.Validation.Web/Models/TodoListValidator.cs
+touch Songhay.Validation.Web/Models/TodosContext.cs
+
+mkdir Songhay.Validation.Web/Views/Todos
+touch Songhay.Validation.Web/Views/Todos/Index.cshtml
+touch Songhay.Validation.Web/Views/Todos/Edit.cshtml
+touch Songhay.Validation.Web/Views/Todos/_TodoItem.cshtml
 ```
 
 ## related links
