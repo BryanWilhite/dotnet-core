@@ -27,6 +27,28 @@ public class TodosController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    public IActionResult AddRow(TodoList data)
+    {
+        var nextId = data.Items.Max(i => i.Id) + 1;
+
+        data.Items.Add(new TodoItem { Id = nextId });
+
+        return View(nameof(Edit), data);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult RemoveRow(TodoList data, int itemId)
+    {
+        var index = data.Items.FindIndex(i => i.Id == itemId);
+
+        data.Items.RemoveAt(index);
+
+        return View(nameof(Edit), data);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Save(TodoList data)
     {
         if (ModelState.IsValid)

@@ -1,5 +1,4 @@
 @using Songhay.ValidationWithAnnotations.Web.Controllers
-@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Songhay.ValidationWithAnnotations.Web.Models.TodoList
 
 @{
@@ -37,7 +36,17 @@
         @Html.EditorFor(model => model.Items[i])
     }
     </div>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <div class="form-group mb-3 row justify-content-evenly">
+        <div class="col-auto">
+            <button
+                asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+                asp-action="@nameof(TodosController.AddRow)"
+                class="btn btn-primary" type="submit">Add Row</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </div>
 </form>
 
 @section Scripts {

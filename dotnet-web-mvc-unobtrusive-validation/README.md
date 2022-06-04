@@ -29,7 +29,7 @@ What remains is the application of the attributes used for unobtrusive validatio
 
 I have here three approaches to unobtrusive validation with jQuery AJAX:
 
-1. declaring in markup manually by hand and `Html.EditorFor`
+1. declaring in markup manually by hand and using `Html.EditorFor`
 2. using `Html.EditorFor` and Data Annotations
 3. repeating #2 with FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] instead of Data Annotations
 
@@ -42,67 +42,6 @@ The following links provide the background for this work:
 - “[Multiple ViewModels in a single MVC View](https://damienbod.com/2014/01/27/multiple-viewmodels-in-a-single-mvc-view/)”
 - “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)”
 - “[ASP.NET MVC EditorTemplate sub folders](https://stackoverflow.com/questions/21945426/asp-net-mvc-editortemplate-sub-folders)”
-
-### to benefit from unobtrusive validation, prefer `Html.EditorFor` over `Html.PartialAsync`
-
-Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet unobtrusive validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
-
-When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
-
-```html
-<div asp-validation-summary="All" class="text-danger"></div>
-```
-
-My work is showing me that we should prefer the following instead:
-
-```csharp
-@Html.ValidationSummary(false, "", new { @class = "text-danger" })
-```
-
-Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessage?view=aspnet-mvc-5.2)] or `@Html.ValidationMessageFor` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessagefor?view=aspnet-mvc-5.2)] over this:
-
-```html
-<span asp-validation-for="Name" class="text-danger"></span>
-```
-
-___
-
-<sup>1</sup> <small>The `EditorFor<TResult>` [method](https://github.com/dotnet/aspnetcore/blob/c85baf8db0c72ae8e68643029d514b2e737c9fae/src/Mvc/Mvc.ViewFeatures/src/HtmlHelperOfT.cs#L192) calls the `GenerateEditor` [method](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/HtmlHelper.cs#L897) which returns an instance of the internal `TemplateBuilder` [class](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateBuilder.cs#L14), building a `TemplateRenderer` which features a `Render` method, using a [render Task](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateRenderer.cs#L139) that is made synchronous with the old, `.GetAwaiter().GetResult()` business.</small>
-
-## adding a new row on the client side is adding “dynamic content”
-
-“[Applying unobtrusive jquery validation to dynamic content in ASP.Net MVC](https://xhalent.wordpress.com/2011/01/24/applying-unobtrusive-validation-to-dynamic-content/)” details how to add a new row without a post-back by extending `$.validator.unobtrusive`. This exploration introduces me to one of two techniques of using `$.validator.unobtrusive` directly. The second one is far less complex, featuring a pattern like this:
-
-```javascript
-if($.validator) {
-    $.validator.parse('.row.insert');
-
-    if($(#MyForm).validate) {
-        $(#MyForm).validate();
-        if(!$(#MyForm).valid()) { return; }
-    }
-}
-```
-
-This simple script shows us that:
-
-- `$.validator.parse` can be called to validate a subset of an entire form
-- nothing interactive happens after parsing until `$(#MyForm).validate()` is called
-- `$(#MyForm).valid()` can be used as a logic gate to prevent a post-back or an AJAX call
-
-When we are adding a row, then our ‘subset of an entire form’ represents that new row submission. When this new row submission is validated on the client side then, our add-new script often performs a post-back to a Controller Action that validates it again on the server side and returns a Partial which appends itself to the entire form. This new data is not really saved in a datastore until the entire form is submitted.
-
-See “Steve Sanderson’s `Html.BeginCollectionItem`” below to investigate how the Partial is used when adding to a child collection.
-
-## Steve Sanderson’s `Html.BeginCollectionItem`
-
-“[Editing a variable length list, ASP.NET MVC 2-style](http://blog.stevensanderson.com/2010/01/28/editing-a-variable-length-list-aspnet-mvc-2-style/)” is the oft cited Steve Sanderson Blog post introducing us to:
-
->…a HTML helper I made that you can use when rendering a sequence of items that should later be model bound to a single collection.
->
->—Steve Sanderson
-
-The eventually needed **Add New** button for adding to a child collection of items would depend on this Helper. In the ASP.NET Core time frame, Sanderson’s code (now [under Dan Ludwig](https://github.com/danludwig/BeginCollectionItem)) cannot work. BeginCollectionItemCore [[GitHub](https://github.com/saad749/BeginCollectionItemCore)] promises to be a faithful port to ASP.NET Core. “[MVC Series Part 1: Dynamically Adding Items Part 1](https://jasonco.org/2015/04/08/mvc-series-part-1-dynamically-adding-items-part-1/)” also promises to be the Blog series to detail how to use `Html.BeginCollectionItem` in 2015 which could be ‘close enough’ to ASP.NET Core.
 
 ## sample set up
 
@@ -119,6 +58,18 @@ dotnet new mvc -o Songhay.ValidationWithMarkup.Web
 
 dotnet sln Songhay.UnobtrusiveValidation.sln \
       add Songhay.ValidationWithMarkup.Web/Songhay.ValidationWithMarkup.Web.csproj
+
+touch Songhay.FluentValidation.Web/Controllers/TodosController.cs
+
+touch Songhay.FluentValidation.Web/Models/ITodosContext.cs
+touch Songhay.FluentValidation.Web/Models/TodoItem.cs
+touch Songhay.FluentValidation.Web/Models/TodoList.cs
+touch Songhay.FluentValidation.Web/Models/TodosContext.cs
+
+mkdir Songhay.FluentValidation.Web/Views/Todos
+touch Songhay.FluentValidation.Web/Views/Todos/EditorTemplates/TodoItem.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Edit.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Index.cshtml
 ```
 
 For approach #2:
@@ -128,6 +79,18 @@ dotnet new mvc -o Songhay.ValidationWithAnnotations.Web
 
 dotnet sln Songhay.UnobtrusiveValidation.sln \
       add Songhay.ValidationWithAnnotations.Web/Songhay.ValidationWithAnnotations.Web.csproj
+
+touch Songhay.FluentValidation.Web/Controllers/TodosController.cs
+
+touch Songhay.FluentValidation.Web/Models/ITodosContext.cs
+touch Songhay.FluentValidation.Web/Models/TodoItem.cs
+touch Songhay.FluentValidation.Web/Models/TodoList.cs
+touch Songhay.FluentValidation.Web/Models/TodosContext.cs
+
+mkdir Songhay.FluentValidation.Web/Views/Todos
+touch Songhay.FluentValidation.Web/Views/Todos/EditorTemplates/TodoItem.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Edit.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Index.cshtml
 ```
 
 For approach #3:
@@ -137,8 +100,77 @@ dotnet new mvc -o Songhay.FluentValidation.Web
 
 dotnet sln Songhay.UnobtrusiveValidation.sln \
       add Songhay.FluentValidation.Web/Songhay.FluentValidation.Web.csproj
+
+touch Songhay.FluentValidation.Web/Controllers/TodosController.cs
+
+touch Songhay.FluentValidation.Web/Models/ITodosContext.cs
+touch Songhay.FluentValidation.Web/Models/TodoItem.cs
+touch Songhay.FluentValidation.Web/Models/TodoItemValidator.cs
+touch Songhay.FluentValidation.Web/Models/TodoList.cs
+touch Songhay.FluentValidation.Web/Models/TodoListValidator.cs
+touch Songhay.FluentValidation.Web/Models/TodosContext.cs
+
+mkdir Songhay.FluentValidation.Web/Views/Todos
+touch Songhay.FluentValidation.Web/Views/Todos/EditorTemplates/TodoItem.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Edit.cshtml
+touch Songhay.FluentValidation.Web/Views/Todos/Index.cshtml
 ```
 
-All three approaches will use the same, famous models: a `TodoList` which contains a list of `TodoItem`.
+All three approaches will use the same, famous models: a `TodoList` which contains a list of `TodoItem`. A readonly data source is represented by `TodosContext`, injected into the `TodosController` via `ITodosContext`.
+
+## design details shared by all three approaches
+
+### to benefit from unobtrusive validation, prefer `Html.EditorFor` over `Html.PartialAsync`
+
+Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet unobtrusive validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
+
+### `POST`ing the entire form for add/delete list item operations
+
+The odious opinion here is that the use of “unobtrusive” validation means the design is avoiding the use of custom JavaScript completely. This means adding/deleting a `TodoItem` is achieved by `POST`ing the entire form which is very expensive and can introduce UX problems with browser history (hitting the back button in the browser). On the `TodosController` level, two methods are added, respectively:
+
+```csharp
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult AddRow(TodoList data)
+{
+    var nextId = data.Items.Max(i => i.Id) + 1;
+    data.Items.Add(new TodoItem { Id = nextId });
+    return View(nameof(Edit), data);
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult RemoveRow(TodoList data, int itemId)
+{
+    var index = data.Items.FindIndex(i => i.Id == itemId);
+    data.Items.RemoveAt(index);
+    return View(nameof(Edit), data);
+}
+```
+
+The `TodoList data` arguments in both methods represent the entire form. ASP.NET Core conventions understand that `TodoList` needs to be `POST`ed back, simply because the command invoking `HttpPost` is a `button` element with attribute `type="submit"`.
+
+However, the routes to these controller methods requires [Anchor Tag Helper](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper?view=aspnetcore-6.0) attributes:
+
+```html
+<button
+    asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+    asp-action="@nameof(TodosController.AddRow)"
+    class="btn btn-primary" type="submit">Add Row</button>
+```
+
+and
+
+```html
+<button
+    asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+    asp-action="@nameof(TodosController.RemoveRow)"
+    asp-route-itemId="@Model.Id"
+    class="btn btn-outline-danger" title="Remove Row" type="submit">×</button>
+```
+
+, respectively.
+
+In the `RemoveRow` button, notice that `asp-route-itemId` is being used, mapping to `int itemId` on the `RemoveRow` controller method. I used `itemId` instead of `id` to prevent confusing ASP.NET Core as it would not be sure that I intend to pass `TodoList.Id` or `TodoItem.Id` (it will choose the former).
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)

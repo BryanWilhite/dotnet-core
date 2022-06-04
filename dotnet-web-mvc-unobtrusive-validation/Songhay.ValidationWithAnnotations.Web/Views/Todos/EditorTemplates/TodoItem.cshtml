@@ -1,11 +1,20 @@
+@using Songhay.ValidationWithAnnotations.Web.Controllers
 @model Songhay.ValidationWithAnnotations.Web.Models.TodoItem
 
 <div class="form-group mb-3 row">
-    <div class="col-auto">
+    <div class="col-md-1">
         <label asp-for="Id" class="form-label"></label>
     </div>
-    <div class="col-auto">
-        <input asp-for="Id" class="form-control" readonly="readonly" type="text" />
+    <div class="col-md-2">
+        <input asp-for="Id"
+            class="form-control" readonly="readonly" type="text" value="@Model.Id" />
+    </div>
+    <div class="col-md-1 offset-md-8">
+        <button
+            asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+            asp-action="@nameof(TodosController.RemoveRow)"
+            asp-route-itemId="@Model.Id"
+            class="btn btn-outline-danger" title="Remove Row" type="submit">×</button>
     </div>
 </div>
 <div class="form-group mb-3">
