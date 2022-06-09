@@ -1,11 +1,11 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Songhay.Validation.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddFluentValidation();
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<ITodosContext, TodosContext>();
 
 builder.Services.AddTransient<IValidator<TodoList>, TodoListValidator>();

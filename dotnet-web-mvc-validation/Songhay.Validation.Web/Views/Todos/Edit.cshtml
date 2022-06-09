@@ -1,0 +1,46 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Songhay.Validation.Web.Models.TodoList
+
+@{
+    ViewData["Title"] = $"TODO Item ({Model.Id})";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form class="w-50" id="todo-edit" method="post">
+
+    <div class="form-group mb-3 row">
+        <div class="col-auto">
+            <label asp-for="Id" class="form-label"></label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Id" class="form-control" readonly="readonly" type="text" />
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ExpirationDate" class="form-label"></label>
+        <input asp-for="ExpirationDate" class="form-control" />
+    </div>
+    <div id="todo-items-group" class="form-group mt-5 mb-3 ps-3">
+        @foreach (var item in Model.Items)
+        {
+            @await Html.PartialAsync("_TodoItem", item)
+        }
+    </div>
+    <div class="form-group mb-3 row justify-content-evenly">
+        <div class="col-auto">
+            <button class="btn btn-primary cmd" id="cmd-add" type="button">Add Row</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary cmd" id="cmd-save" type="button">Save</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
