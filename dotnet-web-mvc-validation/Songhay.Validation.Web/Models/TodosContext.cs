@@ -48,7 +48,7 @@ public class TodosContext : ITodosContext
                         {
                             Id = 3,
                             Name = "Take a Walk",
-                            IsComplete = false
+                            IsComplete = true
                         },
                         new TodoItem
                         {

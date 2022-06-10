@@ -1,26 +1,30 @@
 @model Songhay.Validation.Web.Models.TodoItem
 
-<div class="form-group mt-5 mb-3 row">
-    <div class="col-md-1">
-        <label asp-for="Id" class="form-label"></label>
-    </div>
-    <div class="col-md-2">
-        <input asp-for="Id" class="form-control" readonly="readonly" type="text" value="@Model.Id" />
-    </div>
-    <div class="col-md-1 offset-md-8">
-        <button class="btn btn-outline-danger cmd remove" title="Remove Row" type="button">×</button>
-    </div>
-</div>
-<div class="form-group mb-3">
-    <label asp-for="Name" class="form-label"></label>
-    @{
-        var attributes = TodoItemValidator.GetValidationAttributeSet(nameof(Model.Name));
-        attributes.Add("class", "form-control");
-    }
-    @Html.TextBoxFor(m => m.Name, attributes)
+<fieldset class="mt-5 mb-3">
+    <legend>@nameof(TodoItem) @Model.Id</legend>
 
-</div>
-<div class="form-check form-group mb-3">
-    <input asp-for="IsComplete" class="form-check-input" checked="@Model.IsComplete" />
-    <label asp-for="IsComplete" class="form-check-label"></label>
-</div>
+    <div class="form-group mb-3 row">
+        <div class="col-md-1">
+            <label asp-for="Id" class="form-label"></label>
+        </div>
+        <div class="col-md-2">
+            <input asp-for="Id" class="form-control" readonly="readonly" type="text" value="@Model.Id"/>
+        </div>
+        <div class="col-md-1 offset-md-8">
+            <button class="btn btn-outline-danger cmd remove" title="Remove Row" type="button">×</button>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        @{
+            var attributes = TodoItemValidator.GetValidationAttributeSet(nameof(Model.Name));
+            attributes.Add("class", "form-control");
+        }
+        @Html.TextBoxFor(m => m.Name, attributes)
+
+    </div>
+    <div class="form-check form-group mb-3">
+        <input asp-for="IsComplete" class="form-check-input" checked="@Model.IsComplete"/>
+        <label asp-for="IsComplete" class="form-check-label"></label>
+    </div>
+</fieldset>

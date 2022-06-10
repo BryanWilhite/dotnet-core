@@ -20,3 +20,6 @@ body {
 .form-group .btn-primary {
   width: 7em;
 }
+.save-status {
+  line-height: 0;
+}
