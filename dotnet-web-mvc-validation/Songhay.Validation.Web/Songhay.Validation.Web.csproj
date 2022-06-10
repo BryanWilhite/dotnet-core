@@ -10,4 +10,10 @@
     <PackageReference Include="FluentValidation" Version="11.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+  </ItemGroup>
+
 </Project>

@@ -31,7 +31,7 @@ public class TodosController : Controller
     // declaring [ValidateAntiForgeryToken] will cause a bad request because no token is passed
     public IActionResult AddRow(int id, string name) // these arguments were mapped from a plain-old JS object
     {
-        return PartialView("_TodoItem", new TodoItem { Name = "[New Item]" });
+        return PartialView("EditorTemplates/TodoItem", new TodoItem { Name = "[New Item]" });
     }
 
     [HttpPost]
