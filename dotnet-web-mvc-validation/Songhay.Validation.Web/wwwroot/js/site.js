@@ -102,7 +102,7 @@
         $('#cmd-add', todosForm).click(_ => {
             const group = $('#todo-items-group');
             const tokenName = '__RequestVerificationToken';
-            const token = $(`[name=${tokenName}]`).val();
+            const token = $(`input[type="hidden"][name=${tokenName}]`, todosForm).val();
             const fieldsets = $('fieldset', group);
             const ids = [];
             fieldsets.each((i, fieldset) => {

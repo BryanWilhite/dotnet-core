@@ -77,7 +77,7 @@ More than half of the members summarized above have _nothing_ to do with busines
 
 #### Microsoft collection-item naming conventions
 
-When you want to pass a collection via `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)], then you _must_ use `@Html.EditorFor` instead of awaiting `Html.PartialAsync`.
+When you want to pass a collection via `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)], then you _must_ use `@Html.EditorFor` instead of awaiting `Html.PartialAsync` because of the conventions around how Microsoft names `id` and `name` attributes. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
 
 #### the validation UX of Bootstrap
 
@@ -100,9 +100,13 @@ fieldsets.each((i, fieldset) => {
 const maxId = Math.max(...ids);
 ```
 
-This handler also showed me the way of explicitly passing `__RequestVerificationToken`, according to [a StackOverflow answer](https://stackoverflow.com/a/2906780/22944) from 2010.
+This handler also showed me the way of explicitly passing `__RequestVerificationToken`, according to [a StackOverflow answer](https://stackoverflow.com/a/2906780/22944) from 2010:
 
 ```javascript
+const token = $(`input[type="hidden"][name=${tokenName}]`, todosForm).val();
+
+//…
+
 $.ajax({
     url: '../../Todos/AddRow/',
     type: 'POST',
@@ -136,13 +140,19 @@ if (todosForm.validate)
 }
 ```
 
-Instead of JSON, we can keep things simpler with `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)].
+Instead of passing all data as JSON, we can keep things simpler with `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)].
 
 #### none of the `$.ajax` calls specify a MIME type
 
+When the `#cmd-add` request is sent to the server it is `Content-Type: application/x-www-form-urlencoded; charset=UTF-8` but the response is `text/html; charset=utf-8` which goes all the way back to my 20th-century times with ASP on IIS, sending XHTML from SQL Server XML on a bandwagon Microsoft called _dynamic HTML_ and Google would later call, _AJAX_.
+
+When the `#cmd-save` request is sent, it is also `application/x-www-form-urlencoded` (because of the use of `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)]) but no content is returned, only a 200 (OK) status which reminds me of my turn-of-the-century salad days with ASP.NET Web API. But in those salad days, I would have specified _everything_ in `application/json` which forces me to define a bunch of client-side types.
+
+By not specifying an `$.ajax` MIME type, the content-negotiation features of ASP.NET take over and can make life easier for less experienced developers (or developers who are not yet into micro-services or RESTful APIs) while not sacrificing flexibility.
+
 #### ‘advanced’ use of `String.prototype.replace()`
 
-I am a bit embarrassed to admit that that not only do I not use the regular expression flavor of `replace` very often but I had no idea there was a “replacer” function feature [📖 [docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)].
+I am a bit embarrassed to admit that not only do I _not_ use the regular expression flavor of `replace` very often but I had no idea there was a “replacer” function feature [📖 [docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)]:
 
 ```javascript
 const regex = /[\[_](\d+)[_\]]/
@@ -166,32 +176,6 @@ On the server side:
 - use FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)] (and FluentValidation.AspNetCore [[GitHub](https://github.com/FluentValidation/FluentValidation)]) with static methods in classes implementing `AbstractValidator<T>` that emit form validation attributes
 - test `AbstractValidator<T>` classes with help from Bogus [[GitHub](https://github.com/bchavez/Bogus)] and AutoBogus [[GitHub](https://github.com/nickdodd79/AutoBogus)]
 - prevent unnecessary server-side validation (and redundantly saving data) with Compare-Net-Objects [[GitHub](https://github.com/GregFinzer/Compare-Net-Objects)]
-
-### to benefit from unobtrusive validation, prefer `Html.EditorFor` over `Html.PartialAsync`
-
-Because we are using a `TodoList` which contains a list of `TodoItem` we _must_ use `Html.EditorFor` which can be considered a perceived performance loss because we effectively _must_ load a potentially large Web page with many, many partials _synchronously_<sup>1</sup>, losing the benefits of `Html.PartialAsync`. This list of `TodoItem` is a _child_ collection that must be indexed in order to meet unobtrusive validation conventions. “[Collection Editing with MVC](https://www.abstractmethod.co.uk/blog/2017/12/collection-editing-with-mvc/)” details these conventions.
-
-When it is possible to use `Html.PartialAsync`, the caveat here is to avoid using markup like this:
-
-```html
-<div asp-validation-summary="All" class="text-danger"></div>
-```
-
-My work is showing me that we should prefer the following instead:
-
-```csharp
-@Html.ValidationSummary(false, "", new { @class = "text-danger" })
-```
-
-Additionally, we should prefer using `@Html.ValidationMessage` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessage?view=aspnet-mvc-5.2)] or `@Html.ValidationMessageFor` [📖 [docs](https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.html.validationextensions.validationmessagefor?view=aspnet-mvc-5.2)] over this:
-
-```html
-<span asp-validation-for="Name" class="text-danger"></span>
-```
-
-___
-
-<sup>1</sup> <small>The `EditorFor<TResult>` [method](https://github.com/dotnet/aspnetcore/blob/c85baf8db0c72ae8e68643029d514b2e737c9fae/src/Mvc/Mvc.ViewFeatures/src/HtmlHelperOfT.cs#L192) calls the `GenerateEditor` [method](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/HtmlHelper.cs#L897) which returns an instance of the internal `TemplateBuilder` [class](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateBuilder.cs#L14), building a `TemplateRenderer` which features a `Render` method, using a [render Task](https://github.com/dotnet/aspnetcore/blob/f0c7d0b7fea0c94b362af6579ce45928c8421846/src/Mvc/Mvc.ViewFeatures/src/TemplateRenderer.cs#L139) that is made synchronous with the old, `.GetAwaiter().GetResult()` business.</small>
 
 ## other validation-related notes
 
