@@ -161,12 +161,12 @@ let dataPage model (username: string) dispatch =
                 Main.EmptyData().Elt()
             | Some books ->
                 forEach books <| fun book ->
-                    tr [] [
-                        td [] [text book.title]
-                        td [] [text book.author]
-                        td [] [text (book.publishDate.ToString("yyyy-MM-dd"))]
-                        td [] [text book.isbn]
-                    ])
+                    tr {
+                        td { book.title }
+                        td { book.author }
+                        td { book.publishDate.ToString("yyyy-MM-dd") }
+                        td { book.isbn }
+                    })
         .Elt()
 
 let signInPage model dispatch =
@@ -176,7 +176,7 @@ let signInPage model dispatch =
         .SignIn(fun _ -> dispatch SendSignIn)
         .ErrorNotification(
             cond model.signInFailed <| function
-            | false -> empty
+            | false -> empty()
             | true ->
                 Main.ErrorNotification()
                     .HideClass("is-hidden")
@@ -194,11 +194,11 @@ let menuItem (model: Model) (page: Page) (text: string) =
 
 let view model dispatch =
     Main()
-        .Menu(concat [
+        .Menu(concat {
             menuItem model Home "Home"
             menuItem model Counter "Counter"
             menuItem model Data "Download data"
-        ])
+        })
         .Body(
             cond model.page <| function
             | Home -> homePage model dispatch
@@ -210,7 +210,7 @@ let view model dispatch =
         )
         .Error(
             cond model.error <| function
-            | None -> empty
+            | None -> empty()
             | Some err ->
                 Main.ErrorNotification()
                     .Text(err)
