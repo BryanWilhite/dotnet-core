@@ -141,16 +141,15 @@
 
             if (todosForm.validate)
             {
-                const controls = $('select,input', todosForm);
+                const validator = todosForm.validate();
 
-                for(let control of controls) {
-                    const isValid = $(control).valid();
+                // Call:
+                //    `$(input).rules('add', {});`
+                // or:
+                //    `$.validator.addClassRules('class-name', {});`
+                // when the UX needs it.
 
-                    if(!isValid) {
-                        control.focus();
-                        return;
-                    }
-                }
+                if(!validator.form()) { return; }
             }
 
             $(todosForm).find('.save-status').remove();

@@ -140,8 +140,29 @@ Both `__RequestVerificationToken` and `maxId` are passed as a plain-old JavaScri
 This handler features the most flexible use of jQuery Validation:
 
 ```javascript
+    if (todosForm.validate)
+    {
+        const validator = todosForm.validate();
+
+        // Call:
+        //    `$(input).rules('add', {});`
+        // or:
+        //    `$.validator.addClassRules('class-name', {});`
+        // when the UX needs it.
+
+        if(!validator.form()) { return; }
+    }
+```
+
+The use of `validator.form` eliminates the need to use a `button` or `input` of type `submit` which could make browser back-button UX problematic. A `validator.form` call also displays multiple validation errors at once.
+
+When showing multiple validation errors is not preferred, the following pattern is an alternative:
+
+```javascript
 if (todosForm.validate)
 {
+    todosForm.validate();
+
     const controls = $('select,input', todosForm);
 
     for(let control of controls) {
@@ -155,7 +176,7 @@ if (todosForm.validate)
 }
 ```
 
-This controls-level validation is useful for a form with controls that should _not_ be validated (which is _not_ what we have here in this sample).
+This ‘controls’-level validation is useful when a form has input elements that should _not_ be validated (but the formal way to do this is with the `ignore` selector [📖 [docs](https://jqueryvalidation.org/validate/#ignore)]).
 
 Instead of passing all data as JSON, we keep things simpler with `serializeArray` from jQuery [📖 [docs](https://api.jquery.com/serializeArray/#serializeArray)].
 
@@ -268,6 +289,8 @@ The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.Begin
 
 - [according to Wikipedia](https://en.wikipedia.org/wiki/ASP.NET_MVC), the final release of ASP.NET MVC was 2022-04-12
 - [jqueryvalidation.org](https://jqueryvalidation.org/)
+- “[The Most Indispensable jQuery Form Validation Reference Guide](https://www.javascript-coder.com/form-validation/jquery-form-validation-guide/)”
+- jQuery Validation: with `.rules()` validation for datalist [[CodePen](https://codepen.io/rasx/pen/RwQdBzO)]
 - Form Helper [[GitHub](https://github.com/sinanbozkus/FormHelper)] [[Form Helper sample project](https://github.com/sinanbozkus/fluent-validation-with-form-helper/tree/master/StudentProject)]
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
