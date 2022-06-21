@@ -173,4 +173,8 @@ and
 
 In the `RemoveRow` button, notice that `asp-route-itemId` is being used, mapping to `int itemId` on the `RemoveRow` controller method. I used `itemId` instead of `id` to prevent confusing ASP.NET Core as it would not be sure that I intend to pass `TodoList.Id` or `TodoItem.Id` (it will choose the former).
 
+## related links
+
+- “[Setting up jQuery Unobtrusive Validation](https://www.mobzystems.com/blog/setting-up-jquery-unobtrusive-validation/)”
+
 @[BryanWilhite](https://twitter.com/BryanWilhite)
