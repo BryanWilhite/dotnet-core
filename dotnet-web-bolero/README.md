@@ -10,13 +10,13 @@
 dotnet new -i Bolero.Templates
 ```
 
-From the [`dotnet-web-bolero`](../dotnet-web-bolero) directory:
+From the `dotnet-web-bolero` [directory](../dotnet-web-bolero):
 
 ```shell
 dotnet new bolero-app -o MyBolero.One
 ```
 
-From the [`MyBolero.One.Server`](./MyBolero.One/src/MyBolero.One.Server) directory:
+From the `MyBolero.One.Server` [directory](./MyBolero.One/src/MyBolero.One.Server):
 
 ```shell
 dotnet run --project MyBolero.One.Server.fsproj
@@ -32,7 +32,7 @@ dotnet run --project MyBolero.One.Server.fsproj
 >
 ><https://fsbolero.io/docs/Hosting#configuring-hosted-modes>
 
-## Bolero uses the Bulma CSS framework
+## Bolero showcases the Bulma CSS framework
 
 <https://bulma.io/>
 
