@@ -30,5 +30,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions"
+    "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
+    "FSharp.showExplorerOnStartup": false
 }
