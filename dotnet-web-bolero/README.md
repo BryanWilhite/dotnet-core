@@ -36,6 +36,16 @@ From the `MyBolero.Two.Client` [directory](./MyBolero.Two/src/MyBolero.Two.Clien
 dotnet run --project MyBolero.Two.Client.fsproj
 ```
 
+### publish `MyBolero.Two.Client`
+
+Publishing `MyBolero.Two.Client` makes it available to any static HTML application.
+
+From the `MyBolero.Two.Client` [directory](./MyBolero.Two/src/MyBolero.Two.Client):
+
+```shell
+dotnet publish -c Release -o bin/publish
+```
+
 ## Bolero pre-renders HTML by default
 
 >`prerendered: bool` [passed to `AddBoleroHost`] determines whether the dynamic Bolero content is prerendered.
