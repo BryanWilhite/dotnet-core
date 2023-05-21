@@ -22,6 +22,20 @@ From the `MyBolero.One.Server` [directory](./MyBolero.One/src/MyBolero.One.Serve
 dotnet run --project MyBolero.One.Server.fsproj
 ```
 
+## setup (without server)
+
+From the `dotnet-web-bolero` [directory](../dotnet-web-bolero):
+
+```shell
+dotnet new bolero-app -s=false -o MyBolero.Two
+```
+
+From the `MyBolero.Two.Client` [directory](./MyBolero.Two/src/MyBolero.Two.Client):
+
+```shell
+dotnet run --project MyBolero.Two.Client.fsproj
+```
+
 ## Bolero pre-renders HTML by default
 
 >`prerendered: bool` [passed to `AddBoleroHost`] determines whether the dynamic Bolero content is prerendered.
