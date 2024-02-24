@@ -142,6 +142,8 @@ let view model dispatch =
 type MyApp() =
     inherit ProgramComponent<Model, Message>()
 
+    override _.CssScope = CssScopes.MyApp
+
     [<Inject>]
     member val HttpClient = Unchecked.defaultof<HttpClient> with get, set
 
