@@ -92,4 +92,4 @@ The need for the `rm` command above reveals the downside of using `sudo` to run 
 >
 >—John Zabroski [[StackOverflow](https://stackoverflow.com/questions/59006360/jenkins-msbuild-fails-error-netsdk1064-package-microsoft-codeanalysis-analyzer)]
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

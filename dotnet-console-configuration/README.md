@@ -50,4 +50,4 @@ We can see all of this unfold in the `Program.cs` [file](./Songhay.Configuration
 * `IConfiguration` Interface [[docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfiguration?view=dotnet-plat-ext-5.0)]
 * `CommandLine` configuration provider [[docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration?tabs=basicconfiguration#commandline-configuration-provider)]
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

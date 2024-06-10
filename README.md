@@ -13,4 +13,4 @@ Here’s my collection of self-educational samples on [.NET Core](https://dotnet
 
 The [dotnet templates site](http://dotnetnew.azurewebsites.net/) allows us to search for templates.
 
-@[BryanWilhite](https://twitter.com/bryanwilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

@@ -80,4 +80,4 @@ dotnet test \
     --verbosity:normal
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

@@ -60,4 +60,4 @@ dotnet publish -c Release -o bin/publish
 
 <https://bulma.io/>
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

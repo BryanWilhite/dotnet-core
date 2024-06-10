@@ -238,4 +238,4 @@ Hello, yup. This HTTP triggered function executed successfully.
 
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

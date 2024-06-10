@@ -46,4 +46,4 @@ devServer: {
 
 For more detail, see the `webpack` [docs](https://webpack.js.org/configuration/dev-server/#devserver).
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

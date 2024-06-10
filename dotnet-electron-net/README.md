@@ -14,4 +14,4 @@ electronize init
 electronize start
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

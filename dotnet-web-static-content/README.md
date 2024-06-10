@@ -59,4 +59,4 @@ dotnet build Songhay.StaticOne/Songhay.StaticOne.sln
 dotnet run --project Songhay.StaticOne/Songhay.StaticOne/Songhay.StaticOne.csproj
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)

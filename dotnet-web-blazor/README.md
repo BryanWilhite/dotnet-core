@@ -94,4 +94,4 @@ AppDomain.CurrentDomain.UnhandledException += (_, error) =>
 app.Run();
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
