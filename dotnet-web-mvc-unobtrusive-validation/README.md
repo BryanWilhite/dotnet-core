@@ -177,4 +177,4 @@ In the `RemoveRow` button, notice that `asp-route-itemId` is being used, mapping
 
 - “[Setting up jQuery Unobtrusive Validation](https://www.mobzystems.com/blog/setting-up-jquery-unobtrusive-validation/)”
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

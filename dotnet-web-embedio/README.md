@@ -78,4 +78,4 @@ The contents of the `wwwroot` directory are copied if newer upon build because o
 </ItemGroup>
 ```
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

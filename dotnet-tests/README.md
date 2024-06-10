@@ -13,4 +13,4 @@ dotnet sln Songhay.DotNet/Songhay.DotNet.sln add \
     Songhay.DotNet/Songhay.DotNet.Tests/Songhay.DotNet.Tests.csproj
 ```
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

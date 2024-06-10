@@ -28,4 +28,4 @@ dotnet run --project Songhay.GiraffeOne/Songhay.GiraffeOne.fsproj
 * “[Functional ASP.NET Core part 2—Hello world from Giraffe](https://dusted.codes/functional-aspnet-core-part-2-hello-world-from-giraffe)”
 * “[Getting Started with ASP.NET Core Giraffe](https://www.youtube.com/watch?v=HyRzsPZ0f0k&t=42s)”
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

@@ -293,4 +293,4 @@ The `System.Web.Mvc.Ajax` namespace contained helpers like `AjaxExtensions.Begin
 - jQuery Validation: with `.rules()` validation for datalist [[CodePen](https://codepen.io/rasx/pen/RwQdBzO)]
 - Form Helper [[GitHub](https://github.com/sinanbozkus/FormHelper)] [[Form Helper sample project](https://github.com/sinanbozkus/fluent-validation-with-form-helper/tree/master/StudentProject)]
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

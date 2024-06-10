@@ -25,4 +25,4 @@ dotnet new -i TryPhotino.VSCode.Project.Templates\
 
 Ensure that `dotnet run` is invoked from a desktop terminal. The Visual Studio Code terminal for example will not work.
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

@@ -2,4 +2,4 @@
 
 I have opened [a branch](https://github.com/BryanWilhite/dotnet-core/tree/example/dotnet-web-mvc-angular-forms) dedicated to updating this sample.
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

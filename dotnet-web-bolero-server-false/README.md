@@ -61,4 +61,4 @@ let update (http: HttpClient) message model =
 
 The use of `http.GetFromJsonAsync` is, again, a plain-old [.NET extension method](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasync?view=net-6.0) that appeared in .NET 5.0.
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

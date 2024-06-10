@@ -14,4 +14,4 @@ Running `dotnet run` from the project directory should generate [an HTML represe
 * “[Roadmap of SyndicationFeed #2098](https://github.com/dotnet/wcf/issues/2098)”
 * “[Please add support for System.ServiceModel.Syndication #76](https://github.com/dotnet/wcf/issues/76)”
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

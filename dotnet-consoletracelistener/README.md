@@ -9,4 +9,4 @@ dotnet sln Songhay.ListenerTwo/Songhay.ListenerTwo.sln add \
     Songhay.ListenerTwo/Songhay.ListenerTwo.Shell/Songhay.ListenerTwo.Shell.csproj
 ```
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

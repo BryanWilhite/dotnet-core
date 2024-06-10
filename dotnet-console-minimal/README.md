@@ -10,4 +10,4 @@ I have also included the F# version of the `hwapp` in the [`hwapp-fsharp`](./hwa
 dotnet new console -o hwapp-fsharp -lang F#
 ```
 
-🐙🐱[BryanWilhite](https://github.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
