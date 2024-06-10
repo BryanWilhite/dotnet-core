@@ -3,7 +3,6 @@
 open System
 open Avalonia
 open Avalonia.ReactiveUI
-open MyFSharpMvvmApp
 
 module Program =
 
@@ -12,6 +11,7 @@ module Program =
         AppBuilder
             .Configure<App>()
             .UsePlatformDetect()
+            .WithInterFont()
             .LogToTrace(areas = Array.empty)
             .UseReactiveUI()
 
