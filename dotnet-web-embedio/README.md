@@ -44,7 +44,7 @@ static WebServer GetWebServer(string url)
     var server = new WebServer(o => o
         .WithUrlPrefix(url)
         .WithMode(HttpListenerMode.EmbedIO))
-        .WithStaticFolder( // Add static files after other modules to avoid conflicts
+        .WithStaticdirectory( // Add static files after other modules to avoid conflicts
             "/",
             $"{AppDomain.CurrentDomain.BaseDirectory}wwwroot",
             true,

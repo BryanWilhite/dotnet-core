@@ -88,7 +88,7 @@ dotnet build
 
 The need for the `rm` command above reveals the downside of using `sudo` to run benchmarks. I look forward to avoiding this in future. It is recommended to rebuild without `sudo` permissions to return to the expected, design-time development experience.
 
->I just delete the whole directory so that I manually clean the `bin/obj/packages` directorys. That seems to do the trick.
+>I just delete the whole directory so that I manually clean the `bin/obj/packages` directories. That seems to do the trick.
 >
 >—John Zabroski [[StackOverflow](https://stackoverflow.com/questions/59006360/jenkins-msbuild-fails-error-netsdk1064-package-microsoft-codeanalysis-analyzer)]
 

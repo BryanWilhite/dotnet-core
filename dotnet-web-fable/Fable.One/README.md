@@ -20,7 +20,7 @@ Any modification you do to the F# code will be reflected in the web page after s
 
 ## Bundling for release
 
-Run the following command to compile and bundle up all your F# code into one Javascript file: `npm run build`. The compiled output ends up in the `public` folder under the name `bundle.js`.
+Run the following command to compile and bundle up all your F# code into one Javascript file: `npm run build`. The compiled output ends up in the `public` directory under the name `bundle.js`.
 
 ## Project structure
 
@@ -34,8 +34,8 @@ JS dependencies are declared in `package.json`, while `package-lock.json` is a l
 
 ### F#
 
-The sample only contains two F# files: the project (.fsproj) and a source file (.fs) in the `src` folder.
+The sample only contains two F# files: the project (.fsproj) and a source file (.fs) in the `src` directory.
 
 ### Web assets
 
-The `index.html` file and other assets like an icon can be found in the `public` folder.
+The `index.html` file and other assets like an icon can be found in the `public` directory.

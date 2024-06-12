@@ -25,7 +25,7 @@ The following templates should be added:
 
 ## generating and running `avalonia.app`
 
-From the `dotnet-avalonia` [folder](../dotnet-avalonia):
+From the `dotnet-avalonia` [directory](../dotnet-avalonia):
 
 ```shell
 dotnet new avalonia.app -o MyApp
@@ -35,7 +35,7 @@ dotnet run
 
 ## generating and running `avalonia.mvvm`
 
-From the `dotnet-avalonia` [folder](../dotnet-avalonia):
+From the `dotnet-avalonia` [directory](../dotnet-avalonia):
 
 ```shell
 dotnet new avalonia.mvvm -o MyMvvmApp
@@ -45,7 +45,7 @@ dotnet run
 
 ## generating and running `avalonia.mvvm` (for F#)
 
-From the `dotnet-avalonia` [folder](../dotnet-avalonia):
+From the `dotnet-avalonia` [directory](../dotnet-avalonia):
 
 ```shell
 dotnet new avalonia.mvvm -o MyFSharpMvvmApp -lang F#
