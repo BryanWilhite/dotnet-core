@@ -42,7 +42,6 @@ func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"
 
 ## run the function locally
 
-
 From the `/dotnet-azure-functions-quickstart/LocalFunctionProj` [directory](../dotnet-azure-functions-quickstart/LocalFunctionProj):
 
 ```bash
