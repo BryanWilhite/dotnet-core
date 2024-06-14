@@ -2,12 +2,9 @@
 using InMemoryOne.Models;
 
 
-namespace InMemoryOne.Repository
-{
-    public class BloggingContext : DbContext
-    {
-        public BloggingContext(DbContextOptions<BloggingContext> options) : base(options) { }
+namespace InMemoryOne.Repository;
 
-        public DbSet<Blog> Blogs { get; set; }
-    }
+public class BloggingContext(DbContextOptions<BloggingContext> options) : DbContext(options)
+{
+    public DbSet<Blog> Blogs { get; set; }
 }
