@@ -1,6 +1,6 @@
 # Entity Framework Core with In-Memory Provider
 
-This exercise can be regarded as a minimalist installation of Entity Framework Core [📖 [docs](https://learn.microsoft.com/en-us/ef/core/)]. The goals here are:
+This exercise can be regarded as a ‘minimalist’ installation of Entity Framework Core [📖 [docs](https://learn.microsoft.com/en-us/ef/core/)]. The goals here are:
 
 - to define a repository, a `DbContext` [📖 [docs](https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext)], with only one `DbSet<TEntity>` [📖 [docs](https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-8.0)]
 - to define a single entity, `Blog`, that is a plain-old .NET class (no custom Entity Framework adornment)
@@ -15,13 +15,13 @@ dotnet new xunit -o InMemoryOne/InMemoryOne.Tests
 
 dotnet add \
     InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
-    reference InMemoryOne.Models/InMemoryOne.Models.csproj
+    reference InMemoryOne/InMemoryOne.Models/InMemoryOne.Models.csproj
 dotnet add \
     InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
-    reference InMemoryOne.Models/InMemoryOne.Models.csproj
+    reference InMemoryOne/InMemoryOne.Models/InMemoryOne.Models.csproj
 dotnet add \
     InMemoryOne/InMemoryOne.Tests/InMemoryOne.Tests.csproj \
-    reference InMemoryOne.Repository/InMemoryOne.Repository.csproj
+    reference InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj
 
 dotnet add \
     InMemoryOne/InMemoryOne.Repository/InMemoryOne.Repository.csproj \
