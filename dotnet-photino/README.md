@@ -23,6 +23,6 @@ dotnet new -i TryPhotino.VSCode.Project.Templates\
 && dotnet run
 ```
 
-Ensure that `dotnet run` is invoked from a desktop terminal. The Visual Studio Code terminal for example will not work.
+Note that the `photinoapp` command generates a .NET 6.0 project as of this writing and `'--framework' is not a valid option` with this `dotnet new` command.
 
 [Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
