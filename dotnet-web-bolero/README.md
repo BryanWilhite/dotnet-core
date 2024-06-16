@@ -1,10 +1,16 @@
 # Bolero: F# in WebAssembly
 
-<https://fsbolero.io/>
+>F# in WebAssembly
+>
+>Develop SPAs with the full power of F# and .NET.
+>
 
-<https://github.com/fsbolero/bolero>
+## <https://fsbolero.io/>
 
-## setup
+- **GitHub:** <https://github.com/fsbolero/bolero>
+- **lead GitHub contributor:** [Loïc Denuzière](https://github.com/Tarmil)
+
+## setup with ASP.NET server
 
 ```shell
 dotnet new -i Bolero.Templates
@@ -13,13 +19,13 @@ dotnet new -i Bolero.Templates
 From the `dotnet-web-bolero` [directory](../dotnet-web-bolero):
 
 ```shell
-dotnet new bolero-app -o MyBolero.One
+dotnet new bolero-app -o MyBolero.Server
 ```
 
-From the `MyBolero.One.Server` [directory](./MyBolero.One/src/MyBolero.One.Server):
+From the `MyBolero.Server.Server` [directory](./MyBolero.Server/src/MyBolero.Server.Server):
 
 ```shell
-dotnet run --project MyBolero.One.Server.fsproj
+dotnet run --project MyBolero.Server.Server.fsproj
 ```
 
 ## setup (without server)
@@ -27,26 +33,26 @@ dotnet run --project MyBolero.One.Server.fsproj
 From the `dotnet-web-bolero` [directory](../dotnet-web-bolero):
 
 ```shell
-dotnet new bolero-app -s=false -o MyBolero.Two
+dotnet new bolero-app -s=false -o MyBolero.WebAssembly
 ```
 
-From the `MyBolero.Two.Client` [directory](./MyBolero.Two/src/MyBolero.Two.Client):
+From the `MyBolero.WebAssembly.Client` [directory](./MyBolero.WebAssembly/src/MyBolero.WebAssembly.Client):
 
 ```shell
-dotnet run --project MyBolero.Two.Client.fsproj
+dotnet run --project MyBolero.WebAssembly.Client.fsproj
 ```
 
-### publish `MyBolero.Two.Client`
+### publish `MyBolero.WebAssembly.Client`
 
-Publishing `MyBolero.Two.Client` makes it available to any static HTML application.
+Publishing `MyBolero.WebAssembly.Client` makes it available to any static HTML application.
 
-From the `MyBolero.Two.Client` [directory](./MyBolero.Two/src/MyBolero.Two.Client):
+From the `MyBolero.WebAssembly.Client` [directory](./MyBolero.WebAssembly/src/MyBolero.WebAssembly.Client):
 
 ```shell
 dotnet publish -c Release -o bin/publish
 ```
 
-## Bolero pre-renders HTML by default
+## Bolero (with server) pre-renders HTML by default
 
 >`prerendered: bool` [passed to `AddBoleroHost`] determines whether the dynamic Bolero content is prerendered.
 >
@@ -56,8 +62,45 @@ dotnet publish -c Release -o bin/publish
 >
 ><https://fsbolero.io/docs/Hosting#configuring-hosted-modes>
 
-## Bolero showcases the Bulma CSS framework
+## how the client-side-only version differs from the default setup
 
-<https://bulma.io/>
+The client-side-only (`-s=false`) Bolero project is closest to that of a classic SPA: no prerendering and no SEO possibilities.
+
+Instead of loading data with a _Remoting_ [📖 [docs](https://fsbolero.io/docs/Remoting)] concept, `-s=false` Bolero features the plain-old .NET `HttpClient`; the `WebAssemblyHostBuilder` adds it as a [scoped service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-6.0#overview-of-dependency-injection) in the `Startup.fs` [file](./Songhay.BoleroClientOnly/src/Songhay.BoleroClientOnly.Client/Startup.fs):
+
+```fsharp
+builder.Services.AddScoped<HttpClient>(fun _ ->
+    new HttpClient(BaseAddress = Uri builder.HostEnvironment.BaseAddress)) |> ignore
+```
+
+The elmish `update` function in the `Main.fs` [file](../dotnet-web-bolero/MyBolero.WebAssembly/src/MyBolero.WebAssembly.Client/Main.fs) therefore accepts `HttpClient` instead of a type related to Bolero-server Remoting:
+
+```fsharp
+let update (http: HttpClient) message model =
+    match message with
+    | SetPage page ->
+        { model with page = page }, Cmd.none
+
+    | Increment ->
+        { model with counter = model.counter + 1 }, Cmd.none
+    | Decrement ->
+        { model with counter = model.counter - 1 }, Cmd.none
+    | SetCounter value ->
+        { model with counter = value }, Cmd.none
+
+    | GetBooks ->
+        let getBooks() = http.GetFromJsonAsync<Book[]>("/books.json")
+        let cmd = Cmd.OfTask.either getBooks () GotBooks Error
+        { model with books = None }, cmd
+    | GotBooks books ->
+        { model with books = Some books }, Cmd.none
+
+    | Error exn ->
+        { model with error = Some exn.Message }, Cmd.none
+    | ClearError ->
+        { model with error = None }, Cmd.none
+```
+
+The use of `http.GetFromJsonAsync` is, again, a plain-old [.NET extension method](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasync?view=net-6.0) that appeared in .NET 5.0.
 
 [Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼

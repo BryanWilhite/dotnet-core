@@ -1,4 +1,4 @@
-module MyBolero.One.Client.Main
+module MyBolero.Server.Client.Main
 
 open System
 open Elmish

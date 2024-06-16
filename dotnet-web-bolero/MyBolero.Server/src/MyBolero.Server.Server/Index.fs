@@ -1,9 +1,9 @@
-module MyBolero.One.Server.Index
+module MyBolero.Server.Server.Index
 
 open Bolero
 open Bolero.Html
 open Bolero.Server.Html
-open MyBolero.One
+open MyBolero.Server
 
 let page = doctypeHtml {
     head {
@@ -13,7 +13,7 @@ let page = doctypeHtml {
         ``base`` { attr.href "/" }
         link { attr.rel "stylesheet"; attr.href "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" }
         link { attr.rel "stylesheet"; attr.href "css/index.css" }
-        link { attr.rel "stylesheet"; attr.href "MyBolero.One.Client.styles.css" }
+        link { attr.rel "stylesheet"; attr.href "MyBolero.Server.Client.styles.css" }
     }
     body {
         nav {

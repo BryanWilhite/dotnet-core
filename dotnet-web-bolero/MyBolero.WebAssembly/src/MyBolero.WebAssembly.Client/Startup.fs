@@ -1,4 +1,4 @@
-namespace Songhay.BoleroClientOnly.Client
+namespace MyBolero.WebAssembly.Client
 
 open Microsoft.AspNetCore.Components.WebAssembly.Hosting
 open Microsoft.Extensions.DependencyInjection

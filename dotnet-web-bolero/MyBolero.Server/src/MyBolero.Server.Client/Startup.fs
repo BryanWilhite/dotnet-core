@@ -1,4 +1,4 @@
-namespace MyBolero.One.Client
+namespace MyBolero.Server.Client
 
 open Microsoft.AspNetCore.Components.WebAssembly.Hosting
 open Bolero.Remoting.Client
