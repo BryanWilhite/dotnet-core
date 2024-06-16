@@ -44,7 +44,7 @@ static WebServer GetWebServer(string url)
     var server = new WebServer(o => o
         .WithUrlPrefix(url)
         .WithMode(HttpListenerMode.EmbedIO))
-        .WithStaticdirectory( // Add static files after other modules to avoid conflicts
+        .WithStaticFolder( // Add static files after other modules to avoid conflicts
             "/",
             $"{AppDomain.CurrentDomain.BaseDirectory}wwwroot",
             true,
@@ -64,11 +64,26 @@ static WebServer GetWebServer(string url)
 }
 ```
 
-## EmbedIO as a simple static file server (with Bolero WebAssembly App)
+Next, we will need a simple `/dotnet-web-embedio/hwapp/wwwroot` [directory](../dotnet-web-embedio/hwapp/wwwroot) with two files:
 
-The `hwapp-bolero` [directory](./hwapp-bolero) is exactly like the `hwapp` [directory](./hwapp) mentioned above—except `hwapp-bolero/wwwroot` contains the `wwwroot` directory from a `dotnet publish` command for an F# [Bolero project](https://github.com/BryanWilhite/dotnet-core/tree/master/dotnet-web-bolero).
+```console
+./hwapp/wwwroot/
+├── favicon.ico
+└── index.html
+```
 
-The contents of the `wwwroot` directory are copied if newer upon build because of the following `ItemGroup` element [📖 [docs](https://learn.microsoft.com/en-us/visualstudio/msbuild/itemgroup-element-msbuild?view=vs-2022#example)] in the `*.csproj` file:
+Finally, we will want to copy the `/wwwroot` directory to the .NET build root. This means declaring an `ItemGroup` in the `/dotnet-web-embedio/hwapp/hwapp.csproj` [file](../dotnet-web-embedio/hwapp/hwapp.csproj):
+
+```xml
+<ItemGroup>
+    <None Include=".\wwwroot\**\*">
+    <Link>wwwroot\%(RecursiveDir)/%(FileName)%(Extension)</Link>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
+```
+
+Alternatively, we can declare:
 
 ```xml
 <ItemGroup>
@@ -76,6 +91,12 @@ The contents of the `wwwroot` directory are copied if newer upon build because o
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
 </ItemGroup>
+```
+
+We run all of this from the `/dotnet-web-embedio/hwapp` [directory](../dotnet-web-embedio/hwapp):
+
+```bash
+dotnet run
 ```
 
 [Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
