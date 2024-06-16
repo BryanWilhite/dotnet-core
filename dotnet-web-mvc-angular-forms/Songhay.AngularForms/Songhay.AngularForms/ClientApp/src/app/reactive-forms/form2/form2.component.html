@@ -1,0 +1,8 @@
+<form [formGroup]="componentForm" [hidden]="success" (ngSubmit)="next()">
+
+  <button class="btn btn-primary" type="button" (click)="previous()" >Previous</button>
+
+  <formly-form [form]="componentForm" [fields]="fields" [model]="model"></formly-form>
+
+  <button class="btn btn-primary" type="button" (click)="next()" [disabled]="componentForm.invalid">Next</button>
+</form>

@@ -1,0 +1,146 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    },
+    "formly": {
+        "componentSet": {
+            "form1": {
+                "fields": [
+                    {
+                        "key": "email",
+                        "type": "input",
+                        "templateOptions": {
+                            "label": "email",
+                            "placeholder": "enter email",
+                            "required": true,
+                            "type": "email"
+                        }
+                    }
+                ]
+            },
+            "form2": {
+                "fields": [
+                    {
+                        "key": "phones",
+                        "type": "repeat-phone",
+                        "templateOptions": {
+                            "addText": "Add Phone Number"
+                        },
+                        "fieldArray": {
+                            "fieldGroupClassName": "phones row",
+                            "fieldGroup": [
+                                {
+                                    "key": "area",
+                                    "type": "input",
+                                    "className": "col-sm-3",
+                                    "templateOptions": {
+                                        "maxLength": 3,
+                                        "placeholder": "area",
+                                        "required": true,
+                                        "type": "text"
+                                    }
+                                },
+                                {
+                                    "key": "prefix",
+                                    "type": "input",
+                                    "className": "col-sm-3",
+                                    "templateOptions": {
+                                        "maxLength": 3,
+                                        "placeholder": "prefix",
+                                        "required": true,
+                                        "type": "text"
+                                    }
+                                },
+                                {
+                                    "key": "line",
+                                    "type": "input",
+                                    "className": "col-sm-6",
+                                    "templateOptions": {
+                                        "maxLength": 4,
+                                        "placeholder": "line",
+                                        "required": true,
+                                        "type": "text"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "form3": {
+                "fields": [
+                    {
+                        "key": "password",
+                        "type": "input",
+                        "templateOptions": {
+                            "label": "Password",
+                            "minLength": 8,
+                            "pattern": "^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$",
+                            "required": true,
+                            "type": "password"
+                        }
+                    },
+                    {
+                        "key": "age",
+                        "type": "input",
+                        "templateOptions": {
+                            "label": "Age",
+                            "min": 18,
+                            "minLength": 2,
+                            "max": 65,
+                            "required": true,
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "model": {}
+    },
+    "weatherforecast": [
+        {
+            "date": "2021-02-23T10:20:49.7301501-08:00",
+            "temperatureC": 34,
+            "temperatureF": 93,
+            "summary": "Sweltering"
+        },
+        {
+            "date": "2021-02-24T10:20:49.7303497-08:00",
+            "temperatureC": 48,
+            "temperatureF": 118,
+            "summary": "Bracing"
+        },
+        {
+            "date": "2021-02-25T10:20:49.7303511-08:00",
+            "temperatureC": 34,
+            "temperatureF": 93,
+            "summary": "Cool"
+        },
+        {
+            "date": "2021-02-26T10:20:49.7303514-08:00",
+            "temperatureC": -19,
+            "temperatureF": -2,
+            "summary": "Balmy"
+        },
+        {
+            "date": "2021-02-27T10:20:49.7303526-08:00",
+            "temperatureC": 17,
+            "temperatureF": 62,
+            "summary": "Freezing"
+        }
+    ]
+}
