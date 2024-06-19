@@ -1,4 +1,4 @@
-namespace Songhay.ValidationWithMarkup.Web.Models;
+namespace Songhay.Todo.Models;
 
 public class TodoItem
 {

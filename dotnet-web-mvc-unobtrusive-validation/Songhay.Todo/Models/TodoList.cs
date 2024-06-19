@@ -1,4 +1,4 @@
-namespace Songhay.FluentValidation.Web.Models;
+namespace Songhay.Todo.Models;
 
 public class TodoList
 {

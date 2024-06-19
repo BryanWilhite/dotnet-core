@@ -1,5 +1,5 @@
 @using Songhay.ValidationWithMarkup.Web.Controllers
-@model Songhay.ValidationWithMarkup.Web.Models.TodoList
+@model Songhay.Todo.Models.TodoList
 
 @{
     ViewData["Title"] = $"TODO List ({Model.Id})";
@@ -8,8 +8,9 @@
 <h1>@ViewData["Title"]</h1>
 
 <form
-    asp-controller="@nameof(TodosController)" asp-action="@nameof(TodosController.Save)"
-    class="w-50" data-ajax="true" method="post">
+    asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+    asp-action="@nameof(TodosController.Save)"
+    class="w-50" data-ajax="true" data-ajax-method="post" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group mb-3 row">

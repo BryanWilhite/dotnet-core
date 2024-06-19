@@ -1,4 +1,4 @@
-namespace Songhay.FluentValidation.Web.Models;
+namespace Songhay.Todo.Models;
 
 public class TodosContext : ITodosContext
 {
@@ -36,7 +36,7 @@ public class TodosContext : ITodosContext
                         {
                             Id = 1,
                             Name = "Put on Pants",
-                            IsComplete = false
+                            IsComplete = true
                         },
                         new TodoItem
                         {

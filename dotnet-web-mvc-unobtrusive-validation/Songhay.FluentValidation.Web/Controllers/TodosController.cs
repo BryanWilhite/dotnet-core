@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Songhay.FluentValidation.Web.Models;
+using Songhay.Todo.Models;
 
 namespace Songhay.FluentValidation.Web.Controllers;
 
