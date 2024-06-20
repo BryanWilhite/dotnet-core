@@ -25,6 +25,8 @@ dotnet add \
     Songhay.Todo/Songhay.Todo.csproj \
     package FluentValidation
 
+touch Songhay.Todo/Assembly.cs
+
 mkdir Songhay.Todo/Models
 touch Songhay.Todo/Models/ITodosContext.cs
 touch Songhay.Todo/Models/TodoItem.cs
@@ -35,15 +37,33 @@ mkdir Songhay.Todo/Validators
 touch Songhay.Todo/Validators/TodoItemValidator.cs
 touch Songhay.Todo/Validators/TodoListValidator.cs
 
+dotnet new xunit -o Songhay.Todo.Tests
+del ./Songhay.Todo.Tests/UnitTest1.cs
+dotnet add \
+    Songhay.Todo.Tests/Songhay.Todo.Tests.csproj \
+    package AutoBogus
+dotnet add \
+    Songhay.Todo.Tests/Songhay.Todo.Tests.csproj \
+    reference ./Songhay.Todo/Songhay.Todo.csproj
+
+touch Songhay.Todo.Tests/AutoBogusUtility.cs
+
+mkdir Songhay.Todo.Tests/Validators
+touch Songhay.Todo.Tests/Validators/TodoItemValidatorTests.cs
+touch Songhay.Todo.Tests/Validators/TodoListValidatorTests.cs
+
 dotnet new sln -n Songhay.Validation
 dotnet sln Songhay.Validation.sln \
       add ./Songhay.Todo/Songhay.Todo.csproj
+dotnet sln Songhay.Validation.sln \
+      add ./Songhay.Todo.Tests/Songhay.Todo.Tests.csproj
 ```
 
 All of the blank files generated with the `touch` commands above have to be filled in by hand (I have already done this for you):
 
 ```console
 Songhay.Todo/
+├── Assembly.cs
 ├── Models
 │   ├── ITodosContext.cs
 │   ├── TodoItem.cs
@@ -52,6 +72,14 @@ Songhay.Todo/
 └── Validators
     ├── TodoItemValidator.cs
     └── TodoListValidator.cs
+```
+
+```console
+Songhay.Todo.Tests/
+├── AutoBogusUtility.cs
+└── Validators
+    ├── TodoItemValidatorTests.cs
+    └── TodoListValidatorTests.cs
 ```
 
 From the `dotnet-web-mvc-validation/` [directory](../dotnet-web-mvc-validation):

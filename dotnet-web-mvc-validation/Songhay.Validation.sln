@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Songhay.Todo", "Songhay.Tod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Songhay.Validation.Web", "Songhay.Validation.Web\Songhay.Validation.Web.csproj", "{CFD1E476-C45A-4892-A4A6-679D94D83365}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Songhay.Todo.Tests", "Songhay.Todo.Tests\Songhay.Todo.Tests.csproj", "{9CB5B7B4-2526-4E8A-8328-17EB6CA8E202}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{CFD1E476-C45A-4892-A4A6-679D94D83365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD1E476-C45A-4892-A4A6-679D94D83365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD1E476-C45A-4892-A4A6-679D94D83365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB5B7B4-2526-4E8A-8328-17EB6CA8E202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB5B7B4-2526-4E8A-8328-17EB6CA8E202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB5B7B4-2526-4E8A-8328-17EB6CA8E202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB5B7B4-2526-4E8A-8328-17EB6CA8E202}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

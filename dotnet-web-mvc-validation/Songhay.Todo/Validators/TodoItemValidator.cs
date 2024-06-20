@@ -5,8 +5,8 @@ namespace Songhay.Todo.Validators;
 
 public class TodoItemValidator: AbstractValidator<TodoItem>
 {
+    internal const int NameMaxLength = 32;
     const string RequiredMessage = "Value is required";
-    const int NameMaxLength = 32;
     static readonly string NameMaxLengthMessage = $"Value is limited to {NameMaxLength} characters.";
 
     public static IDictionary<string, object> GetValidationAttributeSet(string propertyName)
@@ -31,7 +31,7 @@ public class TodoItemValidator: AbstractValidator<TodoItem>
             .WithMessage(RequiredMessage)
             .NotEmpty()
             .WithMessage(RequiredMessage)
-            .MaximumLength(32)
+            .MaximumLength(NameMaxLength)
             .WithMessage(NameMaxLengthMessage)
             ;
     }
