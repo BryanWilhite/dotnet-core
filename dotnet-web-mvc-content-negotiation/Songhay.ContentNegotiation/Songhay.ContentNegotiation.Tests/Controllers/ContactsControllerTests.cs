@@ -1,73 +1,48 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Hosting;
-using Songhay.ContentNegotiation.OutputFormatters;
-using Songhay.Models;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Songhay.ContentNegotiation.Tests.Controllers
+namespace Songhay.ContentNegotiation.Tests.Controllers;
+
+public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
-    public class ContactsControllerTests
+    public ContactsControllerTests(ITestOutputHelper helper, WebApplicationFactory<Program> factory)
     {
-        public ContactsControllerTests(ITestOutputHelper helper)
-        {
-            this.testOutputHelper = helper;
-
-            var basePath = "../../../Songhay.ContentNegotiation";
-            basePath = ProgramAssemblyUtility.GetPathFromAssembly(this.GetType().Assembly, basePath);
-
-            builder = Program.CreateHostBuilder(args: null);
-            Assert.NotNull(builder);
-
-            builder
-                .ConfigureWebHost(hostBuilder =>
-                {
-                    hostBuilder.UseTestServer();
-                })
-                .ConfigureAppConfiguration((builderContext, configBuilder) =>
-                {
-                    Assert.NotNull(builderContext);
-
-                    var env = builderContext.HostingEnvironment;
-                    Assert.NotNull(env);
-
-                    env.ContentRootPath = $"{basePath}{Path.DirectorySeparatorChar}wwwroot";
-                    env.EnvironmentName = "Development";
-                });
-        }
-
-        [Theory]
-        [InlineData("api/contacts", VcardOutputFormatter.MimeType, "Content-Type")]
-        [InlineData("api/contacts", MimeTypes.ApplicationJson, "Content-Type")]
-        public async Task Path_Contacts_Test(string path, string requestedType, string expectedResponseHeaderKey)
-        {
-            var host = await builder.StartAsync();
-
-            var client = host.GetTestClient();
-
-            client.DefaultRequestHeaders.Add("Accept", requestedType);
-
-            var response = await client.GetAsync(path);
-            response.EnsureSuccessStatusCode();
-
-            var content = response.Content.ReadAsStringAsync().Result;
-            Assert.False(string.IsNullOrWhiteSpace(content), "The expected content in the response is not here.");
-
-            this.testOutputHelper.WriteLine($"raw content: `{content}`");
-
-            var hasExpectedHeader = response.Content.Headers
-                .TryGetValues(expectedResponseHeaderKey, out IEnumerable<string> headerValues);
-
-            Assert.True(hasExpectedHeader, "The expected header is not here.");
-            Assert.True(headerValues.Count() == 1, "The expected number of header values is not here.");
-            Assert.True(headerValues.First().StartsWith(requestedType), "The expected header value is not here.");
-        }
-
-        readonly IHostBuilder builder;
-        readonly ITestOutputHelper testOutputHelper;
+        _testOutputHelper = helper;
+        _factory = factory;
     }
+
+    [Theory]
+    [InlineData("api/contacts", "text/vcard", "Content-Type")]
+    [InlineData("api/contacts", "application/json", "Content-Type")]
+    public async Task Path_Contacts_Test(string route, string requestedType, string expectedResponseHeaderKey)
+    {
+        // arrange
+        HttpClient client = _factory.CreateClient();
+        client.DefaultRequestHeaders.Add("Accept", requestedType);
+
+        // act
+        HttpResponseMessage response = await client.GetAsync(route);
+        response.EnsureSuccessStatusCode();
+
+        // assert
+        string content = await response.Content.ReadAsStringAsync();
+        Assert.False(string.IsNullOrWhiteSpace(content), "The expected content in the response is not here.");
+
+        _testOutputHelper.WriteLine($"raw content: `{content}`");
+
+        var hasExpectedHeader = response.Content.Headers
+            .TryGetValues(expectedResponseHeaderKey, out IEnumerable<string> headerValues);
+
+        Assert.True(hasExpectedHeader, "The expected header is not here.");
+        Assert.True(headerValues.Count() == 1, "The expected number of header values is not here.");
+        Assert.True(headerValues.First().StartsWith(requestedType), "The expected header value is not here.");
+    }
+
+    readonly ITestOutputHelper _testOutputHelper;
+    readonly WebApplicationFactory<Program> _factory;
 }

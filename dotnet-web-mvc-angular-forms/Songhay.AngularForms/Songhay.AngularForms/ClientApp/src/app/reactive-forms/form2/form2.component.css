@@ -1,0 +1,10 @@
+form > button {
+    display: block;
+    margin: 2rem;
+    margin-left: 0;
+    width: 7em;
+}
+
+::ng-deep .row {
+    margin-bottom: 1rem;
+}
