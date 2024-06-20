@@ -1,15 +1,15 @@
-using System.Text;
 using FluentValidation;
+using Songhay.Todo.Models;
 
-namespace Songhay.Validation.Web.Models;
+namespace Songhay.Todo.Validators;
 
-public class TodoItemValidator: AbstractValidator<TodoItem>
+public class TodoListValidator: AbstractValidator<TodoList>
 {
     const string RequiredMessage = "Value is required";
-    const int NameMaxLength = 32;
+    const int NameMaxLength = 64;
     static readonly string NameMaxLengthMessage = $"Value is limited to {NameMaxLength} characters.";
 
-    public static IDictionary<string, object> GetValidationAttributeSet(string propertyName)
+    public static Dictionary<string, object> GetValidationAttributeSet(string propertyName)
     {
         var set = new Dictionary<string, object>();
 
@@ -24,15 +24,17 @@ public class TodoItemValidator: AbstractValidator<TodoItem>
         return set;
     }
 
-    public TodoItemValidator()
+    public TodoListValidator()
     {
         RuleFor(i => i.Name)
             .NotNull()
             .WithMessage(RequiredMessage)
             .NotEmpty()
             .WithMessage(RequiredMessage)
-            .MaximumLength(32)
+            .MaximumLength(NameMaxLength)
             .WithMessage(NameMaxLengthMessage)
             ;
+
+        RuleForEach(i => i.Items).SetValidator(new TodoItemValidator());
     }
 }

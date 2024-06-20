@@ -2,13 +2,15 @@
 
 This directory, [`dotnet-web-mvc-validation`](../dotnet-web-mvc-validation), represents the recommended way [ASP.NET Core](https://en.wikipedia.org/wiki/ASP.NET_Core) MVC should support validation with jQuery Validation by Jörn Zaefferer [📖 [docs](https://jqueryvalidation.org/documentation/)]. After a decade of avoiding this comprehensive study by working with SPAs, this sample represents my public recognition that jQuery [[GitHub](https://github.com/jquery)] (by the [OpenJS Foundation](https://openjsf.org/)) _still_ plays a default role in the surfacing of .NET validation solutions to the the Web.
 
-This is also a realization of the obvious: validation is the heart and soul of “full stack” enterprise development. There will _never_ be a widely-accepted single approach to validation. Most of the complexity in the full stack is related to validation. In this sample, I want to continue operating within the turn-of-the-century limitations of Microsoft’s MVC defaults, pulling away slightly from my bottom-rung, [unobtrusive validation sample](https://github.com/BryanWilhite/dotnet-core/tree/master/dotnet-web-mvc-unobtrusive-validation) which does not use any custom JavaScript/jQuery.
+This is also a realization of the obvious: validation is the heart and soul of “full stack” enterprise development. There will _never_ be a widely-accepted single approach to validation. Most of the complexity in the full stack is related to validation. In this sample, I want to continue operating within the turn-of-the-century limitations of Microsoft’s MVC defaults, pulling away slightly from my bottom-rung, [unobtrusive validation sample](https://github.com/BryanWilhite/dotnet-core/tree/main/dotnet-web-mvc-unobtrusive-validation) which does not use any custom JavaScript/jQuery.
 
 This sample approaches the following goals:
 
-- an editing experience with no post-backs, jQuery `$.ajax` only
+- an editing experience with no post-backs: jQuery `$.ajax` only
 - a design that does not need JavaScript/JSON interfaces to redundantly mirror server domain data
 - an editing UX featuring a single `form`, presenting a “master” `TodoList` over a collection of `TodoItem` detail, supporting adding/removing TODO items
+- clearly separating the TODO models and validators in a project based on my [unobtrusive validation models](https://github.com/BryanWilhite/dotnet-core/tree/main/dotnet-web-mvc-unobtrusive-validation/Songhay.Todo/Models)
+- providing test coverage for the TODO models and validators project
 
 Avoiding client-side types (custom JSON) makes this design simpler (but not useless). This encourages me to trust what Microsoft (and OpenJS Foundation) is offering out of the box. Simultaneously, the editing UX demands that collections of data be supported, increasing the complexity. Most of the custom JavaScript promised in this sample work toward this editing UX.
 
@@ -17,27 +19,57 @@ Avoiding client-side types (custom JSON) makes this design simpler (but not usel
 From the `dotnet-web-mvc-validation/` [directory](../dotnet-web-mvc-validation):
 
 ```bash
+dotnet new classlib -o Songhay.Todo
+del ./Songhay.Todo/Class1.cs
+dotnet add \
+    Songhay.Todo/Songhay.Todo.csproj \
+    package FluentValidation
+
+mkdir Songhay.Todo/Models
+touch Songhay.Todo/Models/ITodosContext.cs
+touch Songhay.Todo/Models/TodoItem.cs
+touch Songhay.Todo/Models/TodoList.cs
+touch Songhay.Todo/Models/TodosContext.cs
+
+mkdir Songhay.Todo/Validators
+touch Songhay.Todo/Validators/TodoItemValidator.cs
+touch Songhay.Todo/Validators/TodoListValidator.cs
+
 dotnet new sln -n Songhay.Validation
+dotnet sln Songhay.Validation.sln \
+      add ./Songhay.Todo/Songhay.Todo.csproj
+```
+
+All of the blank files generated with the `touch` commands above have to be filled in by hand (I have already done this for you):
+
+```console
+Songhay.Todo/
+├── Models
+│   ├── ITodosContext.cs
+│   ├── TodoItem.cs
+│   ├── TodoList.cs
+│   └── TodosContext.cs
+└── Validators
+    ├── TodoItemValidator.cs
+    └── TodoListValidator.cs
+```
+
+From the `dotnet-web-mvc-validation/` [directory](../dotnet-web-mvc-validation):
+
+```bash
 dotnet new mvc -o Songhay.Validation.Web
 dotnet sln Songhay.Validation.sln \
       add Songhay.Validation.Web/Songhay.Validation.Web.csproj
 
 dotnet add \
     Songhay.Validation.Web/Songhay.Validation.Web.csproj \
-    package FluentValidation
+    package FluentValidation.AspNetCore
 
 dotnet add \
     Songhay.Validation.Web/Songhay.Validation.Web.csproj \
-    package FluentValidation.AspNetCore
+    reference ./Songhay.Todo/Songhay.Todo.csproj
 
 touch Songhay.Validation.Web/Controllers/TodosController.cs
-
-touch Songhay.Validation.Web/Models/ITodosContext.cs
-touch Songhay.Validation.Web/Models/TodoItem.cs
-touch Songhay.Validation.Web/Models/TodoItemValidator.cs
-touch Songhay.Validation.Web/Models/TodoList.cs
-touch Songhay.Validation.Web/Models/TodoListValidator.cs
-touch Songhay.Validation.Web/Models/TodosContext.cs
 
 mkdir Songhay.Validation.Web/Views/Todos
 touch Songhay.Validation.Web/Views/Todos/Index.cshtml
@@ -62,7 +94,7 @@ To avoid polluting global scope in the turn-of-the-century jQuery time frame, we
 Along with the IIFE, the default `site.js` [file](./Songhay.Validation.Web/wwwroot/js/site.js) has the following members:
 
 | member | remarks |
-|- |-
+|- | - |
 | `formatNewFieldGroup` | a function that formats a new `fieldset`, appended by the `#cmd-add` click event; it ensures that Microsoft collection-item naming conventions are enforced (`Items_n__` for an `id` prefix and `Items[n].` for a `name` prefix ) |
 | `renumberFormGroup` | replaces the collection ordinal, _n_ for an `id` and for a `name` attribute |
 | `renumberFieldsets` | calls `renumberFormGroup` for every collection-item `fieldset` |
@@ -206,7 +238,7 @@ const input_id = input.attr('id').replace(regex, replacer);
 
 The `IValidator<T>` type comes from FluentValidation [[GitHub](https://github.com/FluentValidation/FluentValidation)]. My intent is to validate with an explicit statement in the `TodosController.Save` method instead of letting `FluentValidation.AspNetCore` add validation results to ModelState [📖 [docs](https://docs.fluentvalidation.net/en/latest/aspnet.html#using-the-validator-in-a-controller)].
 
-I am under the impression that `FluentValidation.AspNetCore` works best with [unobtrusive](https://github.com/BryanWilhite/dotnet-core/tree/master/dotnet-web-mvc-unobtrusive-validation) validation and should not be needed here. However, I am seeing unobtrusive style validation attributes _still_ showing up on the form when only `FluentValidation` is installed.
+I am under the impression that `FluentValidation.AspNetCore` works best with [unobtrusive](https://github.com/BryanWilhite/dotnet-core/tree/main/dotnet-web-mvc-unobtrusive-validation) validation and should not be needed here. However, I am seeing unobtrusive style validation attributes _still_ showing up on the form when only `FluentValidation` is installed.
 
 The first sentence in the `FluentValidation` ASP.NET Core [documentation](https://docs.fluentvalidation.net/en/latest/aspnet.html#asp-net-core) is quite clear:
 

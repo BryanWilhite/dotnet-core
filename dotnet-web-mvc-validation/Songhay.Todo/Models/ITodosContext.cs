@@ -1,4 +1,4 @@
-namespace Songhay.Validation.Web.Models;
+namespace Songhay.Todo.Models;
 
 public interface ITodosContext
 {

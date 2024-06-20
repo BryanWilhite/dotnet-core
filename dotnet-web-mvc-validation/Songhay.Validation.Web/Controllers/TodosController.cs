@@ -1,14 +1,11 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Songhay.Validation.Web.Models;
+using Songhay.Todo.Models;
 
 namespace Songhay.Validation.Web.Controllers;
 
 public class TodosController : Controller
 {
-    readonly ITodosContext _todosContext;
-    readonly IValidator<TodoList> _todosValidator;
-
     public TodosController(ITodosContext todosContext, IValidator<TodoList> todosValidator)
     {
         _todosContext = todosContext;
@@ -55,4 +52,7 @@ public class TodosController : Controller
 
         return Ok();
     }
+
+    readonly ITodosContext _todosContext;
+    readonly IValidator<TodoList> _todosValidator;
 }
