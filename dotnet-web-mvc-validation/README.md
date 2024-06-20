@@ -59,7 +59,7 @@ dotnet sln Songhay.Validation.sln \
       add ./Songhay.Todo.Tests/Songhay.Todo.Tests.csproj
 ```
 
-All of the blank files generated with the `touch` commands above have to be filled in by hand (I have already done this for you):
+All of the blank files generated with the `touch` commands above for `Songhay.Todo` have to be filled in by hand (I have already done this for you):
 
 ```console
 Songhay.Todo/
@@ -73,6 +73,8 @@ Songhay.Todo/
     ├── TodoItemValidator.cs
     └── TodoListValidator.cs
 ```
+
+All of the blank files generated with the `touch` commands above for `Songhay.Todo.Tests` have to be filled in by hand (I have already done this for you):
 
 ```console
 Songhay.Todo.Tests/
@@ -268,9 +270,9 @@ The `IValidator<T>` type comes from FluentValidation [[GitHub](https://github.co
 
 I am under the impression that `FluentValidation.AspNetCore` works best with [unobtrusive](https://github.com/BryanWilhite/dotnet-core/tree/main/dotnet-web-mvc-unobtrusive-validation) validation and should not be needed here. However, I am seeing unobtrusive style validation attributes _still_ showing up on the form when only `FluentValidation` is installed.
 
-The first sentence in the `FluentValidation` ASP.NET Core [documentation](https://docs.fluentvalidation.net/en/latest/aspnet.html#asp-net-core) is quite clear:
+The `FluentValidation` ASP.NET Core [documentation](https://docs.fluentvalidation.net/en/latest/aspnet.html#asp-net-core) is quite clear:
 
->FluentValidation supports integration with ASP.NET Core 3.1 or ASP.NET Core running on .NET 5. Once enabled, MVC will use FluentValidation to validate objects that are passed in to controller actions by the model binding infrastructure.
+>With automatic validation, FluentValidation is invoked automatically by ASP.NET earlier in the pipeline which allows models to be validated before a controller action is invoked.
 
 What is less clear is how to turn this behavior off, specifically the attribute generation.
 
