@@ -27,12 +27,12 @@ As of this writing, `dotnet new angular` has these Microsoft opinions:
 
 In addition to the typical Angular `npm` packages, Microsoft adds these:
 
-| package name | dependency type
+| package name | dependency type |
 | -| -|
-| `aspnet-prerendering` [📦 [npm](https://www.npmjs.com/package/aspnet-prerendering)] | `dependencies`
-| `bootstrap` [📦 [npm](https://www.npmjs.com/package/bootstrap)] | `dependencies`
-| `jquery` [📦 [npm](https://www.npmjs.com/package/jquery)] | `dependencies`
-| `popper.js` [📦 [npm](https://www.npmjs.com/package/@skyscanner/popper.js)] | `dependencies`
+| `aspnet-prerendering` [📦 [npm](https://www.npmjs.com/package/aspnet-prerendering)] | `dependencies` |
+| `bootstrap` [📦 [npm](https://www.npmjs.com/package/bootstrap)] | `dependencies` |
+| `jquery` [📦 [npm](https://www.npmjs.com/package/jquery)] | `dependencies` |
+| `popper.js` [📦 [npm](https://www.npmjs.com/package/@skyscanner/popper.js)] | `dependencies` |
 
 ## using `npx` in defiance of Google
 
