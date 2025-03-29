@@ -1,13 +1,8 @@
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit;
-
 namespace Songhay.ContentNegotiation.Tests;
 
-public class HostingEnvironmentTests : IClassFixture<WebApplicationFactory<Program>>
+public class HostingEnvironmentTests : IClassFixture<WebApplicationFactory<Startup>>
 {
-    public HostingEnvironmentTests(WebApplicationFactory<Program> factory)
+    public HostingEnvironmentTests(WebApplicationFactory<Startup> factory)
     {
         _factory = factory;
     }
@@ -28,5 +23,5 @@ public class HostingEnvironmentTests : IClassFixture<WebApplicationFactory<Progr
         Assert.Contains(expectedResponse, actual);
     }
 
-    readonly WebApplicationFactory<Program> _factory;
+    readonly WebApplicationFactory<Startup> _factory;
 }

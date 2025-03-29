@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit;
 using Xunit.Abstractions;
 
 namespace Songhay.ContentNegotiation.Tests.Controllers;
 
-public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Program>>
+public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Startup>>
 {
-    public ContactsControllerTests(ITestOutputHelper helper, WebApplicationFactory<Program> factory)
+    public ContactsControllerTests(ITestOutputHelper helper, WebApplicationFactory<Startup> factory)
     {
         _testOutputHelper = helper;
         _factory = factory;
@@ -44,5 +40,5 @@ public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Progr
     }
 
     readonly ITestOutputHelper _testOutputHelper;
-    readonly WebApplicationFactory<Program> _factory;
+    readonly WebApplicationFactory<Startup> _factory;
 }
