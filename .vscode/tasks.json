@@ -249,7 +249,7 @@
             "type": "func",
             "dependsOn": "build (functions)",
             "options": {
-                "cwd": "${workspaceFolder}/dotnet-azure-functions-quickstart/My.Functions/bin/Debug/net6.0"
+                "cwd": "${workspaceFolder}/dotnet-azure-durable-functions-quickstart/bin/Debug/net10.0"
             },
             "command": "host start",
             "isBackground": true,
