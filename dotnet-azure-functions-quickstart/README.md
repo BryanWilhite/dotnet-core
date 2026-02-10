@@ -18,7 +18,7 @@ From the `/dotnet-azure-functions-quickstart` [directory](../dotnet-azure-functi
 ```bash
 func init LocalFunctionProj \
     --worker-runtime dotnet-isolated \
-    --target-framework net8.0
+    --target-framework net10.0
 ```
 
 ## adding a `*.sln` file
