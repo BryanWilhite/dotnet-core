@@ -422,4 +422,4 @@ public IActionResult Get()
 
 💡Note that I also built this endpoint using `Newtonsoft.Json` types. For detail on this, [browse the files](https://github.com/BryanWilhite/dotnet-core/blob/0b5bcfb22269e395822633f0864bd3e38909f4fc/dotnet-web-mvc-angular-forms/Songhay.AngularForms/Controllers/FormlyController.cs) of commit `0b5bcfb` and read [my GitHub comment](https://github.com/BryanWilhite/dotnet-core/issues/20#issuecomment-789504240).
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
