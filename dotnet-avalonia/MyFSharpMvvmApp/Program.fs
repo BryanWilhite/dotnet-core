@@ -2,7 +2,6 @@
 
 open System
 open Avalonia
-open Avalonia.ReactiveUI
 
 module Program =
 
@@ -10,10 +9,11 @@ module Program =
     let buildAvaloniaApp () = 
         AppBuilder
             .Configure<App>()
-            .UsePlatformDetect()
             .WithInterFont()
+#if DEBUG
+            .WithDeveloperTools()
+#endif
             .LogToTrace(areas = Array.empty)
-            .UseReactiveUI()
 
     [<EntryPoint; STAThread>]
     let main argv =

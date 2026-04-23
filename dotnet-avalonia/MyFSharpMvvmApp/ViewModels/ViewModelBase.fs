@@ -1,6 +1,7 @@
 ﻿namespace MyFSharpMvvmApp.ViewModels
 
-open ReactiveUI
+open CommunityToolkit.Mvvm.ComponentModel
 
+[<AbstractClass>]
 type ViewModelBase() =
-    inherit ReactiveObject()
+    inherit ObservableObject()
