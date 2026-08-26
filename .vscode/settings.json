@@ -33,6 +33,6 @@
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
     "FSharp.showExplorerOnStartup": false,
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
-        "dotnet-web-static-content/Songhay.StaticOne/Songhay.StaticOne.sln"
+        "dotnet-worker-containerized/DotNet.ContainerImage.slnx"
     ]
 }
