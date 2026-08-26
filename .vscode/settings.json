@@ -33,6 +33,7 @@
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
     "FSharp.showExplorerOnStartup": false,
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
-        "dotnet-worker-containerized/DotNet.ContainerImage.slnx"
+        "dotnet-aspire-worker-containerized/My.AspireApp/My.AspireApp.sln",
+        "dotnet-aspire-starter/My.AspireStarterApp/My.AspireStarterApp.sln"
     ]
 }
