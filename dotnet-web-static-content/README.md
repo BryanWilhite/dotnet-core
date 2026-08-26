@@ -1,6 +1,6 @@
 # ASP.NET Core Static Files
 
-This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[📖 docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-5.0)] working in ASP.NET Core.
+This sample isolates and demonstrates _exactly_ what is needed to get ASP.NET Static Files [[📖 docs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-8.0)] working in ASP.NET Core.
 
 To get this minimal sample to work we first run this (from the `dotnet-web-static-content` [directory](../dotnet-web-static-content)):
 
@@ -36,26 +36,28 @@ In `static_file.html` we have:
 </html>
 ```
 
-and add these lines to `Startup.Configure()` [[view](./Songhay.StaticOne/Songhay.StaticOne/Startup.cs)]:
+and add these lines to the `Program.cs` [file](../dotnet-web-static-content/Songhay.StaticOne/Songhay.StaticOne/Program.cs):
 
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/", async context =
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+WebApplication app = builder.Build();
+
+app.MapGet("/", async context =>
     {
-        await context.Response.WriteAsync
-(@"<a href=""./static_file.
-html"">Hello World!</a>");
+        string inlineHtml = @"<a href=""./static_file.html"">Hello World!</a>";
+        await context.Response.WriteAsync(inlineHtml);
     });
-}).UseStaticFiles();
+
+app.UseStaticFiles();
+
+app.Run();
 ```
 
-The most important statement above is `app.UseStaticFiles()`.
+The most important statement above is `app.UseStaticFiles()`. The `MapGet` expression is just a convenient way to generate HTML without having to define another static file.
 
 Finally:
 
 ```bash
-dotnet build Songhay.StaticOne/Songhay.StaticOne.sln
 dotnet run --project Songhay.StaticOne/Songhay.StaticOne/Songhay.StaticOne.csproj
 ```
 

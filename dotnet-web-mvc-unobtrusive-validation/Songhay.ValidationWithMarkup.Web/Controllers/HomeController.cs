@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Songhay.ValidationWithMarkup.Web.Models;
 
@@ -6,8 +6,6 @@ namespace Songhay.ValidationWithMarkup.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -15,11 +13,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        _logger?.LogInformation("Method: {Name}", nameof(Index));
+
         return View();
     }
 
     public IActionResult Privacy()
     {
+        _logger?.LogInformation("Method: {Name}", nameof(Privacy));
+
         return View();
     }
 
@@ -28,4 +30,6 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    readonly ILogger<HomeController> _logger;
 }

@@ -1,7 +1,7 @@
-﻿using ReactiveUI;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MyMvvmApp.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+public abstract class ViewModelBase : ObservableObject
 {
 }

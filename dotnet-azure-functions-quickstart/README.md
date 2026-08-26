@@ -1,6 +1,6 @@
 # Azure Functions “quickstart”
 
-This is an obedient walk through “[Quickstart: Create a C# function in Azure from the command line](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=linux%2Cazure-cli)” in a bash shell on Ubuntu 22.04.4 LTS.
+This is an obedient walk through “[Quickstart: Create a C# function in Azure from the command line](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=linux%2Cazure-cli)” in a bash shell on Ubuntu 24.04.3 LTS.
 
 The following table summarizes the command-line tools required:
 
@@ -18,7 +18,7 @@ From the `/dotnet-azure-functions-quickstart` [directory](../dotnet-azure-functi
 ```bash
 func init LocalFunctionProj \
     --worker-runtime dotnet-isolated \
-    --target-framework net8.0
+    --target-framework net10.0
 ```
 
 ## adding a `*.sln` file

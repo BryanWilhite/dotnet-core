@@ -1,6 +1,6 @@
 @using Songhay.FluentValidation.Web.Controllers
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model Songhay.FluentValidation.Web.Models.TodoList
+@model Songhay.Todo.Models.TodoList
 
 @{
     ViewData["Title"] = $"TODO List ({Model.Id})";
@@ -9,7 +9,8 @@
 <h1>@ViewData["Title"]</h1>
 
 <form
-    asp-controller="@nameof(TodosController)" asp-action="@nameof(TodosController.Save)"
+    asp-controller="@nameof(TodosController).Replace(nameof(Controller), string.Empty)"
+    asp-action="@nameof(TodosController.Save)"
     class="w-50" data-ajax="true" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>

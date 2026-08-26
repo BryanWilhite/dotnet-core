@@ -1,5 +1,6 @@
 using FluentValidation;
-using Songhay.Validation.Web.Models;
+using Songhay.Todo.Models;
+using Songhay.Todo.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 

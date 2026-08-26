@@ -2,6 +2,8 @@ namespace MyFSharpMvvmApp
 
 open Avalonia
 open Avalonia.Controls.ApplicationLifetimes
+open Avalonia.Data.Core
+open Avalonia.Data.Core.Plugins
 open Avalonia.Markup.Xaml
 open MyFSharpMvvmApp.ViewModels
 open MyFSharpMvvmApp.Views
@@ -13,8 +15,6 @@ type App() =
             AvaloniaXamlLoader.Load(this)
 
     override this.OnFrameworkInitializationCompleted() =
-
-
         match this.ApplicationLifetime with
         | :? IClassicDesktopStyleApplicationLifetime as desktop ->
              desktop.MainWindow <- MainWindow(DataContext = MainWindowViewModel())
