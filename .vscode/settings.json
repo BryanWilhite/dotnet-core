@@ -31,5 +31,8 @@
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
-    "FSharp.showExplorerOnStartup": false
+    "FSharp.showExplorerOnStartup": false,
+    "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
+        "dotnet-web-static-content/Songhay.StaticOne/Songhay.StaticOne.sln"
+    ]
 }
