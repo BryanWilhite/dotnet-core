@@ -1,6 +1,6 @@
 # Aspire with .NET worker: containerized
 
-This is a faithful walkthrough of “[Containerize a .NET app with dotnet publish](https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish).”
+This sample builds upon the work done in the `dotnet-worker-containerized` [directory](../dotnet-worker-containerized).
 
 ## setup
 
@@ -28,14 +28,14 @@ dotnet add \
     ./My.AspireApp.ContainerImage/My.AspireApp.ContainerImage.csproj
 ```
 
-## register the service in Aspire
+## register the service in Aspire Host
 
+In the `AppHost.cs` [file](./My.AspireApp/My.AspireApp.AppHost/AppHost.cs):
 
-
-## publish
-
-```bash
-dotnet publish --os linux --arch x64 /t:PublishContainer
+```csharp
+builder.AddProject<Projects.My_AspireApp_ContainerImage>("my-aspire-worker");
 ```
+
+...where `"my-aspire-worker"` is an arbitrary name that will be used in the [Aspire Dashboard](https://aspire.dev/dashboard/explore/).
 
 [Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
