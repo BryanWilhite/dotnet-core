@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <Version>1.0.0</Version>
+
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <Title>My Web API</Title>
+        <Description>API Host for my stuff.</Description>
+        <Authors>Bryan D. Wilhite</Authors>
+        <Copyright>(c) 2026 Bryan D. Wilhite</Copyright>
+        <Company>Songhay System</Company>
+
+        <ContainerImageTag>$(Version)</ContainerImageTag>
+        <LocalRegistry>Podman</LocalRegistry>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ContainerEnvironmentVariable Include="ASPNETCORE_ENVIRONMENT" Value="Production" />
+        <ContainerEnvironmentVariable Include="DOTNET_ENVIRONMENT" Value="Production" />
+        <ContainerEnvironmentVariable Include="HTTP_PORTS" Value="8080" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+@MyWeb.Api_HostAddress = http://localhost:5287
+@MyWeb.Api_ContainerAddress = http://localhost:8080
+
+### local F5 debugging/running
+GET {{MyWeb.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### local container running
+GET {{MyWeb.Api_ContainerAddress}}/weatherforecast/
+Accept: application/json
