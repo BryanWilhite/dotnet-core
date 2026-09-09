@@ -33,6 +33,6 @@
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
     "FSharp.showExplorerOnStartup": false,
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
-        "dotnet-aspire-worker-containerized/My.AspireApp/My.AspireApp.sln"
+        "dotnet-webapiaot-quartz-containerized/MyAotQuartzWeb.Api.slnx"
     ]
 }
