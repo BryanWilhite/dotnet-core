@@ -1,0 +1,28 @@
+@Api_HostAddress = https://localhost:5000
+
+### deadlock scenario
+#
+# (cause the target to hang and accumulate many threads)
+GET {{Api_HostAddress}}/api/diagscenario/deadlock
+Accept: application/json
+
+### high CPU usage scenario
+#
+# (heavily use the CPU for a duration specified by {milliseconds})
+@milliseconds = 2048
+GET {{Api_HostAddress}}/api/diagscenario/highcpu/{{milliseconds}}
+Accept: application/json
+
+### memory leak scenario
+#
+# (leak memory in amount specified by {kb})
+@kb = 2048
+GET {{Api_HostAddress}}/api/diagscenario/memleak/{{kb}}
+Accept: application/json
+
+### memory usage spike
+#
+# (cause intermittent memory spikes over the specified number of seconds)
+@seconds = 15
+GET {{Api_HostAddress}}/api/diagscenario/memspike/{{seconds}}
+Accept: application/json
