@@ -33,6 +33,6 @@
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
     "FSharp.showExplorerOnStartup": false,
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
-        "dotnet-webapiaot-quartz-containerized/MyAotQuartzWeb.Api.slnx"
+        "dotnet-diagnostics/DiagnosticScenarios.slnx"
     ]
 }
