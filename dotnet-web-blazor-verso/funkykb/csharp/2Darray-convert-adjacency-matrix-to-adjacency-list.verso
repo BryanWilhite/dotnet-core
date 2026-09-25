@@ -1,7 +1,11 @@
 {
   "verso": "1.1",
   "metadata": {
-    "defaultKernel": "python"
+    "defaultKernel": "python",
+    "activeLayout": {
+      "extensionId": "verso.layout.notebook",
+      "layoutId": "notebook"
+    }
   },
   "cells": [
     {
@@ -12,8 +16,14 @@
     {
       "id": "d449e9fd-7ba8-4030-a506-6d5027a281fc",
       "type": "code",
-      "language": "python",
-      "source": "\nint[,] adjacencyMatrix = new int[,]\n{\n    { 0, 1, 1, 0 },\n    { 1, 0, 0, 0 },\n    { 1, 0, 0, 1 },\n    { 0, 0, 1, 0 },\n};\n\nstring[] matrixLabels = new[] { \u0022A\u0022, \u0022B\u0022, \u0022C\u0022, \u0022D\u0022 };\n\nKeyValuePair\u003Cstring, string[]\u003E[] adjacencyList = matrixLabels\n    .Select(label =\u003E new KeyValuePair\u003Cstring, string[]\u003E(label, new string[0]))\n    .ToArray();\n\nvar columnUpperBound = adjacencyMatrix.GetUpperBound(1);\nvar columnIndex = 0;\nvar rowIndex = 0;\n\n//report header:\nvar sb = new StringBuilder(\u0022  \u0022);\nsb.AppendLine(matrixLabels.Aggregate((a, i) =\u003E $\u0022{a} {i}\u0022));\n\nforeach (var element in adjacencyMatrix)\n{\n    if (adjacencyMatrix[rowIndex, columnIndex] == 1)\n    {\n        var label = matrixLabels[columnIndex];\n        var appended = adjacencyList[rowIndex].Value.Union(new[] { label });\n        adjacencyList[rowIndex] = new KeyValuePair\u003Cstring, string[]\u003E(\n                adjacencyList[rowIndex].Key,\n                appended.ToArray()\n            );\n    }\n\n    //report body:\n    var isAtBeginningOfColumn = (columnIndex == 0);\n    var isAtEndOfColumn = (columnIndex \u003E 0) \u0026\u0026 (columnIndex % columnUpperBound == 0);\n\n    if (isAtBeginningOfColumn)\n    {\n        sb.Append($\u0022{matrixLabels[rowIndex]} \u0022);\n    }\n\n    if (isAtEndOfColumn)\n    {\n        sb.AppendLine($\u0022{element}\u0022);\n\n        columnIndex = 0;\n        rowIndex\u002B\u002B;\n    }\n    else\n    {\n        sb.Append($\u0022{element} \u0022);\n        columnIndex\u002B\u002B;\n    }\n}\n\nConsole.WriteLine($@\u0022\n\nreport: {nameof(adjacencyMatrix)}\n\n{sb}\n\u0022);\n\n// adjacencyList.Dump(nameof(adjacencyList));"
+      "language": "csharp",
+      "source": "\nint[,] adjacencyMatrix = new int[,]\n{\n    { 0, 1, 1, 0 },\n    { 1, 0, 0, 0 },\n    { 1, 0, 0, 1 },\n    { 0, 0, 1, 0 },\n};\n\nstring[] matrixLabels = new[] { \u0022A\u0022, \u0022B\u0022, \u0022C\u0022, \u0022D\u0022 };\n\nKeyValuePair\u003Cstring, string[]\u003E[] adjacencyList = matrixLabels\n    .Select(label =\u003E new KeyValuePair\u003Cstring, string[]\u003E(label, new string[0]))\n    .ToArray();\n\nvar columnUpperBound = adjacencyMatrix.GetUpperBound(1);\nvar columnIndex = 0;\nvar rowIndex = 0;\n\n//report header:\nvar sb = new StringBuilder(\u0022  \u0022);\nsb.AppendLine(matrixLabels.Aggregate((a, i) =\u003E $\u0022{a} {i}\u0022));\n\nforeach (var element in adjacencyMatrix)\n{\n    if (adjacencyMatrix[rowIndex, columnIndex] == 1)\n    {\n        var label = matrixLabels[columnIndex];\n        var appended = adjacencyList[rowIndex].Value.Union(new[] { label });\n        adjacencyList[rowIndex] = new KeyValuePair\u003Cstring, string[]\u003E(\n                adjacencyList[rowIndex].Key,\n                appended.ToArray()\n            );\n    }\n\n    //report body:\n    var isAtBeginningOfColumn = (columnIndex == 0);\n    var isAtEndOfColumn = (columnIndex \u003E 0) \u0026\u0026 (columnIndex % columnUpperBound == 0);\n\n    if (isAtBeginningOfColumn)\n    {\n        sb.Append($\u0022{matrixLabels[rowIndex]} \u0022);\n    }\n\n    if (isAtEndOfColumn)\n    {\n        sb.AppendLine($\u0022{element}\u0022);\n\n        columnIndex = 0;\n        rowIndex\u002B\u002B;\n    }\n    else\n    {\n        sb.Append($\u0022{element} \u0022);\n        columnIndex\u002B\u002B;\n    }\n}\n\nConsole.WriteLine(\n    $\u0022\u0022\u0022\n\n    report: {nameof(adjacencyMatrix)}\n\n    {sb}\n    \u0022\u0022\u0022);\n\n// adjacencyList.Dump(nameof(adjacencyList));",
+      "outputs": [
+        {
+          "mimeType": "text/plain",
+          "content": "\nreport: adjacencyMatrix\n\n  A B C D\nA 0 1 1 0\nB 1 0 0 0\nC 1 0 0 1\nD 0 0 1 0\n\n"
+        }
+      ]
     },
     {
       "id": "7b0c6e09-9c9c-44bd-831d-37a8381577ba",
