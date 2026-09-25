@@ -16,7 +16,7 @@ Accept: application/json
 ### memory leak scenario
 #
 # (leak memory in amount specified by {kb})
-@kb = 2048
+@kb = 20000
 GET {{Api_HostAddress}}/api/diagscenario/memleak/{{kb}}
 Accept: application/json
 
