@@ -1,0 +1,105 @@
+{
+  "verso": "1.1",
+  "metadata": {
+    "defaultKernel": "csharp",
+    "activeLayout": {
+      "extensionId": "verso.layout.notebook",
+      "layoutId": "notebook"
+    }
+  },
+  "cells": [
+    {
+      "id": "9b039df2-0b27-4142-b018-faefe4937181",
+      "type": "markdown",
+      "source": "# 1071. Greatest Common Divisor of Strings\n\n## \u003Chttps://leetcode.com/problems/greatest-common-divisor-of-strings\u003E\n\n\u003EFor two strings \u0060s\u0060 and \u0060t\u0060, we say \u0022t divides s\u0022 if and only if \u0060s = t \u002B t \u002B t \u002B ... \u002B t \u002B t\u0060 (i.e., \u0060t\u0060 is concatenated with itself one or more times).\n\u003E\n\u003EGiven two strings \u0060str1\u0060 and \u0060str2\u0060, return the largest string x such that x divides both str1 and str2.\n\nThe first thing to understand about this problem is that \u0060str1\u0060 and \u0060str2\u0060 are _not_ the two strings \u0060s\u0060 and \u0060t\u0060. Failing to understand this will not solve this _easy_ \uD83D\uDE44 problem."
+    },
+    {
+      "id": "f3fa97c6-90f3-4667-832a-7762243fc773",
+      "type": "markdown",
+      "source": "## the test case revealing that I do not know what \u0060t\u0060 is \uD83E\uDD14\n\nThe \u0060expcted\u0060 below represents \u0060t\u0060:"
+    },
+    {
+      "id": "a62e76f9-cffc-4263-b9b2-a4bfedcd08eb",
+      "type": "code",
+      "language": "csharp",
+      "source": "string str1 = \u0022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\u0022;\nstring str2 = \u0022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\u0022;\nstring expected = \u0022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\u0022;\n\n$\u0022{nameof(str1)} length: {str1.Length}; {nameof(str2)} length: {str2.Length}; {nameof(expected)} length: {expected.Length}\u0022",
+      "outputs": [
+        {
+          "mimeType": "text/plain",
+          "content": "str1 length: 360; str2 length: 640; expected length: 40"
+        }
+      ]
+    },
+    {
+      "id": "bc9de127-e559-4d18-86ec-4f9a0bf6e074",
+      "type": "markdown",
+      "source": "It is no accident that the length of \u0060expected\u0060 divides the lengths of \u0060str1\u0060 and \u0060str2\u0060 evenly.\n\nThis is the very definition of _dividing_ as defined in this problem."
+    },
+    {
+      "id": "2419d83f-d9f5-48e2-9409-76848f023c4c",
+      "type": "markdown",
+      "source": "## plan\n\n1. start with the smallest string and determine whether all chars are the same:"
+    },
+    {
+      "id": "41bac2ea-7c1f-4602-b2ae-75c3c5ad2650",
+      "type": "code",
+      "language": "csharp",
+      "source": "int[] numbers = [.. str1.ToCharArray().Select(c =\u003E (int)c)];\nbool allAreTheSame = numbers.All(n =\u003E numbers.FirstOrDefault() == n);\n\nallAreTheSame",
+      "outputs": [
+        {
+          "mimeType": "text/plain",
+          "content": "True"
+        }
+      ]
+    },
+    {
+      "id": "8035c2d0-4cec-4eb1-9284-70eb0efba180",
+      "type": "markdown",
+      "source": "2. when all letters are the same then use \u0060BigInteger.GreatestCommonDivisor\u0060:"
+    },
+    {
+      "id": "c3feab02-bba5-4a4f-9860-3976852ed65b",
+      "type": "code",
+      "language": "csharp",
+      "source": "using System.Numerics;\n\n(int)BigInteger.GreatestCommonDivisor(str1.Length, str2.Length)",
+      "outputs": [
+        {
+          "mimeType": "text/plain",
+          "content": "40"
+        }
+      ]
+    },
+    {
+      "id": "714b9325-cce9-4ccf-bd39-478c5b987f60",
+      "type": "markdown",
+      "source": "3. when all letters are _not_ the same then:\n\n- they are not the same but both strings contain a repeating pattern\n- they are not the same and there is no repeating pattern\n\nIn the latter case, return \u0060\u0022\u0022\u0060."
+    },
+    {
+      "id": "5ffdefe1-5d19-425b-8ae9-06e29211efe4",
+      "type": "markdown",
+      "source": "## related subjects of interest\n\nThis problem leads me to consider the general problem of finding a substring.\n\nI was pleasantly surprised to find that the [Knuth-Morris-Pratt (KMP) algorithm](https://hackernoon.com/understanding-and-applying-the-knuth-morris-pratt-algorithm-from-string-matching-to-stream-search) addressed this general problem in the 1970s."
+    },
+    {
+      "id": "373eec5f-47ef-483d-935e-5f0a8206ead6",
+      "type": "markdown",
+      "source": "### the fundamental of regular expressions is the functionality that can find an _unknown_, repeating pattern\n\nThis pattern should be regarded as profoundly fundamental: \u0060^(.\u002B?)\\1\u002B\u0060"
+    },
+    {
+      "id": "25044f6a-721a-4ab1-b578-99459ebbe9b1",
+      "type": "code",
+      "language": "csharp",
+      "source": "using System.Text.RegularExpressions;\n\nstring pattern = @\u0022^(.\u002B?)\\1\u002B\u0022;\nstring input = \u0022abcabcabcabc\u0022;\nMatch globalMatch = Regex.Match(input, pattern);\n\nif (!globalMatch.Success) return;\n\nint count = Regex.Count(input, globalMatch.Groups[1].Value);\n\n(globalMatch.Groups[1].Value, count)",
+      "outputs": [
+        {
+          "mimeType": "text/html",
+          "content": "\u003Cstyle\u003E.verso-fsharp-output{--fsharp-bg:var(--vscode-editor-background,var(--verso-cell-output-background,#fff));--fsharp-fg:var(--vscode-editor-foreground,var(--verso-cell-output-foreground,#1e1e1e));--fsharp-border:var(--vscode-editorWidget-border,var(--verso-border-default,#e0e0e0));--fsharp-header-bg:var(--vscode-editorWidget-background,var(--verso-cell-background,#f5f5f5));--fsharp-hover:var(--vscode-list-hoverBackground,var(--verso-cell-hover-background,#f0f0f0));--fsharp-muted:var(--vscode-descriptionForeground,var(--verso-editor-line-number,#858585));--fsharp-error-bg:var(--vscode-inputValidation-errorBackground,var(--verso-status-error,#fde7e9));--fsharp-ok-bg:var(--vscode-inputValidation-infoBackground,var(--verso-status-success,#e6f4ea));font-family:var(--verso-code-output-font-family,monospace);font-size:13px;color:var(--fsharp-fg);}.verso-fsharp-output table{border-collapse:collapse;width:auto;background:var(--fsharp-bg);color:var(--fsharp-fg);}.verso-fsharp-output th{text-align:left;padding:6px 12px;border-bottom:2px solid var(--fsharp-border);background:var(--fsharp-header-bg);font-weight:600;}.verso-fsharp-output td{padding:5px 12px;border-bottom:1px solid var(--fsharp-border);}.verso-fsharp-output tbody tr:hover{background:var(--fsharp-hover);}.verso-fsharp-output .verso-fsharp-none{color:var(--fsharp-muted);font-style:italic;}.verso-fsharp-output .verso-fsharp-ok{padding:2px 6px;background:var(--fsharp-ok-bg);border-radius:3px;}.verso-fsharp-output .verso-fsharp-error{padding:2px 6px;background:var(--fsharp-error-bg);border-radius:3px;}.verso-fsharp-output .verso-fsharp-footer{padding:6px 0;color:var(--fsharp-muted);font-size:12px;}\u003C/style\u003E\u003Cdiv class=\u0022verso-fsharp-output\u0022\u003E(\u003Cspan title=\u0022String\u0022\u003Eabc\u003C/span\u003E, \u003Cspan title=\u0022Int32\u0022\u003E4\u003C/span\u003E)\u003C/div\u003E"
+        }
+      ]
+    },
+    {
+      "id": "bfefae3d-3fa7-4106-9dd2-cf31463d5d58",
+      "type": "markdown",
+      "source": "[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)\uD83C\uDDFA\uD83C\uDDF8\uD83D\uDCBC"
+    }
+  ]
+}
