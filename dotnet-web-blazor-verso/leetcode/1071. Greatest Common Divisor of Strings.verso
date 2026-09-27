@@ -11,12 +11,12 @@
     {
       "id": "9b039df2-0b27-4142-b018-faefe4937181",
       "type": "markdown",
-      "source": "# 1071. Greatest Common Divisor of Strings\n\n## \u003Chttps://leetcode.com/problems/greatest-common-divisor-of-strings\u003E\n\n\u003EFor two strings \u0060s\u0060 and \u0060t\u0060, we say \u0022t divides s\u0022 if and only if \u0060s = t \u002B t \u002B t \u002B ... \u002B t \u002B t\u0060 (i.e., \u0060t\u0060 is concatenated with itself one or more times).\n\u003E\n\u003EGiven two strings \u0060str1\u0060 and \u0060str2\u0060, return the largest string x such that x divides both str1 and str2.\n\nThe first thing to understand about this problem is that \u0060str1\u0060 and \u0060str2\u0060 are _not_ the two strings \u0060s\u0060 and \u0060t\u0060. Failing to understand this will not solve this _easy_ \uD83D\uDE44 problem."
+      "source": "# 1071. Greatest Common Divisor of Strings\n\n## \u003Chttps://leetcode.com/problems/greatest-common-divisor-of-strings\u003E\n\n\u003EFor two strings \u0060s\u0060 and \u0060t\u0060, we say \u0022t divides s\u0022 if and only if \u0060s = t \u002B t \u002B t \u002B ... \u002B t \u002B t\u0060 (i.e., \u0060t\u0060 is concatenated with itself one or more times).\n\u003E\n\u003EGiven two strings \u0060str1\u0060 and \u0060str2\u0060, return the largest string x such that x divides both str1 and str2.\n\nThe first thing to understand about this problem is that \u0060str1\u0060 and \u0060str2\u0060 are _not_ the two strings \u0060s\u0060 and \u0060t\u0060. Failing to understand this will not solve this \u201Ceasy\u201D \uD83D\uDE44 problem.\n\nHere is my submission: \u003Chttps://leetcode.com/problems/greatest-common-divisor-of-strings/submissions/2154630910\u003E"
     },
     {
       "id": "f3fa97c6-90f3-4667-832a-7762243fc773",
       "type": "markdown",
-      "source": "## the test case revealing that I do not know what \u0060t\u0060 is \uD83E\uDD14\n\nThe \u0060expcted\u0060 below represents \u0060t\u0060:"
+      "source": "## the test case revealing that I do not know what \u0060t\u0060 is \uD83E\uDD14\n\nThe \u0060expected\u0060 below represents \u0060t\u0060:"
     },
     {
       "id": "a62e76f9-cffc-4263-b9b2-a4bfedcd08eb",
@@ -36,43 +36,9 @@
       "source": "It is no accident that the length of \u0060expected\u0060 divides the lengths of \u0060str1\u0060 and \u0060str2\u0060 evenly.\n\nThis is the very definition of _dividing_ as defined in this problem."
     },
     {
-      "id": "2419d83f-d9f5-48e2-9409-76848f023c4c",
+      "id": "ee005f21-d919-4f6a-b3ba-9ac7c34ebada",
       "type": "markdown",
-      "source": "## plan\n\n1. start with the smallest string and determine whether all chars are the same:"
-    },
-    {
-      "id": "41bac2ea-7c1f-4602-b2ae-75c3c5ad2650",
-      "type": "code",
-      "language": "csharp",
-      "source": "int[] numbers = [.. str1.ToCharArray().Select(c =\u003E (int)c)];\nbool allAreTheSame = numbers.All(n =\u003E numbers.FirstOrDefault() == n);\n\nallAreTheSame",
-      "outputs": [
-        {
-          "mimeType": "text/plain",
-          "content": "True"
-        }
-      ]
-    },
-    {
-      "id": "8035c2d0-4cec-4eb1-9284-70eb0efba180",
-      "type": "markdown",
-      "source": "2. when all letters are the same then use \u0060BigInteger.GreatestCommonDivisor\u0060:"
-    },
-    {
-      "id": "c3feab02-bba5-4a4f-9860-3976852ed65b",
-      "type": "code",
-      "language": "csharp",
-      "source": "using System.Numerics;\n\n(int)BigInteger.GreatestCommonDivisor(str1.Length, str2.Length)",
-      "outputs": [
-        {
-          "mimeType": "text/plain",
-          "content": "40"
-        }
-      ]
-    },
-    {
-      "id": "714b9325-cce9-4ccf-bd39-478c5b987f60",
-      "type": "markdown",
-      "source": "3. when all letters are _not_ the same then:\n\n- they are not the same but both strings contain a repeating pattern\n- they are not the same and there is no repeating pattern\n\nIn the latter case, return \u0060\u0022\u0022\u0060."
+      "source": "## before resorting to \u0060Regex\u0060 (see below), attempt to solve with the LeetCode \u2018fundamentals\u2019\n\n\u003Cfigure\u003E\n    \u003Ca href=\u0022https://www.youtube.com/watch?v=RYT08CaYq6A\u0022\u003E\n        \u003Cimg alt=\u0022LeetCode Was Hard Until I Learned THESE 8 Patterns (With Templates!\u0022 src=\u0022https://img.youtube.com/vi/RYT08CaYq6A/maxresdefault.jpg\u0022 width=\u0022480\u0022 /\u003E\n    \u003C/a\u003E\n    \u003Cp\u003E\u003Csmall\u003ELeetCode Was Hard Until I Learned THESE 8 Patterns (With Templates!\u003C/small\u003E\u003C/p\u003E\n\u003C/figure\u003E\n\nAccording to the video above, the LeetCode \u2018fundamentals\u2019 are:\n\n1. scanning in one dimension with two pointers\n2. scanning in one dimension with a sliding window\n3. the binary search of a sorted one-dimensional collection (sometimes the a sort can be obtained when the \u201Cunsorted answer space\u201D has a \u201C[monotonic](https://en.wikipedia.org/wiki/Monotonic_function) property\u201D)\n4. breadth-first search with \u0060Queue\u003CT\u003E\u0060\n5. backtracking (mostly with a \u0060Stack\u003CT\u003E\u0060)\n6. \u201Cdynamic programming\u201D (_not_ \u201Cdivide and conquer\u201D but similar)\n7. depth-first search with \u0060Stack\u003CT\u003E\u0060\n8. use of the priority queue data structure\n\nI think this problem can be solved with _#1_ and little bit of _#3_."
     },
     {
       "id": "5ffdefe1-5d19-425b-8ae9-06e29211efe4",
