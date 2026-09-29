@@ -33,6 +33,6 @@
     "azureFunctions.projectSubpath": "dotnet-azure-functions-quickstart/My.Functions",
     "FSharp.showExplorerOnStartup": false,
     "csharp-dev-tools.solutionViewer.selectedWorkspaceSolutions": [
-        "dotnet-diagnostics/DiagnosticScenarios.slnx"
+        "dotnet-dapr-slim/MyDapr.slnx"
     ]
 }

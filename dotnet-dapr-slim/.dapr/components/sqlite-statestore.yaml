@@ -1,0 +1,13 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestore
+spec:
+  type: state.sqlite
+  version: v1
+  metadata:
+    # Path to the database file (created automatically if it doesn't exist)
+    - name: connectionString
+      value: "file:./dapr-state.db"
+    - name: tableName
+      value: "state"
