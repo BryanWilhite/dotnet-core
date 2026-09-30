@@ -20,7 +20,8 @@ builder.Services.Configure<JsonOptions>(options => options
 
 WebApplication app = builder.Build();
 
-DaprClient runtimeClient = app.Services.GetRequiredService<DaprClient>();
+using IServiceScope scope = app.Services.CreateScope();
+DaprClient runtimeClient = scope.ServiceProvider.GetRequiredService<DaprClient>();
 
 runtimeClient.JsonSerializerOptions.TypeInfoResolverChain.Clear();
 runtimeClient.JsonSerializerOptions
@@ -50,7 +51,6 @@ app.MapGet("/get", async (DaprClient runtimeClient) =>
 
 app.Run(appUri?.OriginalString);
 
-[JsonSerializable(typeof(IEnumerable<DaprClient>))]
 [JsonSerializable(typeof(string))]
 [JsonSerializable(typeof(Dictionary<string, string>))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext;
