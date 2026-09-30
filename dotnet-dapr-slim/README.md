@@ -7,6 +7,7 @@ From the `dotnet-dapr-slim` [directory](../dotnet-dapr-slim):
 ```bash
 mkdir .dapr/components
 touch .dapr/components/sqlite-statestore.yaml
+mkdir db
 ```
 
 In the `sqlite-statestore.yaml` [file](./.dapr/components/sqlite-statestore.yaml) add:
@@ -22,7 +23,7 @@ spec:
   metadata:
     # Path to the database file (created automatically if it doesn't exist)
     - name: connectionString
-      value: "file:./dapr-state.db"
+      value: "file:./db/dapr-state.db"
     - name: tableName
       value: "state"
 ```

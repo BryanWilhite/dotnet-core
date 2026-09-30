@@ -1,11 +1,11 @@
-@MyAotWeb.Api_HostAddress = http://localhost:5151
+@Api_HostAddress = http://localhost:5123
 
-GET {{MyAotWeb.Api_HostAddress}}/todos/
+POST {{Api_HostAddress}}/save/
 Accept: application/json
 
 ###
 
-GET {{MyAotWeb.Api_HostAddress}}/todos/1
+GET {{Api_HostAddress}}/get/
 Accept: application/json
 
 ###
