@@ -53,7 +53,7 @@ Edit the `Program.cs` [file](./MyAotWeb.Api/Program.cs) such that:
 
 - add `using Dapr.Client;`
 - add state-store constants to centralize strings used in routes
-- add `Uri? appUri` to hard-code the local port for development
+- add `Uri? appUri` to hard-code the local port for development (this is needed whether or not a proper `/MyAotWeb.Api/Properties/launchSettings.json` is generated)
 - remove the `Todos` routes and types
 - add the dapr routes 
 - add the `builder.Services.AddDaprClient();` call [📖 [docs](https://docs.dapr.io/developing-applications/sdks/dotnet/dotnet-client/#http)]
